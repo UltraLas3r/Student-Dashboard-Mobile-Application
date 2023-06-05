@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="mschreiber_c971MobileApp.Views.Dashboard">
+
+    <NavigationPage.TitleView>
+        <Label Text="Student Dashboard" FontSize="Medium">         
+        </Label>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="AddTerm" Text="Add Term" Clicked="AddTerm_Clicked"></ToolbarItem>
+        <ToolbarItem x:Name="ViewTerms" Text="View Terms" Clicked="ViewTerms_Clicked"> </ToolbarItem>
+        <ToolbarItem x:Name="Settings" Text="Settings" Clicked="Settings_Clicked" Order="Secondary"></ToolbarItem>
+        <ToolbarItem x:Name="AddClass" Text="Add Class" Clicked="AddClass_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    
+
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome To Your Student Dashboard"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+
+            <ListView>
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Item 1</x:String>
+                        <x:String>Item 2</x:String>
+                        <x:String>Item 3</x:String>
+                    </x:Array>
+                </ListView.ItemsSource>
+            </ListView>
+
+            <Button Text="Click to Rotate Text!"
+                VerticalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
+                Clicked="OnButtonClicked" />
+
+        </StackLayout>
+        
+        
+    </ContentPage.Content>
+</ContentPage>
