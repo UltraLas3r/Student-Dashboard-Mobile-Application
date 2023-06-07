@@ -10,16 +10,55 @@ using Xamarin.Forms.Xaml;
 namespace mschreiber_c971MobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class GadgetList : ContentPage
+    public partial class TermList : ContentPage
     {
-        public GadgetList()
+        public TermList()
         {
             InitializeComponent();
         }
 
-        private void ViewOtherTerms_Clicked(object sender, EventArgs e)
+        async void ViewOtherTerms_Clicked(object sender, EventArgs e)
         {
-            //get list of other terms?
+            throw new NotImplementedException();
+        }
+
+        async void ViewClasses_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ClassDetails());
+        }
+
+        private void AddOA_Clicked(object sender, EventArgs e)
+        {
+            //TODO REMOVE THIS FILLER CODE (button rotation stuff
+            Button button = (Button)sender;
+
+            if (button.Rotation == 0)
+            {
+                button.Rotation = 45;
+                button.BackgroundColor = Color.Aquamarine;
+            }
+            else
+            {
+                button.Rotation = 0;
+                button.BackgroundColor = default;
+            }
+           
+        }
+
+        private void AddPA_Clicked(object sender, EventArgs e)
+        {
+            //TODO REMOVE THIS FILLER CODE (button rotation stuff
+            Button button = (Button)sender;
+            if (button.Rotation == 0)
+            {
+                button.Rotation = 45;
+                button.BackgroundColor = Color.Aquamarine;
+            }
+            else
+            {
+                button.Rotation = 0;
+                button.BackgroundColor = default;
+            }
         }
     }
 }

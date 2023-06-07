@@ -9,8 +9,21 @@
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
 
+            <ListView>
+                <ListView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Item 1</x:String>
+                        <x:String>Item 2</x:String>
+                        <x:String>Item 3</x:String>
+                    </x:Array>
+                </ListView.ItemsSource>
+            </ListView>
 
-            <Button x:Name="ViewOtherTerms" Text="View Other Terms" Clicked="ViewOtherTerms_Clicked" ></Button>
+            <Label Text="The following buttons may be removed" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
+            <Button x:Name="AddOA" Text="Add OA" Clicked="AddOA_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" ></Button>
+            <Button x:Name="AddPA" Text="Add PA" Clicked="AddPA_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" ></Button>
+            <Button x:Name="ViewClasses" Text="View Classes" Clicked="ViewClasses_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" ></Button>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

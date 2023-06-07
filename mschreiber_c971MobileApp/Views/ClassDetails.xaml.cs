@@ -26,19 +26,24 @@ namespace mschreiber_c971MobileApp.Views
 
         }
 
-        //        private ClassInfo MyClass { get; set; }
+        private ClassInfo MyClass { get; set; }
 
-        //        public ClassDetail(Class c)
+        public ClassDetails()
 
-        //        {
+        {
 
-        //            InitializeComponent();
+            InitializeComponent();
 
-        //            MyClass = c;
+            
 
-        //            BindingContext = new CourseModel(MyCourse);
+           // BindingContext = new CourseModel(MyCourse);
 
-        //        }
+        }
+
+        async void ViewTerms_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TermList());
+        }
 
 
 

@@ -26,10 +26,7 @@ namespace mschreiber_c971MobileApp.Views
             await Navigation.PushAsync(new TermAdd());
         }
 
-        async void ViewTerms_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new GadgetList());
-        }
+        
 
         async void Settings_Clicked(object sender, EventArgs e)
         {
@@ -57,9 +54,14 @@ namespace mschreiber_c971MobileApp.Views
             }
         }
 
-        private void ClassDetail_Clicked(object sender, EventArgs e)
+        async void ClassDetail_Clicked(object sender, EventArgs e)
         {
+            await Navigation.PushAsync(new ClassDetails());
 
+        }
+        async void ViewTerms_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TermList());
         }
     }
 }
