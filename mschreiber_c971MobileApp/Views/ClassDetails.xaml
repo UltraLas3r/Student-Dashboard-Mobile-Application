@@ -7,6 +7,9 @@
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+
+            <Button x:Name="AddOA" Text="Add OA" Clicked="AddOA_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" ></Button>
+            <Button x:Name="AddPA" Text="Add PA" Clicked="AddPA_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" ></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

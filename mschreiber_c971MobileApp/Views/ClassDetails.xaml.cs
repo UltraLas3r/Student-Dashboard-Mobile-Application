@@ -1,249 +1,265 @@
-﻿//using mschreiber_c971MobileApp.Models;
-//using System;
-//using System.Collections.Generic;
-//using System.Collections.ObjectModel;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using Xamarin.Essentials;
-//using Xamarin.Forms;
-//using Xamarin.Forms.Xaml;
+﻿using mschreiber_c971MobileApp.Models;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
-//namespace mschreiber_c971MobileApp.Views
-//{
-//    [XamlCompilation(XamlCompilationOptions.Compile)]
-//    public partial class ClassDetails : ContentPage
-//    {
 
-//        private ClassInfo MyClass { get; set; }
 
-//        public CourseDetail(Course c)
+namespace mschreiber_c971MobileApp.Views
+{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ClassDetails : ContentPage
+    {
+        private void AddOA_Clicked(object sender, EventArgs e)
+        {
 
-//        {
+        }
 
-//            InitializeComponent();
+        private void AddPA_Clicked(object sender, EventArgs e)
+        {
 
-//            MyClass = c;
+        }
 
-//            BindingContext = new CourseModel(MyCourse);
+        //        private ClassInfo MyClass { get; set; }
 
-//        }
+        //        public ClassDetail(Class c)
 
+        //        {
 
+        //            InitializeComponent();
 
-//        private void Tests_Clicked(object sender, EventArgs e)
+        //            MyClass = c;
 
-//        {
+        //            BindingContext = new CourseModel(MyCourse);
 
-//            Button button = (Button)sender;
+        //        }
 
-//            Course c = (Course)button.BindingContext;
 
-//            ObservableCollection<Course> select = CourseModel.GetSelected();
 
-//            Course selected = select[0];
+        //        private void Tests_Clicked(object sender, EventArgs e)
 
+        //        {
 
+        //            Button button = (Button)sender;
 
-//            if (c == selected)
+        //            Course c = (Course)button.BindingContext;
 
-//            {
+        //            ObservableCollection<Course> select = CourseModel.GetSelected();
 
-//                Navigation.PushModalAsync(new NavigationPage(new Views.Assessments(c)));
+        //            Course selected = select[0];
 
-//            }
 
-//            else
 
-//            {
+        //            if (c == selected)
 
-//                Navigation.PushModalAsync(new NavigationPage(new Views.Assessments(selected)));
+        //            {
 
-//            }
+        //                Navigation.PushModalAsync(new NavigationPage(new Views.Assessments(c)));
 
+        //            }
 
+        //            else
 
-//        }
+        //            {
 
+        //                Navigation.PushModalAsync(new NavigationPage(new Views.Assessments(selected)));
 
+        //            }
 
-//        private void Notifications_CheckedChanged(object sender, CheckedChangedEventArgs e)
 
-//        {
 
+        //        }
 
 
-//        }
 
+        //        private void Notifications_CheckedChanged(object sender, CheckedChangedEventArgs e)
 
+        //        {
 
-//        private void Event_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 
-//        {
 
-//            //compare collection of courses to selected course and grab the index
+        //        }
 
-//            ObservableCollection<Course> selected = CourseModel.GetSelected();
 
-//            Course select = selected[0];
 
+        //        private void Event_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 
+        //        {
 
-//            CourseModel.UpdateCourse(select.CourseID);
+        //            //compare collection of courses to selected course and grab the index
 
-//            CourseModel.UpdateCurrentCourse(select.CourseID);
+        //            ObservableCollection<Course> selected = CourseModel.GetSelected();
 
-//        }
+        //            Course select = selected[0];
 
 
 
-//        private void Email_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        //            CourseModel.UpdateCourse(select.CourseID);
 
-//        {
+        //            CourseModel.UpdateCurrentCourse(select.CourseID);
 
-//            ObservableCollection<Course> selected = CourseModel.GetSelected();
+        //        }
 
-//            Course select = selected[0];
 
 
+        //        private void Email_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
 
-//            bool test = true;
+        //        {
 
-//            char[] invalid = { '!', '@', '#', '$', '%', '^', '&', '*', ',',
+        //            ObservableCollection<Course> selected = CourseModel.GetSelected();
 
-//                '<', '>', '.', ';', ':', '"', '[', ']', '{', '}' };
+        //            Course select = selected[0];
 
-//            //instructor fields are populated
 
-//            if (select.Instructor.Length > 0 && select.InstructorPhone.Length > 0 && select.InstructorEmail.Length > 0)
 
-//            {
+        //            bool test = true;
 
-//                //works
+        //            char[] invalid = { '!', '@', '#', '$', '%', '^', '&', '*', ',',
 
-//                foreach (char c in invalid)
+        //                        '<', '>', '.', ';', ':', '"', '[', ']', '{', '}' };
 
-//                {
+        //            //instructor fields are populated
 
-//                    if (select.Instructor.Contains(c))
+        //            if (select.Instructor.Length > 0 && select.InstructorPhone.Length > 0 && select.InstructorEmail.Length > 0)
 
-//                    {
+        //            {
 
-//                        test = false;
+        //                //works
 
-//                    }
+        //                foreach (char c in invalid)
 
-//                }
+        //                {
 
-//                if (select.InstructorEmail.Contains('@') && test)
+        //                    if (select.Instructor.Contains(c))
 
-//                {
+        //                    {
 
-//                    //valid email
+        //                        test = false;
 
-//                    CourseModel.UpdateCourse(select.CourseID);
+        //                    }
 
-//                }
+        //                }
 
-//                else
+        //                if (select.InstructorEmail.Contains('@') && test)
 
-//                {
+        //                {
 
-//                    DisplayAlert("Warning", "Please enter a valid email.", "OK");
+        //                    //valid email
 
-//                }
+        //                    CourseModel.UpdateCourse(select.CourseID);
 
-//            }
+        //                }
 
-//            else
+        //                else
 
-//            {
+        //                {
 
-//                DisplayAlert("Warning", "Please enter a valid email.", "OK");
+        //                    DisplayAlert("Warning", "Please enter a valid email.", "OK");
 
-//            }
+        //                }
 
-//        }
+        //            }
 
+        //            else
 
+        //            {
 
-//        private void Share_Clicked(object sender, EventArgs e)
+        //                DisplayAlert("Warning", "Please enter a valid email.", "OK");
 
-//        {
+        //            }
 
-//            ObservableCollection<ClassInfo> selected = ClassDetails.GetSelected();
+        //        }
 
-//            Class select = selected[0];
 
-//            List<string> recipient = new List<string>();
 
-//            recipient.Add(select.ShareEmail);
+        //        private void Share_Clicked(object sender, EventArgs e)
 
-//            _ = SendEmail(select.Notes, recipient);
+        //        {
 
-//        }
+        //            ObservableCollection<ClassInfo> selected = ClassDetails.GetSelected();
 
+        //            Class select = selected[0];
 
+        //            List<string> recipient = new List<string>();
 
-//        public async Task SendEmail(string body, List<string> recipient)
+        //            recipient.Add(select.ShareEmail);
 
-//        {
-//            try
+        //            _ = SendEmail(select.Notes, recipient);
 
-//            {
-//                var message = new EmailMessage
-//                {
-//                    Subject = "Check out my notes!",
-//                    Body = body,
-//                    To = recipient
-//                };
-//                await Email.ComposeAsync(message);
-//            }
+        //        }
 
-//            catch (FeatureNotSupportedException)
 
-//            {
-//                await DisplayAlert("Warning", "Email is not supported on this device", "OK");
-//            }
 
-//            catch
-//            {
+        //        public async Task SendEmail(string body, List<string> recipient)
 
-//            }
+        //        {
+        //            try
 
-//        }
+        //            {
+        //                var message = new EmailMessage
+        //                {
+        //                    Subject = "Check out my notes!",
+        //                    Body = body,
+        //                    To = recipient
+        //                };
+        //                await Email.ComposeAsync(message);
+        //            }
 
+        //            catch (FeatureNotSupportedException)
 
+        //            {
+        //                await DisplayAlert("Warning", "Email is not supported on this device", "OK");
+        //            }
 
-//        private void Picker_SelectedIndexChanged(object sender, EventArgs e)
+        //            catch
+        //            {
 
-//        {
+        //            }
 
-//            ObservableCollection<Course> selected = CourseModel.GetSelected();
+        //        }
 
-//            Course select = selected[0];
 
 
+        //        private void Picker_SelectedIndexChanged(object sender, EventArgs e)
 
-//            //Term to Course List clears Course.Status
+        //        {
 
-//            //CourseList (CurrentCourse) not updating Status from CourseDetail (SelectedCourse)
+        //            ObservableCollection<Course> selected = CourseModel.GetSelected();
 
-//            //UpdateStatus being passed -1
+        //            Course select = selected[0];
 
-//            //Returning from CourseDetail to CourseList clears Status to -1
 
-//            //CourseModel.UpdateStatus(select.Status);
 
-//            CourseModel.UpdateCourse(select.CourseID);
+        //            Term to Course List clears Course.Status
 
-//            CourseModel.UpdateCourseStatus(select.CourseID, select.Status);
+        //    CourseList(CurrentCourse) not updating Status from CourseDetail(SelectedCourse)
 
-//            //CourseModel.UpdateCurrentCourse(select.CourseID);
+        //    UpdateStatus being passed - 1
 
-//        }
+        //    Returning from CourseDetail to CourseList clears Status to -1
 
-//    }
+        //    CourseModel.UpdateStatus(select.Status);
 
-//}
-    
+        //            CourseModel.UpdateCourse(select.CourseID);
+
+        //            CourseModel.UpdateCourseStatus(select.CourseID, select.Status);
+
+        //            CourseModel.UpdateCurrentCourse(select.CourseID);
+
+        //        }
+
+
+
+
+
+
+    }
+
+}
+

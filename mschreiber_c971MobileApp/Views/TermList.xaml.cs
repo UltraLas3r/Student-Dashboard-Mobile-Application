@@ -16,5 +16,10 @@ namespace mschreiber_c971MobileApp.Views
         {
             InitializeComponent();
         }
+
+        private void ViewOtherTerms_Clicked(object sender, EventArgs e)
+        {
+            //get list of other terms?
+        }
     }
 }

@@ -1,13 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="mschreiber_c971MobileApp.Views.GadgetList"
-             Title = "GadgetList">
+             x:Class="mschreiber_c971MobileApp.Views.TermList"
+             Title = "TermList">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Gadget List"
+            <Label Text="This page will have the details about your current term and allow you to look at other terms"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+
+
+            <Button x:Name="ViewOtherTerms" Text="View Other Terms" Clicked="ViewOtherTerms_Clicked" ></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

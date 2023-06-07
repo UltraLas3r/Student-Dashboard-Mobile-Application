@@ -13,6 +13,7 @@
         <ToolbarItem x:Name="ViewTerms" Text="View Terms" Clicked="ViewTerms_Clicked"> </ToolbarItem>
         <ToolbarItem x:Name="Settings" Text="Settings" Clicked="Settings_Clicked" Order="Secondary"></ToolbarItem>
         <ToolbarItem x:Name="AddClass" Text="Add Class" Clicked="AddClass_Clicked"></ToolbarItem>
+        
     </ContentPage.ToolbarItems>
 
     
@@ -31,7 +32,9 @@
                         <x:String>Item 2</x:String>
                         <x:String>Item 3</x:String>
                     </x:Array>
+                    
                 </ListView.ItemsSource>
+                
             </ListView>
 
             <Button Text="Click to Rotate Text!"
@@ -39,8 +42,16 @@
                 HorizontalOptions="Center"
                 Clicked="OnButtonClicked" />
 
+            <Button x:Name="TermDetail" Text="Term Details" Clicked="ViewTerms_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"></Button>
+            <Button x:Name="ClassDetail" Text="Classes" Clicked="ClassDetail_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center"></Button>
+
         </StackLayout>
         
         
     </ContentPage.Content>
+
+    
+
+
+
 </ContentPage>

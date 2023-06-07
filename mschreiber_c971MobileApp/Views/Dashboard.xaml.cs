@@ -13,9 +13,12 @@ namespace mschreiber_c971MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Dashboard : ContentPage
     {
+        
+
         public Dashboard()
         {
             InitializeComponent();
+          
         }
 
         async void AddTerm_Clicked(object sender, EventArgs e)
@@ -39,6 +42,22 @@ namespace mschreiber_c971MobileApp.Views
         }
 
         private void OnButtonClicked(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+
+            if (button.Rotation == 0)
+            {
+                button.Rotation += 90;
+                button.BackgroundColor = Color.Red;
+            }
+            else
+            {
+                button.Rotation = 0;
+                button.BackgroundColor = default;
+            }
+        }
+
+        private void ClassDetail_Clicked(object sender, EventArgs e)
         {
 
         }
