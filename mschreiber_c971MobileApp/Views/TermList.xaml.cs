@@ -60,5 +60,20 @@ namespace mschreiber_c971MobileApp.Views
                 button.BackgroundColor = default;
             }
         }
+
+        private void AddNewTerm_Clicked(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Notes_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StudentProfile_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

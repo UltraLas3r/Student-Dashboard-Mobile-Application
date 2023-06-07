@@ -9,10 +9,10 @@
     </NavigationPage.TitleView>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="AddTerm" Text="Add Term" Clicked="AddTerm_Clicked" />
-        <ToolbarItem x:Name="ViewTerms" Text="TERMS" Clicked="ViewTerms_Clicked" />
+        <ToolbarItem x:Name="StudentProfile" Text="My Profile" Clicked="StudentProfile_Clicked"/>
+        <ToolbarItem x:Name="Notes" Text="Notes" Clicked="Notes_Clicked" />
         <ToolbarItem x:Name="Settings" Text="Settings" Clicked="Settings_Clicked" Order="Secondary" />
-        <ToolbarItem x:Name="AddClass" Text="Add Class" Clicked="AddClass_Clicked" />
+        
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
@@ -26,8 +26,15 @@
                 HorizontalOptions="Center"
                 Clicked="OnButtonClicked" />
 
-            <Button x:Name="TermDetail" Text="TERMS" Clicked="ViewTerms_Clicked"
+
+            <Label Text="Get an overview of terms here"></Label>
+
+            <Button x:Name="TermDetail" Text="TERM DETAILS" Clicked="ViewTerms_Clicked"
                 VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
+
+
+
+            <Label Text="Get an overview of classes here"></Label>
 
             <Button x:Name="ClassDetail" Text="CLASSES" Clicked="ClassDetail_Clicked"
                 VerticalOptions="CenterAndExpand" HorizontalOptions="End" />

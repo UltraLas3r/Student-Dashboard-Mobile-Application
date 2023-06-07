@@ -18,12 +18,12 @@ namespace mschreiber_c971MobileApp.Views
     {
         private void AddOA_Clicked(object sender, EventArgs e)
         {
-
+            throw new NotImplementedException();
         }
 
         private void AddPA_Clicked(object sender, EventArgs e)
         {
-
+            throw new NotImplementedException();
         }
 
         private ClassInfo MyClass { get; set; }
@@ -43,6 +43,26 @@ namespace mschreiber_c971MobileApp.Views
         async void ViewTerms_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new TermList());
+        }
+
+        private void ClassDetailButton_Clicked(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void ViewClasses_Clicked(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Notes_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StudentProfile_Clicked(object sender, EventArgs e)
+        {
+
         }
 
 

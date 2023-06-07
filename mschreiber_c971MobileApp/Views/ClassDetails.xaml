@@ -2,27 +2,50 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mschreiber_c971MobileApp.Views.ClassDetails">
+
+
+    <NavigationPage.TitleView>
+        <Label Text="Class Dashboard" FontSize="Medium" />
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="AddOA" Text="Add OA" Clicked="AddOA_Clicked"  ></ToolbarItem>
+        <ToolbarItem x:Name="AddPA" Text="Add PA" Clicked="AddPA_Clicked"  ></ToolbarItem>
+        <ToolbarItem x:Name="StudentProfile" Text="My Profile" Clicked="StudentProfile_Clicked" Order="Secondary"/>
+        
+        <ToolbarItem x:Name="Notes" Text="Notes" Clicked="Notes_Clicked" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+    <StackLayout>
+            <Label Text="Current Classes" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
 
 
             <ListView>
-                <ListView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Item 1</x:String>
-                        <x:String>Item 2</x:String>
-                        <x:String>Item 3</x:String>
-                    </x:Array>
-                </ListView.ItemsSource>
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Class 1</x:String>
+                    <x:String>Class 2</x:String>
+                    <x:String>Class 3</x:String>
+                </x:Array>
+            </ListView.ItemsSource>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding}" VerticalOptions="CenterAndExpand" />
+                                <Button Text="View Classes" Clicked="ClassDetailButton_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="Micro"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
 
-
-            <Button x:Name="AddOA" Text="Add OA" Clicked="AddOA_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" ></Button>
-            <Button x:Name="AddPA" Text="Add PA" Clicked="AddPA_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" ></Button>
-            <Button x:Name="ViewTerms" Text="View Terms" Clicked="ViewTerms_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="End" ></Button>
-        </StackLayout>
-    </ContentPage.Content>
+            <Label Text="Add A New Class to your Schedule!" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
+            <Button x:Name="ViewClasses" Text="View Class Options" Clicked="ViewClasses_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" FontSize="Large" ></Button>
+        
+        
+    </StackLayout>
+</ContentPage.Content>
 </ContentPage>

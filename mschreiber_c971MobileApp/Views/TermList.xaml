@@ -3,27 +3,48 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mschreiber_c971MobileApp.Views.TermList"
              Title = "TermList">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="This page will have the details about your current term and allow you to look at other terms"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
 
-            <ListView>
-                <ListView.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Item 1</x:String>
-                        <x:String>Item 2</x:String>
-                        <x:String>Item 3</x:String>
-                    </x:Array>
-                </ListView.ItemsSource>
-            </ListView>
+    <NavigationPage.TitleView>
+            <Label Text="Term Dashboard" FontSize="Medium" />
+        </NavigationPage.TitleView>
 
-            <Label Text="The following buttons may be removed" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"/>
-            <Button x:Name="AddOA" Text="Add OA" Clicked="AddOA_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" ></Button>
-            <Button x:Name="AddPA" Text="Add PA" Clicked="AddPA_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Start" ></Button>
-            <Button x:Name="ViewClasses" Text="View Classes" Clicked="ViewClasses_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" ></Button>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="AddOA" Text="Add OA" Clicked="AddOA_Clicked"  ></ToolbarItem>
+        <ToolbarItem x:Name="AddPA" Text="Add PA" Clicked="AddPA_Clicked"  ></ToolbarItem>
+        <ToolbarItem x:Name="StudentProfile" Text="My Profile" Clicked="StudentProfile_Clicked" Order="Secondary"/>
+        
+        <ToolbarItem x:Name="Notes" Text="Notes" Clicked="Notes_Clicked" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout>
+        <Label Text="Current Terms" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
+
+            <!--Show dates related to the terms in the string -->
+        <ListView>
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Term 1</x:String>
+                    <x:String>Term 2</x:String>
+                    <x:String>Term 3</x:String>
+                </x:Array>
+            </ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding}" VerticalOptions="CenterAndExpand" />
+                            <Button Text="View Classes" Clicked="ViewClasses_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="Micro"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <Label Text="Add A New Term to your Schedule!" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
+        <Button x:Name="AddNewTerm" Text="Add New Term" Clicked="AddNewTerm_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Large" ></Button> 
+
+        
             
         </StackLayout>
-    </ContentPage.Content>
+    
 </ContentPage>
