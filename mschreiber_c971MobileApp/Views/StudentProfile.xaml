@@ -7,6 +7,8 @@
             <Label Text="Welcome to YOUR STUDENT PROFILE"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+
+            <Label Text="Perhaps have a snapshot of the student's coursees or something here" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="mschreiber_c971MobileApp.Views.ClassDetails">
+             x:Class="mschreiber_c971MobileApp.Views.CourseDetails">
 
 
     <NavigationPage.TitleView>
-        <Label Text="Class Dashboard" FontSize="Medium" />
+        <Label Text="Course Dashboard" FontSize="Medium" />
     </NavigationPage.TitleView>
 
     <ContentPage.ToolbarItems>
@@ -18,15 +18,15 @@
 
     <ContentPage.Content>
     <StackLayout>
-            <Label Text="Current Classes" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
+            <Label Text="Current Courses" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
 
             <!--Show dates related to the terms in the string -->
             <ListView>
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
-                    <x:String>Class 1</x:String>
-                    <x:String>Class 2</x:String>
-                    <x:String>Class 3</x:String>
+                    <x:String>Course 1</x:String>
+                    <x:String>Course 2</x:String>
+                        <x:String>Course 3</x:String>
                 </x:Array>
             </ListView.ItemsSource>
 
@@ -35,15 +35,15 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding}" VerticalOptions="CenterAndExpand" />
-                                <Button Text="View Associated Term" Clicked="ClassDetailButton_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="Micro"/>
+                                <Button Text="View Associated Term" Clicked="CourseDetailButton_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="Micro"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Label Text="Add A New Class to your Schedule!" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
-            <Button x:Name="AddNewClasses" Text="Add New Classes" Clicked="AddNewClasses_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" FontSize="Large" ></Button>
+            <Label Text="Add A New Course to your Schedule!" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
+            <Button x:Name="AddNewCourses" Text="Add New Courses" Clicked="AddNewCourses_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" FontSize="Large" ></Button>
         
         
     </StackLayout>

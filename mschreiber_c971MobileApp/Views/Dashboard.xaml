@@ -21,25 +21,18 @@
                 VerticalOptions="CenterAndExpand"
                 HorizontalOptions="CenterAndExpand" />
 
-            <Button Text="Click to Rotate Text!"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="Center"
-                Clicked="OnButtonClicked" />
+            <Label Text="Get an overview of terms or go straight to adding new Terms" HorizontalOptions="CenterAndExpand" Padding="0"></Label>
+
+            <Button x:Name="TermDetail" Text="Current Term" Clicked="ViewTerms_Clicked"
+                 HorizontalOptions="CenterAndExpand" />
 
 
-            <Label Text="Get an overview of terms here" HorizontalOptions="End" Padding="0"></Label>
+            
+            <Button x:Name="TermAdd" Text="Add Terms" Clicked="TermAdd_Clicked"
+                HorizontalOptions="CenterAndExpand" />
 
-            <Button x:Name="TermDetail" Text="TERM DETAILS" Clicked="ViewTerms_Clicked"
-                VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-
-
-
-            <Label Text="Get an overview of classes here" HorizontalOptions="End" Padding="0"></Label>
-
-            <Button x:Name="ClassDetail" Text="CLASSES" Clicked="ClassDetail_Clicked"
-                VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
-
-
+            <Button x:Name="CourseAdd" Text="Add Courses" Clicked="CourseAdd_Clicked"
+                HorizontalOptions="CenterAndExpand" />
 
         </StackLayout>
     </ContentPage.Content>

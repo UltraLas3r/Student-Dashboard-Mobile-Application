@@ -22,9 +22,9 @@ namespace mschreiber_c971MobileApp.Views
             throw new NotImplementedException();
         }
 
-        async void ViewClasses_Clicked(object sender, EventArgs e)
+        async void ViewCourses_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ClassDetails());
+            await Navigation.PushAsync(new CourseDetails());
         }
 
         private void AddOA_Clicked(object sender, EventArgs e)
@@ -61,9 +61,9 @@ namespace mschreiber_c971MobileApp.Views
             }
         }
 
-        private void AddNewTerm_Clicked(object sender, EventArgs e)
+        async void AddNewTerm_Clicked(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            await Navigation.PushAsync(new TermAdd());
         }
 
         private void Notes_Clicked(object sender, EventArgs e)

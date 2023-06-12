@@ -1,13 +1,82 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="mschreiber_c971MobileApp.Views.GadgetEdit"
-             Title = "Gadget Edit">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Gadget Edit"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="mschreiber_c971MobileApp.Views.TermEdit"
+             Title = "Term Edit">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="SAVE" x:Name="SaveTerm" Clicked="SaveTerm_Clicked"   ></ToolbarItem>
+        <ToolbarItem Text="CANCEL" x:Name="CancelTerm" Clicked="CancelTerm_Clicked" ></ToolbarItem>
+        <ToolbarItem Text="REMOVE" x:Name="RemoveTerm" Clicked="RemoveTerm_Clicked" ></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout>
+        <!--Button and Label Region-->
+
+        <Button x:Name="AddTerm" Text="Add Term" Clicked="AddTerm_Clicked"></Button>
+
+        <Label Text="Term Count" FontSize="Large"></Label>
+        <Label x:Name="CountLabel" FontSize="Large"></Label>
+        <Label x:Name="LabelList" Text="List of Terms" FontSize="Large" FontAttributes="Bold"></Label>
+        <Label Text="___________________________________________________"></Label>
+
+        <!--#endregion-->
+
+
+        <Label Text="Welcome to Term Edit"
+                   VerticalOptions="CenterAndExpand" 
+                     HorizontalOptions="CenterAndExpand" />
+
+        <CollectionView x:Name="TermCollectView"
+                        ItemsSource="{Binding Terms}"
+                        EmptyView="No Terms To Display."
+                        SelectionMode="Single"
+                        SelectionChanged="TermCollectView_SelectionChanged"/>
+
+        <Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="WhiteSmoke">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Term ID</Label>
+            <Entry Text="Binding Id" x:Name="GadgetId" Placeholder="Enter Term Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+
+            <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Term Name</Label>
+            <Entry Text="Binding Name" x:Name="GadgetName" Placeholder="Enter Term Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+
+            <Label Grid.Row="2" Grid.Column="1" FontSize="Medium" VerticalTextAlignment="Center">Term</Label>
+
+            <Picker Grid.Column="1" FontSize="Medium" x:Name="TermPicker"
+                        Title="Select a Color"
+                        TitleColor="Teal">
+                <Picker.Items>
+                    <x:String>Fall</x:String>
+                    <x:String>Winter</x:String>
+                    <x:String>Spring</x:String>
+                    <x:String>Summer</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">How many Terms</Label>
+            <Entry Text="Binding TermCount" x:Name="Terms" Placeholder="Enter amount of Terms" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+
+            <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Term Fees</Label>
+            <Entry Text="Binding TermFees" x:Name="TermFees" Placeholder="Enter Term Fees" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+
+            <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Date</Label>
+            <DatePicker Grid.Row="5" Grid.Column="1" x:Name="DatePicker"></DatePicker>
+
+        </Grid>
+    </StackLayout>
 </ContentPage>

@@ -76,13 +76,13 @@ namespace mschreiber_c971MobileApp.Services
 
         #endregion
 
-        #region Classes methods
+        #region courses methods
 
-        public static async Task AddClass(int termId, string name, string color, int inStock, decimal price, DateTime creationDate, bool notificationStart, string notes)
+        public static async Task AddCourse(int termId, string name, string color, int inStock, decimal price, DateTime creationDate, bool notificationStart, string notes)
         {
             await Init();
 
-            var classInfo = new ClassInfo
+            var courseInfo = new CourseInfo
             {
                 TermId = termId,
                 Name = name,
@@ -94,57 +94,57 @@ namespace mschreiber_c971MobileApp.Services
                 Notes = notes
             };
 
-            await _db.InsertAsync(classInfo);
+            await _db.InsertAsync(courseInfo);
 
-            var id = classInfo.Id; //returns the WidgetId
+            var id = courseInfo.Id; //returns the course Id
 
         }
 
-        public static async Task RemoveClass(int id)
+        public static async Task RemoveCourse(int id)
         {
             await Init();
 
-            await _db.DeleteAsync<ClassInfo>(id);
+            await _db.DeleteAsync<CourseInfo>(id);
         }
 
-        public static async Task<IEnumerable<ClassInfo>> GetWidgets(int termId) 
+        public static async Task<IEnumerable<CourseInfo>> GetCourses(int termId) 
         {
             await Init();
 
-            var widgets = await _db.Table<ClassInfo>().Where(i => i.TermId == termId).ToListAsync();
+            var courses = await _db.Table<CourseInfo>().Where(i => i.TermId == termId).ToListAsync();
 
-            return widgets;
+            return courses;
         }
 
-        public static async Task<IEnumerable<ClassInfo>> GetWidgets() //get ALL widgets for notifications
+        public static async Task<IEnumerable<CourseInfo>> GetCourses() //get ALL courses for notifications
         {
             await Init();
 
-            var classes = await _db.Table<ClassInfo>().ToListAsync();
+            var courses = await _db.Table<CourseInfo>().ToListAsync();
 
 
-            return classes;
+            return courses;
         }
 
-        public static async Task UpdateClass(int id, string name, string color, int inStock, decimal price, DateTime creationDate, bool notificationStart, string notes)
+        public static async Task UpdateCourse(int id, string name, string color, int inStock, decimal price, DateTime creationDate, bool notificationStart, string notes)
         {
             await Init();
 
-            var classQuery = await _db.Table<ClassInfo>()
+            var courseQuery = await _db.Table<CourseInfo>()
                 .Where(i => i.Id == id)
                 .FirstOrDefaultAsync();
 
-            if (classQuery != null)
+            if (courseQuery != null)
             {
-                classQuery.Name = name;
-                classQuery.Color = color;
-                classQuery.InStock = inStock;
-                classQuery.Price = price;
-                classQuery.CreationDate = creationDate;
-                classQuery.StartNotification = notificationStart;
-                classQuery.Notes = notes;
+                courseQuery.Name = name;
+                courseQuery.Color = color;
+                courseQuery.InStock = inStock;
+                courseQuery.Price = price;
+                courseQuery.CreationDate = creationDate;
+                courseQuery.StartNotification = notificationStart;
+                courseQuery.Notes = notes;
 
-                await _db.UpdateAsync(classQuery);
+                await _db.UpdateAsync(courseQuery);
             }
 
         }
@@ -167,7 +167,7 @@ namespace mschreiber_c971MobileApp.Services
             _dbConnection = new SQLiteConnection(databasePath);
 
             await _db.CreateTableAsync<TermInfo>();
-            await _db.CreateTableAsync<ClassInfo>();
+            await _db.CreateTableAsync<CourseInfo>();
         }
 
 

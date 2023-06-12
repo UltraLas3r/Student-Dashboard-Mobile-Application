@@ -21,6 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\CourseDetails.xaml.cs">
+      <DependentUpon>CourseDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\TermList.xaml.cs">
       <DependentUpon>TermList.xaml</DependentUpon>
     </Compile>
@@ -30,11 +33,11 @@
     <Compile Update="Views\TermAdd.xaml.cs">
       <DependentUpon>TermAdd.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\ClassAdd.xaml.cs">
-      <DependentUpon>ClassAdd.xaml</DependentUpon>
+    <Compile Update="Views\CourseAdd.xaml.cs">
+      <DependentUpon>CourseAdd.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\ClassEdit.xaml.cs">
-      <DependentUpon>ClassEdit.xaml</DependentUpon>
+    <Compile Update="Views\CourseEdit.xaml.cs">
+      <DependentUpon>CourseEdit.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -42,7 +45,7 @@
     <EmbeddedResource Update="Views\AppSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ClassDetails.xaml">
+    <EmbeddedResource Update="Views\CourseDetails.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Dashboard.xaml">
@@ -66,10 +69,10 @@
     <EmbeddedResource Update="Views\Notifications.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ClassAdd.xaml">
+    <EmbeddedResource Update="Views\CourseAdd.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ClassEdit.xaml">
+    <EmbeddedResource Update="Views\CourseEdit.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

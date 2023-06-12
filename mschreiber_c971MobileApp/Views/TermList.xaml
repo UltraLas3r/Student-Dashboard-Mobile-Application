@@ -12,7 +12,6 @@
         <ToolbarItem x:Name="AddOA" Text="Add OA" Clicked="AddOA_Clicked"  ></ToolbarItem>
         <ToolbarItem x:Name="AddPA" Text="Add PA" Clicked="AddPA_Clicked"  ></ToolbarItem>
         <ToolbarItem x:Name="StudentProfile" Text="My Profile" Clicked="StudentProfile_Clicked" Order="Secondary"/>
-        
         <ToolbarItem x:Name="Notes" Text="Notes" Clicked="Notes_Clicked" Order="Secondary"/>
     </ContentPage.ToolbarItems>
     
@@ -33,7 +32,7 @@
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
                             <Label Text="{Binding}" VerticalOptions="CenterAndExpand" />
-                            <Button Text="View Classes" Clicked="ViewClasses_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="Micro"/>
+                            <Button Text="View Courses" Clicked="ViewCourses_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="Micro"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

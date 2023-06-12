@@ -15,9 +15,5 @@ namespace mschreiber_c971MobileApp.Models
         public int InStock { get; set; }
         public decimal Price { get; set; }
         public DateTime CreateionDate { get; set; }
-
-
-
-
     }
 }

@@ -16,5 +16,10 @@ namespace mschreiber_c971MobileApp.Views
         {
             InitializeComponent();
         }
+
+        private void InitializeComponent()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

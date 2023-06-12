@@ -5,7 +5,7 @@ using System.Text;
 
 namespace mschreiber_c971MobileApp.Models
 {
-    public class ClassInfo
+    public class CourseInfo
     { // Course
 
         [PrimaryKey, AutoIncrement]
@@ -18,11 +18,6 @@ namespace mschreiber_c971MobileApp.Models
         public bool StartNotification { get; set; }
         public DateTime CreationDate { get; set; }
         public string Notes { get; set; }
-
-
-
-
-
 
 
     }

@@ -13,7 +13,7 @@ namespace mschreiber_c971MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Dashboard : ContentPage
     {
-        
+        private int termId;
 
         public Dashboard()
         {
@@ -33,10 +33,7 @@ namespace mschreiber_c971MobileApp.Views
             await Navigation.PushAsync(new AppSettings());
         }
 
-        private void AddClass_Clicked(object sender, EventArgs e)
-        {
-
-        }
+  
 
         private void OnButtonClicked(object sender, EventArgs e)
         {
@@ -54,9 +51,9 @@ namespace mschreiber_c971MobileApp.Views
             }
         }
 
-        async void ClassDetail_Clicked(object sender, EventArgs e)
+        async void CourseDetail_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ClassDetails());
+            await Navigation.PushAsync(new CourseDetails());
 
         }
         async void ViewTerms_Clicked(object sender, EventArgs e)
@@ -72,6 +69,16 @@ namespace mschreiber_c971MobileApp.Views
         async void StudentProfile_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new StudentProfile());
+        }
+
+        async void TermAdd_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TermAdd());
+        }
+
+        async void CourseAdd_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CourseAdd(termId));
         }
     }
 }

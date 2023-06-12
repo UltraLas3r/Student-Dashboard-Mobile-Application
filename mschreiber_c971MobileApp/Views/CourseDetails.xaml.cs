@@ -9,12 +9,10 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-
-
 namespace mschreiber_c971MobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ClassDetails : ContentPage
+    public partial class CourseDetails : ContentPage
     {
         private void AddOA_Clicked(object sender, EventArgs e)
         {
@@ -26,17 +24,14 @@ namespace mschreiber_c971MobileApp.Views
             throw new NotImplementedException();
         }
 
-        private ClassInfo MyClass { get; set; }
+        private CourseInfo MyCourse { get; set; }
 
-        public ClassDetails()
-
+        public CourseDetails()
         {
-
             InitializeComponent();
+  
 
-            
-
-           // BindingContext = new CourseModel(MyCourse);
+         // BindingContext = new CourseInfo(MyCourse);
 
         }
 
@@ -45,12 +40,12 @@ namespace mschreiber_c971MobileApp.Views
             await Navigation.PushAsync(new TermList());
         }
 
-        private void ClassDetailButton_Clicked(object sender, EventArgs e)
+        private void CourseDetailButton_Clicked(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
 
-        private void ViewClasses_Clicked(object sender, EventArgs e)
+        private void ViewCourses_Clicked(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
@@ -65,7 +60,7 @@ namespace mschreiber_c971MobileApp.Views
 
         }
 
-        private void AddNewClasses_Clicked(object sender, EventArgs e)
+        private void AddNewCourses_Clicked(object sender, EventArgs e)
         {
 
         }
@@ -212,9 +207,9 @@ namespace mschreiber_c971MobileApp.Views
 
         //        {
 
-        //            ObservableCollection<ClassInfo> selected = ClassDetails.GetSelected();
+        //            ObservableCollection<courseInfo> selected = courseDetails.GetSelected();
 
-        //            Class select = selected[0];
+        //            course select = selected[0];
 
         //            List<string> recipient = new List<string>();
 
