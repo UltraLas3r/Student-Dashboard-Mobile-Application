@@ -4,7 +4,7 @@
              x:Class="mschreiber_c971MobileApp.Views.Notes">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+            <Label Text="Welcome to YOUR NOTEPAD"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

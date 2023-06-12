@@ -65,6 +65,11 @@ namespace mschreiber_c971MobileApp.Views
 
         }
 
+        private void AddNewClasses_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
 
 
         //        private void Tests_Clicked(object sender, EventArgs e)

@@ -27,14 +27,14 @@
                 Clicked="OnButtonClicked" />
 
 
-            <Label Text="Get an overview of terms here"></Label>
+            <Label Text="Get an overview of terms here" HorizontalOptions="End" Padding="0"></Label>
 
             <Button x:Name="TermDetail" Text="TERM DETAILS" Clicked="ViewTerms_Clicked"
                 VerticalOptions="CenterAndExpand" HorizontalOptions="End" />
 
 
 
-            <Label Text="Get an overview of classes here"></Label>
+            <Label Text="Get an overview of classes here" HorizontalOptions="End" Padding="0"></Label>
 
             <Button x:Name="ClassDetail" Text="CLASSES" Clicked="ClassDetail_Clicked"
                 VerticalOptions="CenterAndExpand" HorizontalOptions="End" />

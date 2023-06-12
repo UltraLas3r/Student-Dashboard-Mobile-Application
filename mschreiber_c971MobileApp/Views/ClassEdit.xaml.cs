@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using mschreiber_c971MobileApp.Services;
 
 namespace mschreiber_c971MobileApp.Views
 {
@@ -17,4 +18,14 @@ namespace mschreiber_c971MobileApp.Views
             InitializeComponent();
         }
     }
+
+    //protected override async void OnAppearing()
+    //{
+        
+    //}
+
+
+
+
+
 }

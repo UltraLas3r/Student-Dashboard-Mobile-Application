@@ -20,7 +20,7 @@
     <StackLayout>
             <Label Text="Current Classes" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
 
-
+            <!--Show dates related to the terms in the string -->
             <ListView>
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">
@@ -35,7 +35,7 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding}" VerticalOptions="CenterAndExpand" />
-                                <Button Text="View Classes" Clicked="ClassDetailButton_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="Micro"/>
+                                <Button Text="View Associated Term" Clicked="ClassDetailButton_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="Micro"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -43,7 +43,7 @@
             </ListView>
 
             <Label Text="Add A New Class to your Schedule!" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
-            <Button x:Name="ViewClasses" Text="View Class Options" Clicked="ViewClasses_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" FontSize="Large" ></Button>
+            <Button x:Name="AddNewClasses" Text="Add New Classes" Clicked="AddNewClasses_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="Center" FontSize="Large" ></Button>
         
         
     </StackLayout>

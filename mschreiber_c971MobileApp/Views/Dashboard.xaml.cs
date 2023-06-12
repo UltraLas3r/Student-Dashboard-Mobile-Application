@@ -64,14 +64,14 @@ namespace mschreiber_c971MobileApp.Views
             await Navigation.PushAsync(new TermList());
         }
 
-        private void Notes_Clicked(object sender, EventArgs e)
+        async void Notes_Clicked(object sender, EventArgs e)
         {
-            //await Navigation.PushAsync(new Notes());
+            await Navigation.PushAsync(new Notes());
         }
 
-        private void StudentProfile_Clicked(object sender, EventArgs e)
+        async void StudentProfile_Clicked(object sender, EventArgs e)
         {
-           // await Navigation.PushAsync(StudentProfile());
+            await Navigation.PushAsync(new StudentProfile());
         }
     }
 }
