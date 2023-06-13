@@ -11,18 +11,36 @@ namespace mschreiber_c971MobileApp.Services
 {
     public static class DatabaseService
     {
+        private static SQLiteAsyncConnection _db;
+        private static SQLiteConnection _dbConnection;
+        static async Task Init()
+        {
+            if (_db != null)
+            {
+                return;
+            }
+
+            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "Terms.db");
+
+            _db = new SQLiteAsyncConnection(databasePath);
+            _dbConnection = new SQLiteConnection(databasePath);
+
+            await _db.CreateTableAsync<TermInfo>();
+            await _db.CreateTableAsync<CourseInfo>();
+        }
+
         #region Term methods
-        public static async Task AddTerm(string name, string color, int inStock, decimal price, DateTime creationDate)
+        public static async Task AddTerm(string name, string season, int enrolled, decimal price, DateTime creationDate)
         {
             await Init();
 
             var term = new TermInfo()
             {
                 Name = name,
-                Color = color,
-                InStock = inStock,
+                Season = season,
+                Enrolled = enrolled,
                 Price = price,
-                CreateionDate = creationDate,
+                CreationDate = creationDate,
 
             };
 
@@ -43,7 +61,7 @@ namespace mschreiber_c971MobileApp.Services
             await Init();
         }
 
-        public static async Task UpdateTerm(int id, string name, string color, int inStock, decimal price, DateTime creationDate)
+        public static async Task UpdateTerm(int id, string name, string season, int enrolled, decimal price, DateTime creationDate)
         {
             await Init();
 
@@ -54,10 +72,10 @@ namespace mschreiber_c971MobileApp.Services
             if (termQuery != null)
             {
                 termQuery.Name = name;
-                termQuery.Color = color;
-                termQuery.InStock = inStock;
+                termQuery.Season = season;
+                termQuery.Enrolled = enrolled;
                 termQuery.Price = price;
-                termQuery.CreateionDate = creationDate;
+                termQuery.CreationDate = creationDate;
 
                 await _db.UpdateAsync(termQuery);
 
@@ -78,7 +96,7 @@ namespace mschreiber_c971MobileApp.Services
 
         #region courses methods
 
-        public static async Task AddCourse(int termId, string name, string color, int inStock, decimal price, DateTime creationDate, bool notificationStart, string notes)
+        public static async Task AddCourse(int termId, string name, string season, int enrolled, decimal price, DateTime creationDate, bool notificationStart, string notes)
         {
             await Init();
 
@@ -86,8 +104,8 @@ namespace mschreiber_c971MobileApp.Services
             {
                 TermId = termId,
                 Name = name,
-                Color = color,
-                InStock = inStock,
+                Season = season,
+                Enrolled = enrolled,
                 Price = price,
                 CreationDate = creationDate,
                 StartNotification = notificationStart,
@@ -126,7 +144,7 @@ namespace mschreiber_c971MobileApp.Services
             return courses;
         }
 
-        public static async Task UpdateCourse(int id, string name, string color, int inStock, decimal price, DateTime creationDate, bool notificationStart, string notes)
+        public static async Task UpdateCourse(int id, string name, string season, int enrolled, decimal price, DateTime creationDate, bool notificationStart, string notes)
         {
             await Init();
 
@@ -137,8 +155,8 @@ namespace mschreiber_c971MobileApp.Services
             if (courseQuery != null)
             {
                 courseQuery.Name = name;
-                courseQuery.Color = color;
-                courseQuery.InStock = inStock;
+                courseQuery.Season = season;
+                courseQuery.Enrolled = enrolled;
                 courseQuery.Price = price;
                 courseQuery.CreationDate = creationDate;
                 courseQuery.StartNotification = notificationStart;
@@ -152,23 +170,123 @@ namespace mschreiber_c971MobileApp.Services
 
         #endregion
 
-        private static SQLiteAsyncConnection _db;
-        private static SQLiteConnection _dbConnection;
-        static async Task Init()
+        #region Sample Data
+
+        public static async void LoadSampleData()
         {
-            if (_db != null)
+            await Init();
+
+            TermInfo term1 = new TermInfo
             {
-                return;
-            }
+                Name = "Term 1",
+                Season = "Fall",
+                Enrolled = 235,
+                Price = 925,
+                CreationDate = DateTime.Today.Date
+            };
 
-            var databasePath = Path.Combine(FileSystem.AppDataDirectory, "Terms.db");
+            await _db.InsertAsync(term1);
 
-            _db = new SQLiteAsyncConnection(databasePath);
-            _dbConnection = new SQLiteConnection(databasePath);
+            CourseInfo course1a = new CourseInfo
+            {
+                Name = "Lion Course",
+                Season = "Winter",
+                Enrolled = 11,
+                Price = 423,
+                CreationDate = DateTime.Now,
+                StartNotification = true,
+                TermId = term1.Id
 
-            await _db.CreateTableAsync<TermInfo>();
-            await _db.CreateTableAsync<CourseInfo>();
+            };
+            await _db.InsertAsync(course1a);
+
+            CourseInfo course1b = new CourseInfo
+            {
+                Name = "Tiger Course",
+                Season = "Orange",
+                Enrolled = 13,
+                Price = 322,
+                CreationDate = DateTime.Now,
+                StartNotification = true,
+                TermId = term1.Id
+            };
+            await _db.InsertAsync(course1b);
+
+            //insert another gadget with some widgets
+
+            TermInfo term2 = new TermInfo
+            {
+                Name = "Term 2",
+                Season = "Winter",
+                Enrolled = 545,
+                Price = 1500,
+                CreationDate = DateTime.Today.Date
+            };
+            await _db.InsertAsync(term2);
+
+            CourseInfo course2a = new CourseInfo
+            {
+                Name = "Otter Course",
+                Season = "Winter",
+                Enrolled= 175,
+                Price = 145,
+                CreationDate = DateTime.Now,
+                StartNotification = true,
+                TermId = term2.Id
+            };
+            await _db.InsertAsync(course2a);
+
+            CourseInfo course2b = new CourseInfo
+            {
+                Name = "Giraffe Course",
+                Season = "Winter",
+                Enrolled = 165,
+                Price = 175,
+                CreationDate = DateTime.Now,
+                StartNotification = true,
+                TermId = term2.Id
+            };
+            await _db.InsertAsync(course2b);
+
+            CourseInfo course2c = new CourseInfo
+            {
+                Name = "Cheetah Course",
+                Season = "Winter",
+                Enrolled = 166,
+                Price = 168,
+                CreationDate = DateTime.Now,
+                StartNotification = true,
+                TermId = term2.Id
+            };
+            await _db.InsertAsync(course2c);
+
         }
+
+        public static async
+        Task
+         ClearSampleData()
+        {
+            await Init();
+
+            await _db.DropTableAsync<TermInfo>();
+            await _db.DropTableAsync<CourseInfo>();
+
+            _db = null;
+            _dbConnection = null;
+
+        }
+
+        public static async void LoadSampleDataSql()
+        {
+            await Init();
+        }
+
+        #endregion
+
+
+
+      
+       
 
 
     }

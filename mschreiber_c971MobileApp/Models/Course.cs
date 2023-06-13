@@ -12,8 +12,8 @@ namespace mschreiber_c971MobileApp.Models
         public int Id { get; set; }
         public int TermId { get; set; } //foreign key
         public string Name { get; set; }
-        public string Color { get; set; }
-        public int InStock { get; set; }
+        public string Season { get; set; }
+        public int Enrolled { get; set; }
         public decimal Price { get; set; }
         public bool StartNotification { get; set; }
         public DateTime CreationDate { get; set; }

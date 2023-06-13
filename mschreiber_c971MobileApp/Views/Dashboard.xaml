@@ -11,6 +11,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="StudentProfile" Text="My Profile" Clicked="StudentProfile_Clicked"/>
         <ToolbarItem x:Name="Notes" Text="Notes" Clicked="Notes_Clicked" />
+       
         <ToolbarItem x:Name="Settings" Text="Settings" Clicked="Settings_Clicked" Order="Secondary" />
         
     </ContentPage.ToolbarItems>
@@ -18,17 +19,15 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome To Your Student Dashboard"
-                VerticalOptions="CenterAndExpand"
+                
                 HorizontalOptions="CenterAndExpand" />
 
             <Label Text="Get an overview of terms or go straight to adding new Terms" HorizontalOptions="CenterAndExpand" Padding="0"></Label>
 
-            <Button x:Name="TermDetail" Text="Current Term" Clicked="ViewTerms_Clicked"
+            <Button x:Name="TermDetail" Text="Term List" Clicked="ViewTerms_Clicked"
                  HorizontalOptions="CenterAndExpand" />
 
-
-            
-            <Button x:Name="TermAdd" Text="Add Terms" Clicked="TermAdd_Clicked"
+            <Button x:Name="EditTerm" Text="Edit Term" Clicked="EditTerm_Clicked"
                 HorizontalOptions="CenterAndExpand" />
 
             <Button x:Name="CourseAdd" Text="Add Courses" Clicked="CourseAdd_Clicked"

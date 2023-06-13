@@ -1,4 +1,7 @@
-﻿using System;
+﻿using mschreiber_c971MobileApp.Models;
+using mschreiber_c971MobileApp.Services;
+using Plugin.LocalNotifications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +17,27 @@ namespace mschreiber_c971MobileApp.Views
     public partial class Dashboard : ContentPage
     {
         private int termId;
+
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            var CourseList = await DatabaseService.GetCourses();
+            var notifyRandom = new Random();
+            var notifyId = notifyRandom.Next(1000);
+
+            foreach (CourseInfo courseRecord in CourseList)
+            {
+                if (courseRecord.StartNotification == true)
+                {
+                    if (courseRecord.CreationDate == DateTime.Today)
+                    {
+                        CrossLocalNotifications.Current.Show("Notice", $"{courseRecord.Name} begins today!", notifyId);
+                    }
+                }
+            }
+
+        }
 
         public Dashboard()
         {
@@ -33,8 +57,6 @@ namespace mschreiber_c971MobileApp.Views
             await Navigation.PushAsync(new AppSettings());
         }
 
-  
-
         private void OnButtonClicked(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -51,11 +73,7 @@ namespace mschreiber_c971MobileApp.Views
             }
         }
 
-        async void CourseDetail_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new CourseDetails());
-
-        }
+      
         async void ViewTerms_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new TermList());
@@ -79,6 +97,11 @@ namespace mschreiber_c971MobileApp.Views
         async void CourseAdd_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CourseAdd(termId));
+        }
+
+        async void EditTerm_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TermEdit());
         }
     }
 }

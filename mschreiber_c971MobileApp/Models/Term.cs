@@ -11,9 +11,9 @@ namespace mschreiber_c971MobileApp.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Color { get; set; }
-        public int InStock { get; set; }
+        public string Season { get; set; }
+        public int Enrolled { get; set; }
         public decimal Price { get; set; }
-        public DateTime CreateionDate { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 }

@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:class="mschreiber_c971MobileApp.Views.AppSettings"
+             x:Class="mschreiber_c971MobileApp.Views.AppSettings"
              Title = "App Settings">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to app Settings"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button x:Name="ClearPreferences" Text="Clear Preferences" WidthRequest="150" HorizontalOptions="Center" VerticalOptions="Center" Clicked="ClearPreferences_Clicked"></Button>
+            <Button x:Name="LoadSampleData" Text="Load Sample Data" WidthRequest="150" HorizontalOptions="Center" Clicked="LoadSampleData_Clicked"></Button>
+            <Button x:Name="ClearSampleData" Text="Clear Sample Data" WidthRequest="150" HorizontalOptions="Center" VerticalOptions="Center" Clicked="ClearSampleData_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

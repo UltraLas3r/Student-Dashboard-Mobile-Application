@@ -1,4 +1,6 @@
-﻿using System;
+﻿using mschreiber_c971MobileApp.Models;
+using mschreiber_c971MobileApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,49 +19,19 @@ namespace mschreiber_c971MobileApp.Views
             InitializeComponent();
         }
 
-        async void ViewOtherTerms_Clicked(object sender, EventArgs e)
+        protected override async void OnAppearing()
         {
-            throw new NotImplementedException();
+            base.OnAppearing();
+
+            TermCollectionView.ItemsSource = await DatabaseService.GetTerms();
         }
 
         async void ViewCourses_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CourseDetails());
+            await Navigation.PushAsync(new TermList());
         }
 
-        private void AddOA_Clicked(object sender, EventArgs e)
-        {
-            //TODO REMOVE THIS FILLER CODE (button rotation stuff
-            Button button = (Button)sender;
-
-            if (button.Rotation == 0)
-            {
-                button.Rotation = 45;
-                button.BackgroundColor = Color.Aquamarine;
-            }
-            else
-            {
-                button.Rotation = 0;
-                button.BackgroundColor = default;
-            }
-           
-        }
-
-        private void AddPA_Clicked(object sender, EventArgs e)
-        {
-            //TODO REMOVE THIS FILLER CODE (button rotation stuff
-            Button button = (Button)sender;
-            if (button.Rotation == 0)
-            {
-                button.Rotation = 45;
-                button.BackgroundColor = Color.Aquamarine;
-            }
-            else
-            {
-                button.Rotation = 0;
-                button.BackgroundColor = default;
-            }
-        }
+       
 
         async void AddNewTerm_Clicked(object sender, EventArgs e)
         {
@@ -74,6 +46,15 @@ namespace mschreiber_c971MobileApp.Views
         private void StudentProfile_Clicked(object sender, EventArgs e)
         {
 
+        }
+
+        async void TermCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection != null)
+            {
+                TermInfo term = (TermInfo)e.CurrentSelection.FirstOrDefault();
+                await Navigation.PushAsync(new TermEdit(term));
+            }
         }
     }
 }

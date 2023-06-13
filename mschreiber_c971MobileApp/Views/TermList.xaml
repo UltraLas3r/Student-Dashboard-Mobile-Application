@@ -2,48 +2,67 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mschreiber_c971MobileApp.Views.TermList"
-             Title = "TermList">
+             Title = "Term List">
 
     <NavigationPage.TitleView>
             <Label Text="Term Dashboard" FontSize="Medium" />
         </NavigationPage.TitleView>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="AddOA" Text="Add OA" Clicked="AddOA_Clicked"  ></ToolbarItem>
-        <ToolbarItem x:Name="AddPA" Text="Add PA" Clicked="AddPA_Clicked"  ></ToolbarItem>
         <ToolbarItem x:Name="StudentProfile" Text="My Profile" Clicked="StudentProfile_Clicked" Order="Secondary"/>
         <ToolbarItem x:Name="Notes" Text="Notes" Clicked="Notes_Clicked" Order="Secondary"/>
     </ContentPage.ToolbarItems>
     
-    <StackLayout>
-        <Label Text="Current Terms" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
+    <ContentPage.Content>
+        <CollectionView x:Name="TermCollectionView"
+                ItemsSource="{Binding Terms}"
+                EmptyView="No Gadgets to display"
+                SelectionMode ="Single"
+                SelectionChanged="TermCollectionView_SelectionChanged">
 
-            <!--Show dates related to the terms in the string -->
-        <ListView>
-            <ListView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Term 1</x:String>
-                    <x:String>Term 2</x:String>
-                    <x:String>Term 3</x:String>
-                </x:Array>
-            </ListView.ItemsSource>
-            <ListView.ItemTemplate>
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+
+            <!-- define the appearance of each item in the list -->
+            <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding}" VerticalOptions="CenterAndExpand" />
-                            <Button Text="View Courses" Clicked="ViewCourses_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" FontSize="Micro"/>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        
-        <Label Text="Add A New Term to your Schedule!" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Medium"/>
-        <Button x:Name="AddNewTerm" Text="Add New Term" Clicked="AddNewTerm_Clicked" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" FontSize="Large" ></Button> 
+                    <StackLayout>
+                        <Grid Padding="5" RowSpacing="1" ColumnSpacing="22" BackgroundColor="WhiteSmoke">
 
-        
-            
-        </StackLayout>
-    
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Name</Label>
+                            <Label Text="{Binding Name}" FontSize="Medium" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"/>
+
+                            <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Season</Label>
+                            <Label Text="{Binding Color}" FontSize="Medium" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"/>
+
+                            <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Enrolled</Label>
+                            <Label Text="{Binding Enrolled}" FontSize="Medium" Grid.Row="2" Grid.Column="1" VerticalTextAlignment="Center"/>
+
+                            <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Price</Label>
+                            <Label Text="{Binding Price}" FontSize="Medium" Grid.Row="3" Grid.Column="1" VerticalTextAlignment="Center"/>
+
+                            <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Creation Date</Label>
+                            <Label Text="{Binding CreationDate, StringFormat='{0:M/dd/yyy}'}" FontSize="Medium" Grid.Row="4" Grid.Column="1" VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </ContentPage.Content>
+
 </ContentPage>

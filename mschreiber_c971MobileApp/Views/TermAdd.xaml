@@ -5,7 +5,7 @@
              Title = "Term Add">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="SaveTerm" Text="Save" Clicked="SaveTerm_Clicked_1"></ToolbarItem>
+        <ToolbarItem x:Name="SaveTerm" Text="Save" Clicked="SaveTerm_Clicked"></ToolbarItem>
         <ToolbarItem x:Name="CancelTerm" Text="Cancel" Clicked="CancelTerm_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
     
@@ -30,10 +30,10 @@
                 <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Name</Label>
                 <Entry x:Name="TermName" Placeholder="Enter Term" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" Text="{Binding Name}"></Entry>
 
-                <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Color</Label>
+                <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Season</Label>
 
                 <Picker Grid.Row="1" Grid.Column="1" FontSize="Medium" x:Name="TermPicker"
-                        Title="Select a Term"
+                        Title="Select a Term Season"
                         TitleColor="Teal">
                     <Picker.Items>
                         <x:String>Fall</x:String>
@@ -43,11 +43,11 @@
                     </Picker.Items>
                 </Picker>
 
-                <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Amount of Terms</Label>
-                <Entry Grid.Row="2" Grid.Column="1" x:Name="AssignedTerms" Placeholder="Enter number of Terms"></Entry>
+                <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Enrolled</Label>
+                <Entry Grid.Row="2" Grid.Column="1" x:Name="StudentsEnrolled" Placeholder="Enter number Enrolled"></Entry>
 
                 <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Cost</Label>
-                <Entry Grid.Row="3" Grid.Column="1" x:Name="TermCost" Placeholder="Enter Term cost."></Entry>
+                <Entry Grid.Row="3" Grid.Column="1" x:Name="TermFees" Placeholder="Enter Term fees."></Entry>
 
                 <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Date</Label>
                 <DatePicker Grid.Row="4" Grid.Column="1" x:Name="DatePicker"></DatePicker>
