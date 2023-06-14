@@ -17,7 +17,7 @@ namespace mschreiber_c971MobileApp.Views
     public partial class Dashboard : ContentPage
     {
         private int termId;
-
+        
 
         protected override async void OnAppearing()
         {
@@ -101,7 +101,7 @@ namespace mschreiber_c971MobileApp.Views
 
         async void EditTerm_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new TermEdit());
+            await Navigation.PushAsync(new TermEdit(termId));
         }
     }
 }

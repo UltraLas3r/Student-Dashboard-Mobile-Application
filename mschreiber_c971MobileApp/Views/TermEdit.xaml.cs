@@ -15,21 +15,25 @@ namespace mschreiber_c971MobileApp.Views
     public partial class TermEdit : ContentPage
     {
         private readonly int _selectTermId;
-        public TermEdit(TermInfo term)
+        private int termId;
+
+        public TermEdit(TermInfo termId)
         {
             InitializeComponent();
 
-            _selectTermId = term.Id;
+            _selectTermId = termId.Id;
 
-            TermId.Text = term.Id.ToString();
-            TermName.Text = term.Name;
-            TermSeasonPicker.SelectedItem = term.Season;
-            TermFees.Text = term.Price.ToString();
-            DatePicker.Date = term.CreationDate;
+            TermId.Text = termId.Id.ToString();
+            TermName.Text = termId.Name;
+            TermSeasonPicker.SelectedItem = termId.Season;
+            TermFees.Text = termId.Price.ToString();
+            DatePicker.Date = termId.CreationDate;
         }
 
-        public TermEdit()
+        public TermEdit(int termId)
         {
+            this.termId = termId;
+            InitializeComponent();
         }
 
         async void SaveTerm_Clicked(object sender, EventArgs e)
@@ -107,5 +111,7 @@ namespace mschreiber_c971MobileApp.Views
             }
 
         }
+
+      
     }
 }

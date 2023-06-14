@@ -49,14 +49,14 @@
             </Grid.ColumnDefinitions>
 
             <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Term ID</Label>
-            <Entry Text="Binding Id" x:Name="TermId" Placeholder="Enter Term Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+            <Entry Text="{Binding Id}" x:Name="TermId" Placeholder="Enter Term Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
 
             <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Term Season</Label>
-            <Entry Text="Binding Name" x:Name="TermName" Placeholder="Enter Term Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+            <Entry Text="{Binding Name}" x:Name="TermName" Placeholder="Enter Term Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
 
-            <Label Grid.Row="2" Grid.Column="1" FontSize="Medium" VerticalTextAlignment="Center">Term</Label>
+            <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Term</Label>
 
-            <Picker Grid.Column="1" FontSize="Medium" x:Name="TermSeasonPicker"
+            <Picker Grid.Column="3" FontSize="Medium" x:Name="TermSeasonPicker"
                         Title="Select a Season"
                         TitleColor="Teal">
                 <Picker.Items>
@@ -67,14 +67,16 @@
                 </Picker.Items>
             </Picker>
 
-            <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Enrolled</Label>
-            <Entry Text="Binding TermEnrollment" x:Name="TermEnrollment" Placeholder="Enter amount of Terms" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+            <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Enrolled</Label>
+            <Entry Text="Binding TermEnrollment" x:Name="TermEnrollment" Grid.Row="2" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
 
-            <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Term Fees</Label>
-            <Entry Text="Binding TermFees" x:Name="TermFees" Placeholder="Enter Term Fees" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+            <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Term Fees</Label>
+            <Entry Text="Binding TermFees" x:Name="TermFees" Placeholder="Enter Term Fees" Grid.Row="3" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
 
-            <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Date</Label>
-            <DatePicker Grid.Row="5" Grid.Column="1" x:Name="DatePicker"></DatePicker>
+            <Label Grid.Row="6" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Date</Label>
+            <DatePicker Grid.Row="4" Grid.Column="1" x:Name="DatePicker"></DatePicker>
+
+            
 
         </Grid>
     </StackLayout>

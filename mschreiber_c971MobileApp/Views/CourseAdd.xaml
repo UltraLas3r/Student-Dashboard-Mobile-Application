@@ -32,7 +32,7 @@
                 <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Course Name</Label>
                 <Entry x:Name="CourseName" Placeholder="Enter Course Name" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" Text="{Binding Name}"></Entry>
                 <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Course Term</Label>
-                <Entry x:Name="CourseTerm" Placeholder="Term" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
+                <Entry x:Name="CourseTerm" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
 
                 <Picker Grid.Row="1" Grid.Column="1" FontSize="Medium" x:Name="CourseTermPicker"
                         Title="Select a Term for your Course"
