@@ -41,7 +41,7 @@ namespace mschreiber_c971MobileApp.Views
                 await DisplayAlert("Missing end date", "Please pick an end date", "Ok");
             }
 
-            await DatabaseService.AddCourse(_selectTermId, CourseName.Text, StartDatePicker.Date, EndDatePicker.Date, Notification.IsToggled, NotesEditor.Text);
+            await DatabaseService.AddCourse(_selectTermId, CourseName.Text, StartDatePicker.Date, EndDatePicker.Date, InstructorName.Text, PhoneNumber.Text, EmailAddress.Text, Notification.IsToggled, NotesEditor.Text);
 
             await Navigation.PopAsync();
 

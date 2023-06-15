@@ -30,9 +30,9 @@ namespace mschreiber_c971MobileApp.Views
             {
                 if (courseRecord.StartNotification == true)
                 {
-                    if (courseRecord.EndDate == DateTime.Today.AddDays(+90))
+                    if (courseRecord.AnticipatedEndDate == DateTime.Today.AddDays(+90))
                     {
-                        CrossLocalNotifications.Current.Show("Notice", $"{courseRecord.Name} begins today!", notifyId);
+                        CrossLocalNotifications.Current.Show("Notice", $"{courseRecord.CourseName} begins today!", notifyId);
                     }
                 }
             }

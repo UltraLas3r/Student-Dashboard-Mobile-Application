@@ -16,12 +16,64 @@
         <Label Text="{Binding Name}"></Label>
         
         <CollectionView x:Name="CourseCollectionView"
-                        ItemsSource="{Binding Name}"
-                        EmptyView="No Courses To Display."
+                        ItemsSource="{Binding CourseInfo}"
+                        EmptyView="No Course info To Display."
                         SelectionMode="Single"
                         SelectionChanged="CourseCollectionView_SelectionChanged"
         ></CollectionView>
 
+        <CollectionView ItemsSource="{Binding CourseInfo}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <!-- Placeholder label elements for displaying course information -->
+                        <Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="WhiteSmoke">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center">Course ID</Label>
+                            <Entry Text="{Binding Id}" x:Name="TermId" Placeholder="Enter Term Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+
+                            <Label Grid.Row="1" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center">Term Name</Label>
+                            <Entry Text="{Binding CourseName}" x:Name="TermName" Placeholder="Enter Term Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+                            
+                            <Label Grid.Row="1" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center">Term Name</Label>
+                            <Entry Text="{Binding InstructorName}" x:Name="InstructorName" Placeholder="Enter Term Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+
+                            <Label Grid.Row="2" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center">Start Date</Label>
+                            <DatePicker Grid.Row="2" Grid.Column="1" x:Name="StartDatePicker"></DatePicker>
+
+                            <Label Grid.Row="3" Grid.Column="0" FontSize="small" VerticalTextAlignment="Center">End Date</Label>
+                            <DatePicker Grid.Row="3" Grid.Column="1" x:Name="EndDatePicker"></DatePicker>
+                        </Grid>
+
+
+
+
+
+
+
+                        <Label Text="{Binding Name}" FontSize="Medium" />
+                        <Label Text="{Binding Instructor}" FontSize="Small" />
+                        <!-- Add more labels for other course properties as needed -->
+
+                        <!-- Optional: Add any other UI elements for each course item -->
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+  
         <Label Text="___________________________________________________" HorizontalOptions="CenterAndExpand"></Label>
         
         <Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="WhiteSmoke">

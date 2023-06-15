@@ -19,33 +19,29 @@ namespace mschreiber_c971MobileApp.Views
 
         async void SaveTerm_Clicked(object sender, EventArgs e)
         {
-            int tossedInt;
-            Decimal tossedDecimal;
-
+            DateTime? selectedDate = StartDatePicker.Date;
+            DateTime? selectedEndDate = AnticipatedEndDatePicker.Date;
 
             if (string.IsNullOrWhiteSpace(TermName.Text))
             {
                 await DisplayAlert("Missing Name", "Please enter a name.", "Ok");
 
             }
-            if (string.IsNullOrWhiteSpace(TermPicker.SelectedItem.ToString()))
-            {
-                await DisplayAlert("Missing Term Season", "Please pick a Term Season", "Ok");
 
+            if (!selectedDate.HasValue)
+            {
+                await DisplayAlert("Missing Name", "Please enter a start date.", "Ok");
             }
 
-            if (!Int32.TryParse(StudentsEnrolled.Text, out tossedInt))
+            if(!selectedEndDate.HasValue)
             {
-                await DisplayAlert("Missing value", "Please enter a whole number.", "Ok");
+                await DisplayAlert("Missing Name", "Please enter an end date.", "Ok");
             }
 
-            if (!decimal.TryParse(TermFees.Text, out tossedDecimal))
-            {
-                await DisplayAlert("Missing Price Value", "Please enter a valid price.", "Ok");
 
-            }
 
-            await DatabaseService.AddTerm(TermName.Text, TermPicker.SelectedItem.ToString(), Int32.Parse(StudentsEnrolled.Text), Decimal.Parse(TermFees.Text), StartDatePicker.Date, EndDatePicker.Date);
+
+            await DatabaseService.AddTerm(TermName.Text, StartDatePicker.Date, AnticipatedEndDatePicker.Date);
 
             await Navigation.PopAsync();
         }

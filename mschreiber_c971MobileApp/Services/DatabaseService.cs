@@ -30,18 +30,15 @@ namespace mschreiber_c971MobileApp.Services
         }
 
         #region Term methods
-        public static async Task AddTerm(string name, string season, int enrolled, decimal price, DateTime startDate, DateTime endDate)
+        public static async Task AddTerm(string name, DateTime startDate, DateTime anticipatedEndDate)
         {
             await Init();
 
             var term = new TermInfo()
             {
                 Name = name,
-                Season = season,
-                Enrolled = enrolled,
-                Price = price,
                 StartDate = startDate,
-                EndDate = endDate,
+                AnticipatedEndDate = anticipatedEndDate,
 
             };
 
@@ -74,7 +71,7 @@ namespace mschreiber_c971MobileApp.Services
             {
                 termQuery.Name = name;  
                 termQuery.StartDate = startDate;
-                termQuery.EndDate = endDate;
+                termQuery.AnticipatedEndDate = endDate;
 
                 await _db.UpdateAsync(termQuery);
 
@@ -95,16 +92,19 @@ namespace mschreiber_c971MobileApp.Services
 
         #region courses methods
 
-        public static async Task AddCourse(int termId, string name,  DateTime startDate, DateTime endDate, bool notificationStart, string notes)
+        public static async Task AddCourse(int termId, string courseName,  DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, bool notificationStart, string notes)
         {
             await Init();
 
             var courseInfo = new CourseInfo
             {
                 TermId = termId,
-                Name = name,
+                CourseName = courseName,
+                Instructor = instructor,
+                Phone = phone,
+                Email = email,
                 StartDate = startDate,
-                EndDate = endDate,
+                AnticipatedEndDate = anticipatedEndDate,
                 StartNotification = notificationStart,
                 Notes = notes
             };
@@ -141,22 +141,22 @@ namespace mschreiber_c971MobileApp.Services
             return courses;
         }
 
-        public static async Task UpdateCourse(int id, string name, string season, int enrolled, decimal price, DateTime startDate, DateTime endDate, bool notificationStart, string notes)
+        public static async Task UpdateCourse(int termId, string courseName, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, bool notificationStart, string notes)
         {
             await Init();
 
             var courseQuery = await _db.Table<CourseInfo>()
-                .Where(i => i.Id == id)
+                .Where(i => i.Id == termId)
                 .FirstOrDefaultAsync();
 
             if (courseQuery != null)
             {
-                courseQuery.Name = name;
-                courseQuery.Season = season;
-                courseQuery.Enrolled = enrolled;
-                courseQuery.Price = price;
+                courseQuery.CourseName = courseName;
+                courseQuery.Instructor = instructor;
+                courseQuery.Phone = phone;
+                courseQuery.Email = email;
                 courseQuery.StartDate = startDate;
-                courseQuery.EndDate = endDate;
+                courseQuery.AnticipatedEndDate = anticipatedEndDate;
                 courseQuery.StartNotification = notificationStart;
                 courseQuery.Notes = notes;
 
@@ -177,23 +177,20 @@ namespace mschreiber_c971MobileApp.Services
             TermInfo term1 = new TermInfo
             {
                 Name = "Term 1",
-                Season = "Fall",
-                Enrolled = 235,
-                Price = 925,
                 StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(+100),
+                AnticipatedEndDate = DateTime.Now.AddDays(+100),
             };
 
             await _db.InsertAsync(term1);
 
             CourseInfo course1a = new CourseInfo
             {
-                Name = "Lion Course",
-                Season = "Winter",
-                Enrolled = 11,
-                Price = 423,
+                CourseName = "Lion Course",
+                Instructor = "Pontius",
+                Phone = "555555555",
+                Email = "pman@gmail.com",
                 StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(+90),
+                AnticipatedEndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
                 TermId = term1.Id
 
@@ -202,12 +199,12 @@ namespace mschreiber_c971MobileApp.Services
 
             CourseInfo course1b = new CourseInfo
             {
-                Name = "Tiger Course",
-                Season = "Orange",
-                Enrolled = 13,
-                Price = 322,
+                CourseName = "Tiger Course",
+                Instructor = "Greek Salad",
+                Phone = "6666666666",
+                Email = "GSalad@gmail.com",
                 StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(+90),
+                AnticipatedEndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
                 TermId = term1.Id
             };
@@ -218,22 +215,19 @@ namespace mschreiber_c971MobileApp.Services
             TermInfo term2 = new TermInfo
             {
                 Name = "Term 2",
-                Season = "Winter",
-                Enrolled = 545,
-                Price = 1500,
                 StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(+100),
+                AnticipatedEndDate = DateTime.Now.AddDays(+100),
             };
             await _db.InsertAsync(term2);
 
             CourseInfo course2a = new CourseInfo
             {
-                Name = "Otter Course",
-                Season = "Winter",
-                Enrolled= 175,
-                Price = 145,
+                CourseName = "Mountain Course",
+                Instructor = "Muir",
+                Phone = "555555555",
+                Email = "yosemite@gmail.com",
                 StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(+90),
+                AnticipatedEndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
                 TermId = term2.Id
             };
@@ -241,12 +235,12 @@ namespace mschreiber_c971MobileApp.Services
 
             CourseInfo course2b = new CourseInfo
             {
-                Name = "Giraffe Course",
-                Season = "Winter",
-                Enrolled = 165,
-                Price = 175,
+                CourseName = "River Course",
+                Instructor = "Cuomo",
+                Phone = "555555555",
+                Email = "Weeez@gmail.com",
                 StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(+90),
+                AnticipatedEndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
                 TermId = term2.Id
             };
@@ -254,12 +248,12 @@ namespace mschreiber_c971MobileApp.Services
 
             CourseInfo course2c = new CourseInfo
             {
-                Name = "Cheetah Course",
-                Season = "Winter",
-                Enrolled = 166,
-                Price = 168,
+                CourseName = "Meadow Course",
+                Instructor = "Golf Guy",
+                Phone = "555555555",
+                Email = "Golver@gmail.com",
                 StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddDays(+90),
+                AnticipatedEndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
                 TermId = term2.Id
             };

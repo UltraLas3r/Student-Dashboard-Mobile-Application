@@ -17,6 +17,11 @@
         <Label Text="Course Count" FontSize="Large"></Label>
         <Label x:Name="CountLabel" FontSize="Large"></Label>
         <Label x:Name="LabelList" Text="List of Courses" FontSize="Large" FontAttributes="Bold"></Label>
+        <Label x:Name="CourseInstructorName" FontSize="Large"></Label>
+        <Label x:Name="PhoneNumber" FontSize="Large"></Label>
+        <Label x:Name="EmailAddress" FontSize="Large"></Label>
+        <Label x:Name="Start" FontSize="Large"></Label>
+        <Label x:Name="AnticipatedEndDate" FontSize="Large"></Label>
         <Label Text="___________________________________________________"></Label>
 
 

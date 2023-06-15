@@ -19,12 +19,16 @@ namespace mschreiber_c971MobileApp.Views
         {
             InitializeComponent();
 
+            DateTime CourseStart = course.StartDate;
+
+
             CourseId.Text = course.Id.ToString();
-            CourseName.Text = course.Name;
-            CourseTermPicker.SelectedItem = course.Season;
-            CoursePrice.Text = course.Price.ToString();
+            CourseName.Text = course.CourseName;
+            CourseInstructorName.Text = course.Instructor;
+            PhoneNumber.Text = course.Phone;
+            EmailAddress.Text = course.Email;
             StartDatePicker.Date = course.StartDate;
-            EndDatePicker.Date = course.EndDate;
+            EndDatePicker.Date = course.AnticipatedEndDate;
         }
 
        async void SaveCourse_Clicked(object sender, EventArgs e)

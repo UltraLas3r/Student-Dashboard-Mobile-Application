@@ -11,13 +11,13 @@ namespace mschreiber_c971MobileApp.Models
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public int TermId { get; set; } //foreign key
-        public string Name { get; set; }
-        public string Season { get; set; }
-        public int Enrolled { get; set; }
-        public decimal Price { get; set; }
+        public string CourseName { get; set; }
+        public string Instructor { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
         public bool StartNotification { get; set; }
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime AnticipatedEndDate { get; set; }
         public string Notes { get; set; }
 
 

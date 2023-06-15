@@ -17,8 +17,7 @@ namespace mschreiber_c971MobileApp.Views
         private readonly int _selectTermId;
         private int termId;
 
-        //todo remove this before submit
-        private readonly string CoursePrice;
+      
 
         public TermEdit(TermInfo termId)
         {
@@ -29,7 +28,7 @@ namespace mschreiber_c971MobileApp.Views
             TermId.Text = termId.Id.ToString();
             TermName.Text = termId.Name;
             StartDatePicker.Date = termId.StartDate;
-            EndDatePicker.Date = termId.EndDate;
+            EndDatePicker.Date = termId.AnticipatedEndDate;
         }
 
         public TermEdit(int termId)

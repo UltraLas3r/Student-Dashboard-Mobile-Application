@@ -46,17 +46,11 @@
                             <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Name</Label>
                             <Label Text="{Binding Name}" FontSize="Medium" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"/>
 
-                            <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Season</Label>
-                            <Label Text="{Binding Color}" FontSize="Medium" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"/>
+                            <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Start Date</Label>
+                            <Label Text="{Binding StartDate, StringFormat='{0:M/dd/yyy}'}" FontSize="Medium" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"/>
 
-                            <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Enrolled</Label>
-                            <Label Text="{Binding Enrolled}" FontSize="Medium" Grid.Row="2" Grid.Column="1" VerticalTextAlignment="Center"/>
-
-                            <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Price</Label>
-                            <Label Text="{Binding Price}" FontSize="Medium" Grid.Row="3" Grid.Column="1" VerticalTextAlignment="Center"/>
-
-                            <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Creation Date</Label>
-                            <Label Text="{Binding StartDate, StringFormat='{0:M/dd/yyy}'}" FontSize="Medium" Grid.Row="4" Grid.Column="1" VerticalTextAlignment="Center"/>
+                            <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Anticipated End Date</Label>
+                            <Label Text="{Binding AnticipatedEndDate, StringFormat='{0:M/dd/yyy}'}" FontSize="Medium" Grid.Row="2" Grid.Column="1" VerticalTextAlignment="Center"/>
                         </Grid>
                         
                     </StackLayout>

@@ -30,30 +30,11 @@
                 <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Name</Label>
                 <Entry x:Name="TermName" Placeholder="Enter Term" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" Text="{Binding Name}"></Entry>
 
-                <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Season</Label>
+                <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start Date</Label>
+                <DatePicker Grid.Row="2" Grid.Column="1" x:Name="StartDatePicker" Date="{Binding StartDate}"></DatePicker>
 
-                <Picker Grid.Row="1" Grid.Column="1" FontSize="Medium" x:Name="TermPicker"
-                        Title="Select a Term Season"
-                        TitleColor="Teal">
-                    <Picker.Items>
-                        <x:String>Fall</x:String>
-                        <x:String>Winter</x:String>
-                        <x:String>Spring</x:String>
-                        <x:String>Summer</x:String>
-                    </Picker.Items>
-                </Picker>
-
-                <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Enrolled</Label>
-                <Entry Grid.Row="2" Grid.Column="1" x:Name="StudentsEnrolled" Placeholder="Enter number Enrolled"></Entry>
-
-                <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Cost</Label>
-                <Entry Grid.Row="3" Grid.Column="1" x:Name="TermFees" Placeholder="Enter Term fees."></Entry>
-
-                <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start Date</Label>
-                <DatePicker Grid.Row="4" Grid.Column="1" x:Name="StartDatePicker"></DatePicker>
-
-                <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End Date</Label>
-                <DatePicker Grid.Row="5" Grid.Column="1" x:Name="EndDatePicker"></DatePicker>
+                <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End Date</Label>
+                <DatePicker Grid.Row="3" Grid.Column="1" x:Name="AnticipatedEndDatePicker" Date="{Binding AnticipatedEndDate}"></DatePicker>
             </Grid>
         </StackLayout>
     </ContentPage.Content>
