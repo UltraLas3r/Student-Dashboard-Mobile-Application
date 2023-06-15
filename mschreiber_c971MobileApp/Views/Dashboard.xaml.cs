@@ -30,7 +30,7 @@ namespace mschreiber_c971MobileApp.Views
             {
                 if (courseRecord.StartNotification == true)
                 {
-                    if (courseRecord.CreationDate == DateTime.Today)
+                    if (courseRecord.EndDate == DateTime.Today.AddDays(+90))
                     {
                         CrossLocalNotifications.Current.Show("Notice", $"{courseRecord.Name} begins today!", notifyId);
                     }
@@ -99,9 +99,6 @@ namespace mschreiber_c971MobileApp.Views
             await Navigation.PushAsync(new CourseAdd(termId));
         }
 
-        async void EditTerm_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new TermEdit(termId));
-        }
+    
     }
 }

@@ -16,7 +16,8 @@ namespace mschreiber_c971MobileApp.Models
         public int Enrolled { get; set; }
         public decimal Price { get; set; }
         public bool StartNotification { get; set; }
-        public DateTime CreationDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public string Notes { get; set; }
 
 

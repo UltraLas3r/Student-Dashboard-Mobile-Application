@@ -23,7 +23,8 @@ namespace mschreiber_c971MobileApp.Views
             CourseName.Text = course.Name;
             CourseTermPicker.SelectedItem = course.Season;
             CoursePrice.Text = course.Price.ToString();
-            CreationDatePicker.Date = course.CreationDate;
+            StartDatePicker.Date = course.StartDate;
+            EndDatePicker.Date = course.EndDate;
         }
 
        async void SaveCourse_Clicked(object sender, EventArgs e)
@@ -37,23 +38,30 @@ namespace mschreiber_c971MobileApp.Views
                 await DisplayAlert("Missing Name", "Must enter a name.", "Ok");
             }
 
-            if (string.IsNullOrWhiteSpace(CourseTermPicker.SelectedItem.ToString()))
+            if (string.IsNullOrWhiteSpace(CourseName.Text))
             {
-                await DisplayAlert("Missing Term", "Must enter a Term Season.", "Ok");
+                await DisplayAlert("Missing Name", "Must enter a name.", "Ok");
             }
 
-            if (!Int32.TryParse(StudentsEnrolled.Text, out tossedInt))
+
+
+            if (string.IsNullOrWhiteSpace(StartDatePicker.ToString()))
             {
-                await DisplayAlert("Incorrect Inventory Value", "Please enter a whole number.", "Ok");
+                await DisplayAlert("Missing end date", "Please pick an end date", "Ok");
             }
 
-            if (!Decimal.TryParse(CoursePrice.Text, out tossedDecimal))
+            if (string.IsNullOrWhiteSpace(EndDatePicker.ToString()))
             {
-                await DisplayAlert("Incorrect Price Value", "Please enter a valid number.", "Ok");
+                await DisplayAlert("Missing end date", "Please pick an end date", "Ok");
             }
 
-            await DatabaseService.UpdateTerm(Int32.Parse(CourseId.Text), CourseName.Text, CourseTermPicker.SelectedItem.ToString(), Int32.Parse(StudentsEnrolled.Text),
-                Decimal.Parse(CoursePrice.Text), DateTime.Parse(CreationDatePicker.Date.ToString()));
+
+
+
+
+
+
+            await DatabaseService.UpdateTerm(Int32.Parse(CourseId.Text), CourseName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()));
 
             await Navigation.PopAsync();
 
@@ -68,7 +76,7 @@ namespace mschreiber_c971MobileApp.Views
                 var id = int.Parse(CourseId.Text);
                 await DatabaseService.RemoveCourse(id);
 
-                await DisplayAlert("Widget Deleted", "Course Deleted", "Ok");
+                await DisplayAlert("Course Deleted", "Course Deleted", "Ok");
             }
             else
             {

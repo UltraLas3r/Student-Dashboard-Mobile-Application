@@ -49,8 +49,11 @@
                 <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Cost</Label>
                 <Entry Grid.Row="3" Grid.Column="1" x:Name="TermFees" Placeholder="Enter Term fees."></Entry>
 
-                <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Date</Label>
-                <DatePicker Grid.Row="4" Grid.Column="1" x:Name="DatePicker"></DatePicker>
+                <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start Date</Label>
+                <DatePicker Grid.Row="4" Grid.Column="1" x:Name="StartDatePicker"></DatePicker>
+
+                <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End Date</Label>
+                <DatePicker Grid.Row="5" Grid.Column="1" x:Name="EndDatePicker"></DatePicker>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

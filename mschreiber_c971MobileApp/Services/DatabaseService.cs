@@ -30,7 +30,7 @@ namespace mschreiber_c971MobileApp.Services
         }
 
         #region Term methods
-        public static async Task AddTerm(string name, string season, int enrolled, decimal price, DateTime creationDate)
+        public static async Task AddTerm(string name, string season, int enrolled, decimal price, DateTime startDate, DateTime endDate)
         {
             await Init();
 
@@ -40,7 +40,8 @@ namespace mschreiber_c971MobileApp.Services
                 Season = season,
                 Enrolled = enrolled,
                 Price = price,
-                CreationDate = creationDate,
+                StartDate = startDate,
+                EndDate = endDate,
 
             };
 
@@ -61,7 +62,7 @@ namespace mschreiber_c971MobileApp.Services
             await Init();
         }
 
-        public static async Task UpdateTerm(int id, string name, string season, int enrolled, decimal price, DateTime creationDate)
+        public static async Task UpdateTerm(int id, string name, DateTime startDate, DateTime endDate)
         {
             await Init();
 
@@ -71,11 +72,9 @@ namespace mschreiber_c971MobileApp.Services
 
             if (termQuery != null)
             {
-                termQuery.Name = name;
-                termQuery.Season = season;
-                termQuery.Enrolled = enrolled;
-                termQuery.Price = price;
-                termQuery.CreationDate = creationDate;
+                termQuery.Name = name;  
+                termQuery.StartDate = startDate;
+                termQuery.EndDate = endDate;
 
                 await _db.UpdateAsync(termQuery);
 
@@ -96,7 +95,7 @@ namespace mschreiber_c971MobileApp.Services
 
         #region courses methods
 
-        public static async Task AddCourse(int termId, string name, string season, int enrolled, decimal price, DateTime creationDate, bool notificationStart, string notes)
+        public static async Task AddCourse(int termId, string name,  DateTime startDate, DateTime endDate, bool notificationStart, string notes)
         {
             await Init();
 
@@ -104,10 +103,8 @@ namespace mschreiber_c971MobileApp.Services
             {
                 TermId = termId,
                 Name = name,
-                Season = season,
-                Enrolled = enrolled,
-                Price = price,
-                CreationDate = creationDate,
+                StartDate = startDate,
+                EndDate = endDate,
                 StartNotification = notificationStart,
                 Notes = notes
             };
@@ -144,7 +141,7 @@ namespace mschreiber_c971MobileApp.Services
             return courses;
         }
 
-        public static async Task UpdateCourse(int id, string name, string season, int enrolled, decimal price, DateTime creationDate, bool notificationStart, string notes)
+        public static async Task UpdateCourse(int id, string name, string season, int enrolled, decimal price, DateTime startDate, DateTime endDate, bool notificationStart, string notes)
         {
             await Init();
 
@@ -158,7 +155,8 @@ namespace mschreiber_c971MobileApp.Services
                 courseQuery.Season = season;
                 courseQuery.Enrolled = enrolled;
                 courseQuery.Price = price;
-                courseQuery.CreationDate = creationDate;
+                courseQuery.StartDate = startDate;
+                courseQuery.EndDate = endDate;
                 courseQuery.StartNotification = notificationStart;
                 courseQuery.Notes = notes;
 
@@ -182,7 +180,8 @@ namespace mschreiber_c971MobileApp.Services
                 Season = "Fall",
                 Enrolled = 235,
                 Price = 925,
-                CreationDate = DateTime.Today.Date
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(+100),
             };
 
             await _db.InsertAsync(term1);
@@ -193,7 +192,8 @@ namespace mschreiber_c971MobileApp.Services
                 Season = "Winter",
                 Enrolled = 11,
                 Price = 423,
-                CreationDate = DateTime.Now,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
                 TermId = term1.Id
 
@@ -206,7 +206,8 @@ namespace mschreiber_c971MobileApp.Services
                 Season = "Orange",
                 Enrolled = 13,
                 Price = 322,
-                CreationDate = DateTime.Now,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
                 TermId = term1.Id
             };
@@ -220,7 +221,8 @@ namespace mschreiber_c971MobileApp.Services
                 Season = "Winter",
                 Enrolled = 545,
                 Price = 1500,
-                CreationDate = DateTime.Today.Date
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(+100),
             };
             await _db.InsertAsync(term2);
 
@@ -230,7 +232,8 @@ namespace mschreiber_c971MobileApp.Services
                 Season = "Winter",
                 Enrolled= 175,
                 Price = 145,
-                CreationDate = DateTime.Now,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
                 TermId = term2.Id
             };
@@ -242,7 +245,8 @@ namespace mschreiber_c971MobileApp.Services
                 Season = "Winter",
                 Enrolled = 165,
                 Price = 175,
-                CreationDate = DateTime.Now,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
                 TermId = term2.Id
             };
@@ -254,7 +258,8 @@ namespace mschreiber_c971MobileApp.Services
                 Season = "Winter",
                 Enrolled = 166,
                 Price = 168,
-                CreationDate = DateTime.Now,
+                StartDate = DateTime.Now,
+                EndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
                 TermId = term2.Id
             };

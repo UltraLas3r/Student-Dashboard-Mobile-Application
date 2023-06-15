@@ -16,7 +16,7 @@
     <ContentPage.Content>
         <CollectionView x:Name="TermCollectionView"
                 ItemsSource="{Binding Terms}"
-                EmptyView="No Gadgets to display"
+                EmptyView="No Terms to display"
                 SelectionMode ="Single"
                 SelectionChanged="TermCollectionView_SelectionChanged">
 
@@ -56,9 +56,11 @@
                             <Label Text="{Binding Price}" FontSize="Medium" Grid.Row="3" Grid.Column="1" VerticalTextAlignment="Center"/>
 
                             <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Creation Date</Label>
-                            <Label Text="{Binding CreationDate, StringFormat='{0:M/dd/yyy}'}" FontSize="Medium" Grid.Row="4" Grid.Column="1" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding StartDate, StringFormat='{0:M/dd/yyy}'}" FontSize="Medium" Grid.Row="4" Grid.Column="1" VerticalTextAlignment="Center"/>
                         </Grid>
+                        
                     </StackLayout>
+                            
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

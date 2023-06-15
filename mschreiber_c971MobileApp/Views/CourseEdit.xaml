@@ -12,7 +12,7 @@
     <StackLayout>
         <!--Button and Label Region-->
 
-        <Button x:Name="AddCourse" Text="Add Widget" Clicked="AddCourse_Clicked"></Button>
+        <Button x:Name="AddCourse" Text="Add Course" Clicked="AddCourse_Clicked"></Button>
 
         <Label Text="Course Count" FontSize="Large"></Label>
         <Label x:Name="CountLabel" FontSize="Large"></Label>
@@ -73,8 +73,10 @@
             <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Price</Label>
             <Entry Text="Binding Price" x:Name="CoursePrice" Placeholder="Enter Course Price" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
 
-            <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Creation Date</Label>
-            <DatePicker Grid.Row="5" Grid.Column="1" x:Name="CreationDatePicker"></DatePicker>
+            <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start Date</Label>
+            <DatePicker Grid.Row="5" Grid.Column="1" x:Name="StartDatePicker"></DatePicker>
+            <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End Date</Label>
+            <DatePicker Grid.Row="5" Grid.Column="1" x:Name="EndDatePicker"></DatePicker>
             
             <Label Grid.Row="6" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Notes</Label>
             <Editor Grid.Row="6" Grid.Column="1" x:Name="NotesEditor" Placeholder="Enter Notes"></Editor>

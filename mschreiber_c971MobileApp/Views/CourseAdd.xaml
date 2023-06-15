@@ -32,35 +32,18 @@
                 <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Course Name</Label>
                 <Entry x:Name="CourseName" Placeholder="Enter Course Name" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" Text="{Binding Name}"></Entry>
                 <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Course Term</Label>
-                <Entry x:Name="CourseTerm" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
+                
+                <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Enroll?</Label>
+                <Switch Grid.Row="2" Grid.Column="1" x:Name="Notification" HorizontalOptions="End"></Switch>
 
-                <Picker Grid.Row="1" Grid.Column="1" FontSize="Medium" x:Name="CourseTermPicker"
-                        Title="Select a Term for your Course"
-                        TitleColor="Teal">
-                    <Picker.ItemsSource>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>Fall</x:String>
-                            <x:String>Winter</x:String>
-                            <x:String>Spring</x:String>
-                            <x:String>Summer</x:String>
-                        </x:Array>
-                    </Picker.ItemsSource>
-                </Picker>
-
-                <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Students Enrolled</Label>
-                <Entry Grid.Row="2" Grid.Column="1" x:Name="Enrolled" Placeholder="Enrolled"></Entry>
-
-                <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Course Fee</Label>
-                <Entry Grid.Row="3" Grid.Column="1" x:Name="CourseFee" Placeholder="Enter Course Fee"></Entry>
-
-                <Label Grid.Row="6" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Price</Label>
-                <Switch Grid.Row="6" Grid.Column="1" x:Name="Notification" HorizontalOptions="End"></Switch>
+                <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Any Notes?</Label>
+                <Entry Grid.Row="3" Grid.Column="1" x:Name="NotesEditor" Placeholder="Enter Notes Here"></Entry>
 
                 <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Date</Label>
-                <DatePicker Grid.Row="4" Grid.Column="1" x:Name="DatePicker"></DatePicker>
+                <DatePicker Grid.Row="4" Grid.Column="1" x:Name="StartDatePicker"></DatePicker>
 
-                <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Any Notes?</Label>
-                <Entry Grid.Row="5" Grid.Column="1" x:Name="NotesEditor" Placeholder="Enter Notes Here"></Entry>
+                <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Date</Label>
+                <DatePicker Grid.Row="5" Grid.Column="1" x:Name="EndDatePicker"></DatePicker>
 
             </Grid>
         </StackLayout>

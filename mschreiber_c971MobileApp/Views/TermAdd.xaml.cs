@@ -34,9 +34,9 @@ namespace mschreiber_c971MobileApp.Views
 
             }
 
-            if (Int32.TryParse(StudentsEnrolled.Text, out tossedInt))
+            if (!Int32.TryParse(StudentsEnrolled.Text, out tossedInt))
             {
-                await DisplayAlert("Missing inventory value", "Please enter a whole number.", "Ok");
+                await DisplayAlert("Missing value", "Please enter a whole number.", "Ok");
             }
 
             if (!decimal.TryParse(TermFees.Text, out tossedDecimal))
@@ -45,7 +45,7 @@ namespace mschreiber_c971MobileApp.Views
 
             }
 
-            await DatabaseService.AddTerm(TermName.Text, TermPicker.SelectedItem.ToString(), Int32.Parse(StudentsEnrolled.Text), Decimal.Parse(TermFees.Text), DatePicker.Date);
+            await DatabaseService.AddTerm(TermName.Text, TermPicker.SelectedItem.ToString(), Int32.Parse(StudentsEnrolled.Text), Decimal.Parse(TermFees.Text), StartDatePicker.Date, EndDatePicker.Date);
 
             await Navigation.PopAsync();
         }

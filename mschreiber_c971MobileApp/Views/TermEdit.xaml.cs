@@ -17,6 +17,9 @@ namespace mschreiber_c971MobileApp.Views
         private readonly int _selectTermId;
         private int termId;
 
+        //todo remove this before submit
+        private readonly string CoursePrice;
+
         public TermEdit(TermInfo termId)
         {
             InitializeComponent();
@@ -25,9 +28,8 @@ namespace mschreiber_c971MobileApp.Views
 
             TermId.Text = termId.Id.ToString();
             TermName.Text = termId.Name;
-            TermSeasonPicker.SelectedItem = termId.Season;
-            TermFees.Text = termId.Price.ToString();
-            DatePicker.Date = termId.CreationDate;
+            StartDatePicker.Date = termId.StartDate;
+            EndDatePicker.Date = termId.EndDate;
         }
 
         public TermEdit(int termId)
@@ -45,25 +47,23 @@ namespace mschreiber_c971MobileApp.Views
             if (string.IsNullOrWhiteSpace(TermName.Text))
             {
                 await DisplayAlert("Missing Name", "Must enter a name.", "Ok");
+                return;
             }
 
-            if (string.IsNullOrWhiteSpace(TermSeasonPicker.SelectedItem.ToString()))
+            if (string.IsNullOrWhiteSpace(StartDatePicker.ToString()))
             {
-                await DisplayAlert("Missing Color", "Must enter a name.", "Ok");
+                await DisplayAlert("Missing start date", "Please pick a start date", "Ok");
             }
 
-            if (!Int32.TryParse(TermEnrollment.Text, out tossedInt))
+            if (string.IsNullOrWhiteSpace(EndDatePicker.ToString()))
             {
-                await DisplayAlert("Incorrect Inventory Value", "Please enter a whole number.", "Ok");
+                await DisplayAlert("Missing end date", "Please pick an end date", "Ok");
             }
 
-            if (!Decimal.TryParse(TermFees.Text, out tossedDecimal))
-            {
-                await DisplayAlert("Incorrect Price Value", "Please enter a valid number.", "Ok");
-            }
 
-            await DatabaseService.UpdateTerm(Int32.Parse(TermId.Text), TermName.Text, TermSeasonPicker.SelectedItem.ToString(), Int32.Parse(TermEnrollment.Text),
-                Decimal.Parse(TermFees.Text), DateTime.Parse(DatePicker.Date.ToString()));
+
+
+            await DatabaseService.UpdateTerm(Int32.Parse(_selectTermId.ToString()), TermName.Text,  DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()));
 
             await Navigation.PopAsync();
 
@@ -107,7 +107,7 @@ namespace mschreiber_c971MobileApp.Views
             var course = (CourseInfo)e.CurrentSelection.FirstOrDefault();
             if (e.CurrentSelection != null)
             {
-                await Navigation.PushAsync((new CourseEdit(course)));
+                await Navigation.PushAsync(new CourseEdit(course));
             }
 
         }

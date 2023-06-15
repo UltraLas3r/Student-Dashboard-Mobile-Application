@@ -27,8 +27,7 @@
             <Button x:Name="TermDetail" Text="Term List" Clicked="ViewTerms_Clicked"
                  HorizontalOptions="CenterAndExpand" />
 
-            <Button x:Name="EditTerm" Text="Edit Term" Clicked="EditTerm_Clicked"
-                HorizontalOptions="CenterAndExpand" />
+          
 
             <Button x:Name="CourseAdd" Text="Add Courses" Clicked="CourseAdd_Clicked"
                 HorizontalOptions="CenterAndExpand" />

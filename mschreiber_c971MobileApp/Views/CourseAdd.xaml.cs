@@ -17,7 +17,7 @@ namespace mschreiber_c971MobileApp.Views
         public CourseAdd(int termId)
         {
             InitializeComponent();
-            _selectTermId  = termId;
+            _selectTermId = termId;
         }
 
         async void SaveCourse_Clicked(object sender, EventArgs e)
@@ -31,24 +31,17 @@ namespace mschreiber_c971MobileApp.Views
                 await DisplayAlert("Missing Name", "Please enter a name.", "Ok");
 
             }
-            if (string.IsNullOrWhiteSpace(CourseTermPicker.SelectedItem.ToString()))
+            if (string.IsNullOrWhiteSpace(StartDatePicker.ToString()))
             {
-                await DisplayAlert("Missing Color", "Please pick a color", "Ok");
-
+                await DisplayAlert("Missing start date", "Please pick a start date", "Ok");
             }
 
-            if (Int32.TryParse(Enrolled.Text, out tossedInt))
+            if (string.IsNullOrWhiteSpace(EndDatePicker.ToString()))
             {
-                await DisplayAlert("Missing inventory value", "Please enter a whole number.", "Ok");
+                await DisplayAlert("Missing end date", "Please pick an end date", "Ok");
             }
 
-            if (!decimal.TryParse(CourseFee.Text, out tossedDecimal))
-            {
-                await DisplayAlert("Missing Price Value", "Please enter a valid price.", "Ok");
-
-            }
-
-            await DatabaseService.AddCourse(_selectTermId, CourseName.Text, CourseTermPicker.SelectedItem.ToString(), Int32.Parse(Enrolled.Text), Decimal.Parse(CourseFee.Text), DatePicker.Date, Notification.IsToggled, NotesEditor.Text);
+            await DatabaseService.AddCourse(_selectTermId, CourseName.Text, StartDatePicker.Date, EndDatePicker.Date, Notification.IsToggled, NotesEditor.Text);
 
             await Navigation.PopAsync();
 

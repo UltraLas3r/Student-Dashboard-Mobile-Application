@@ -14,6 +14,7 @@ namespace mschreiber_c971MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TermList : ContentPage
     {
+        private int termId;
         public TermList()
         {
             InitializeComponent();
@@ -55,6 +56,13 @@ namespace mschreiber_c971MobileApp.Views
                 TermInfo term = (TermInfo)e.CurrentSelection.FirstOrDefault();
                 await Navigation.PushAsync(new TermEdit(term));
             }
+        }
+
+        async void EditTerm_Clicked(object sender, EventArgs e)
+        {
+   
+                await Navigation.PushAsync(new TermEdit(termId));
+            
         }
     }
 }
