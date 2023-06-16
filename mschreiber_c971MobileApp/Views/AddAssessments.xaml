@@ -22,27 +22,22 @@
         
 
                 <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">ID</Label>
-                <Entry Text="{Binding TestType}" x:Name="CourseId" Placeholder="Enter Course Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+                <Entry Text="{Binding TestType}" x:Name="TestType" Placeholder="Enter Course Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
 
                 <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Name</Label>
                 <Entry Text="{Binding TestName}" x:Name="CourseName" Placeholder="Enter Course Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
                 
                 <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start Date</Label>
                 <DatePicker Grid.Row="2" Grid.Column="1" x:Name="StartDatePicker"></DatePicker>
-
+                <Label Text="{Binding StartDate}" Grid.Row="3" Grid.Column="1" FontSize="Medium"></Label>
+                
                 <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End Date</Label>
                 <Label Text="{Binding AnticipatedEndDate}" Grid.Row="3" Grid.Column="1" FontSize="Medium"></Label>
-                
-                
-                
+
                 <DatePicker  Grid.Row="3" Grid.Column="1" x:Name="EndDatePicker"></DatePicker>
 
                 <Button x:Name="AddOA" Grid.Row="4" Grid.Column="1" Text="Add OA" Clicked="AddOA_Clicked" ></Button>
                 <Button x:Name="AddPA" Grid.Row="4" Grid.Column="0" Text="Add PA" Clicked="AddPA_Clicked" ></Button>
-
-
-
-
 
             </Grid>
 

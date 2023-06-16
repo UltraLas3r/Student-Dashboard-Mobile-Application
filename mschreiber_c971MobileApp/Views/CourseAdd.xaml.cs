@@ -44,7 +44,6 @@ namespace mschreiber_c971MobileApp.Views
             await DatabaseService.AddCourse(_selectTermId, CourseName.Text, StartDatePicker.Date, EndDatePicker.Date, InstructorName.Text, PhoneNumber.Text, EmailAddress.Text, Notification.IsToggled, NotesEditor.Text);
 
             await Navigation.PopAsync();
-
         }
 
         async void CancelCourse_Clicked(object sender, EventArgs e)

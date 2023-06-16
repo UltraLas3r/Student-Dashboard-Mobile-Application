@@ -12,6 +12,7 @@ namespace mschreiber_c971MobileApp.Models
         public int Id { get; set; }
         public int TermId { get; set; } //foreign key
         public string CourseName { get; set; }
+        public string CourseStatus { get; set; }
         public string Instructor { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }

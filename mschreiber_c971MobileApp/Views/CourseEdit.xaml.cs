@@ -17,6 +17,8 @@ namespace mschreiber_c971MobileApp.Views
     {
         private readonly int _selectTermId;
         private readonly int _selectCourseId;
+        private string _courseName;
+
         public CourseEdit(CourseInfo course)
         {
             InitializeComponent();
@@ -24,6 +26,7 @@ namespace mschreiber_c971MobileApp.Views
             DateTime CourseStart = course.StartDate;
 
             _selectCourseId = course.Id;
+            _courseName = course.CourseName;
 
             CourseId.Text = course.Id.ToString();
             CourseName.Text = course.CourseName;
@@ -131,7 +134,7 @@ namespace mschreiber_c971MobileApp.Views
 
         async void AddATestButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddAssessments(_selectCourseId));
+            await Navigation.PushAsync(new AddAssessments(_courseName, _selectCourseId));
         }
     }
 }
