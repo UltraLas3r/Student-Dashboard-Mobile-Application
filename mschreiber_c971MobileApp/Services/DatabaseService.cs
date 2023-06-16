@@ -89,22 +89,11 @@ namespace mschreiber_c971MobileApp.Services
             return terms;
         }
 
-
-
-
         #endregion
 
         #region Assessment Methods
 
-
-        public static async Task<IEnumerable<Assessment>> GetAssessments(int courseId)
-        {
-            await Init();
-
-            var newAssessment = await _db.Table<Assessment>().Where(i=>i.CourseId == courseId).ToListAsync();
-
-            return newAssessment;
-        }
+       
 
         public static async Task AddObjectiveAssessment(int Id, string testName, DateTime startDate, DateTime anticipatedEndDate)
         {
@@ -138,7 +127,14 @@ namespace mschreiber_c971MobileApp.Services
 
 
 
+        public static async Task<IEnumerable<Assessment>> GetAssessments(int courseId)
+        {
+            await Init();
 
+            var newAssessment = await _db.Table<Assessment>().Where(i => i.CourseId == courseId).ToListAsync();
+
+            return newAssessment;
+        }
 
 
         #endregion 
