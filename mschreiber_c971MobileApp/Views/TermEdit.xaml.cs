@@ -17,8 +17,6 @@ namespace mschreiber_c971MobileApp.Views
         private readonly int _selectTermId;
         private int termId;
 
-      
-
         public TermEdit(TermInfo termId)
         {
             InitializeComponent();
@@ -31,6 +29,13 @@ namespace mschreiber_c971MobileApp.Views
             EndDatePicker.Date = termId.AnticipatedEndDate;
         }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            //where the data is coming from
+            CourseCollectionView.ItemsSource = await DatabaseService.GetCourses(_selectTermId);
+        }
         public TermEdit(int termId)
         {
             this.termId = termId;
@@ -59,8 +64,7 @@ namespace mschreiber_c971MobileApp.Views
                 await DisplayAlert("Missing end date", "Please pick an end date", "Ok");
             }
 
-
-
+            
 
             await DatabaseService.UpdateTerm(Int32.Parse(_selectTermId.ToString()), TermName.Text,  DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()));
 
@@ -101,6 +105,7 @@ namespace mschreiber_c971MobileApp.Views
 
             await Navigation.PushAsync(new CourseAdd(termId));
         }
+
         async void CourseCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var course = (CourseInfo)e.CurrentSelection.FirstOrDefault();

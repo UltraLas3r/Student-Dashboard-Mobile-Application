@@ -40,8 +40,8 @@
                 <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Course Name</Label>
                 <Entry x:Name="CourseName" Placeholder="Enter Course Name" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" Text="{Binding Name}"></Entry>
 
-                <!--<Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Instructor</Label>
-                <Entry x:Name="Instructor" Placeholder="Enter Instructor Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" ></Entry>-->
+                <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Instructor</Label>
+                <Entry x:Name="Instructor" Placeholder="Enter Instructor Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" ></Entry>
 
                 <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start Date</Label>
                 <DatePicker Grid.Row="2" Grid.Column="1" x:Name="StartDatePicker"></DatePicker>

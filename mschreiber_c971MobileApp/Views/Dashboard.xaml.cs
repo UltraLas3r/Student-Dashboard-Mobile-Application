@@ -17,8 +17,6 @@ namespace mschreiber_c971MobileApp.Views
     public partial class Dashboard : ContentPage
     {
         private int termId;
-        
-
         protected override async void OnAppearing()
         {
             base.OnAppearing();

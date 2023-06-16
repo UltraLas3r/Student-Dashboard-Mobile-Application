@@ -15,22 +15,24 @@ namespace mschreiber_c971MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CourseEdit : ContentPage
     {
+        private readonly int _selectTermId;
+        private readonly int _selectCourseId;
         public CourseEdit(CourseInfo course)
         {
             InitializeComponent();
 
             DateTime CourseStart = course.StartDate;
 
+            _selectCourseId = course.Id;
 
             CourseId.Text = course.Id.ToString();
             CourseName.Text = course.CourseName;
             CourseInstructorName.Text = course.Instructor;
             PhoneNumber.Text = course.Phone;
-            EmailAddress.Text = course.Email;
+            Email.Text = course.Email;
             StartDatePicker.Date = course.StartDate;
             EndDatePicker.Date = course.AnticipatedEndDate;
         }
-
        async void SaveCourse_Clicked(object sender, EventArgs e)
         {
             //TODO: This is to verify I am saving the information correctly when I CLICK THE SAVE BUTTON!!!
@@ -62,7 +64,7 @@ namespace mschreiber_c971MobileApp.Views
 
 
 
-
+          //  await DatabaseService.UpdateCourse(_selectTermId, CourseName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()), CourseInstructorName.Text, PhoneNumber.Text, Email.Text, NotesEditor.Text);
 
 
             await DatabaseService.UpdateTerm(Int32.Parse(CourseId.Text), CourseName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()));
@@ -78,6 +80,7 @@ namespace mschreiber_c971MobileApp.Views
             if (answer == true)
             {
                 var id = int.Parse(CourseId.Text);
+
                 await DatabaseService.RemoveCourse(id);
 
                 await DisplayAlert("Course Deleted", "Course Deleted", "Ok");
@@ -124,6 +127,11 @@ namespace mschreiber_c971MobileApp.Views
                 Text = uri,
                 Title = "Share Web Link"
             });
+        }
+
+        async void AddATestButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddAssessments(_selectCourseId));
         }
     }
 }

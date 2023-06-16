@@ -38,9 +38,6 @@ namespace mschreiber_c971MobileApp.Views
                 await DisplayAlert("Missing Name", "Please enter an end date.", "Ok");
             }
 
-
-
-
             await DatabaseService.AddTerm(TermName.Text, StartDatePicker.Date, AnticipatedEndDatePicker.Date);
 
             await Navigation.PopAsync();
@@ -52,6 +49,5 @@ namespace mschreiber_c971MobileApp.Views
             await Navigation.PopAsync();
         }
 
-    
     }
 }

@@ -29,6 +29,36 @@ namespace mschreiber_c971MobileApp.Services
             await _db.CreateTableAsync<CourseInfo>();
         }
 
+        public static async Task AddObjectiveAssessment(int Id, string testName, DateTime startDate, DateTime anticipatedEndDate)
+        {
+            await Init();
+
+            var OATest = new Assessment()
+            {
+                Id = Id,
+                TestName = testName,
+                StartDate = startDate,
+                AnticipatedEndDate = anticipatedEndDate
+            };
+
+            await _db.InsertAsync(OATest);
+        }
+
+        public static async Task AddPracticeAssessment(int Id, string testName, DateTime startDate, DateTime anticipatedEndDate)
+        {
+            await Init();
+
+            var OATest = new Assessment()
+            {
+                Id = Id,
+                TestName = testName,
+                StartDate = startDate,
+                AnticipatedEndDate = anticipatedEndDate
+            };
+
+            await _db.InsertAsync(OATest);
+        }
+
         #region Term methods
         public static async Task AddTerm(string name, DateTime startDate, DateTime anticipatedEndDate)
         {
@@ -38,8 +68,7 @@ namespace mschreiber_c971MobileApp.Services
             {
                 Name = name,
                 StartDate = startDate,
-                AnticipatedEndDate = anticipatedEndDate,
-
+                AnticipatedEndDate = anticipatedEndDate
             };
 
             await _db.InsertAsync(term);
@@ -92,6 +121,15 @@ namespace mschreiber_c971MobileApp.Services
 
         #region courses methods
 
+        public static async Task<IEnumerable<CourseInfo>> GetCourses(int termId)
+        {
+            await Init();
+
+            var courses = await _db.Table<CourseInfo>().Where(i => i.TermId == termId).ToListAsync();
+
+            return courses;
+        }
+
         public static async Task AddCourse(int termId, string courseName,  DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, bool notificationStart, string notes)
         {
             await Init();
@@ -122,14 +160,6 @@ namespace mschreiber_c971MobileApp.Services
             await _db.DeleteAsync<CourseInfo>(id);
         }
 
-        public static async Task<IEnumerable<CourseInfo>> GetCourses(int termId) 
-        {
-            await Init();
-
-            var courses = await _db.Table<CourseInfo>().Where(i => i.TermId == termId).ToListAsync();
-
-            return courses;
-        }
 
         public static async Task<IEnumerable<CourseInfo>> GetCourses() //get ALL courses for notifications
         {
@@ -141,7 +171,7 @@ namespace mschreiber_c971MobileApp.Services
             return courses;
         }
 
-        public static async Task UpdateCourse(int termId, string courseName, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, bool notificationStart, string notes)
+        public static async Task UpdateCourse(int termId, string courseName, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, string notes)
         {
             await Init();
 
@@ -157,7 +187,7 @@ namespace mschreiber_c971MobileApp.Services
                 courseQuery.Email = email;
                 courseQuery.StartDate = startDate;
                 courseQuery.AnticipatedEndDate = anticipatedEndDate;
-                courseQuery.StartNotification = notificationStart;
+                
                 courseQuery.Notes = notes;
 
                 await _db.UpdateAsync(courseQuery);
@@ -186,9 +216,9 @@ namespace mschreiber_c971MobileApp.Services
             CourseInfo course1a = new CourseInfo
             {
                 CourseName = "Lion Course",
-                Instructor = "Pontius",
+                Instructor = "Franz Liszt",
                 Phone = "555555555",
-                Email = "pman@gmail.com",
+                Email = "Composerguy@gmail.com",
                 StartDate = DateTime.Now,
                 AnticipatedEndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
@@ -200,9 +230,9 @@ namespace mschreiber_c971MobileApp.Services
             CourseInfo course1b = new CourseInfo
             {
                 CourseName = "Tiger Course",
-                Instructor = "Greek Salad",
-                Phone = "6666666666",
-                Email = "GSalad@gmail.com",
+                Instructor = "Brandon Sanderson",
+                Phone = "5567778888",
+                Email = "AuthorGuythatWritesBooks@gmail.com",
                 StartDate = DateTime.Now,
                 AnticipatedEndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
@@ -210,7 +240,7 @@ namespace mschreiber_c971MobileApp.Services
             };
             await _db.InsertAsync(course1b);
 
-            //insert another gadget with some widgets
+            //insert another Term with Courses attached
 
             TermInfo term2 = new TermInfo
             {
@@ -223,9 +253,9 @@ namespace mschreiber_c971MobileApp.Services
             CourseInfo course2a = new CourseInfo
             {
                 CourseName = "Mountain Course",
-                Instructor = "Muir",
+                Instructor = "John Muir",
                 Phone = "555555555",
-                Email = "yosemite@gmail.com",
+                Email = "yosemiteGuy@gmail.com",
                 StartDate = DateTime.Now,
                 AnticipatedEndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
@@ -236,9 +266,9 @@ namespace mschreiber_c971MobileApp.Services
             CourseInfo course2b = new CourseInfo
             {
                 CourseName = "River Course",
-                Instructor = "Cuomo",
+                Instructor = "Mary Catherine Ruth",
                 Phone = "555555555",
-                Email = "Weeez@gmail.com",
+                Email = "Priory@gmail.com",
                 StartDate = DateTime.Now,
                 AnticipatedEndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
@@ -248,10 +278,10 @@ namespace mschreiber_c971MobileApp.Services
 
             CourseInfo course2c = new CourseInfo
             {
-                CourseName = "Meadow Course",
-                Instructor = "Golf Guy",
+                CourseName = "Meadows Course",
+                Instructor = "Tiger Woods",
                 Phone = "555555555",
-                Email = "Golver@gmail.com",
+                Email = "GolfLvr@gmail.com",
                 StartDate = DateTime.Now,
                 AnticipatedEndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
