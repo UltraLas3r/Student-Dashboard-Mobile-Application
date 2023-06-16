@@ -27,6 +27,9 @@
             <Button x:Name="TermAdd" Text="Add New Term" Clicked="AddTerm_Clicked"
                 HorizontalOptions="CenterAndExpand" />
 
+            <Button x:Name="OpenCourseDetails" Text="View Course Details" Clicked="OpenCourseDetails_Clicked" BackgroundColor="LightGreen"
+                HorizontalOptions="CenterAndExpand" />
+
         </StackLayout>
     </ContentPage.Content>
 

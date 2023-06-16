@@ -97,6 +97,9 @@ namespace mschreiber_c971MobileApp.Views
             await Navigation.PushAsync(new CourseAdd(termId));
         }
 
-    
+        async void OpenCourseDetails_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CourseDetails());
+        }
     }
 }
