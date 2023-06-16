@@ -35,12 +35,11 @@ namespace mschreiber_c971MobileApp.Views
             Email.Text = course.Email;
             StartDatePicker.Date = course.StartDate;
             EndDatePicker.Date = course.AnticipatedEndDate;
+
         }
        async void SaveCourse_Clicked(object sender, EventArgs e)
         {
-            //TODO: This is to verify I am saving the information correctly when I CLICK THE SAVE BUTTON!!!
-            decimal tossedDecimal;
-            int tossedInt;
+           
 
             if (string.IsNullOrWhiteSpace(CourseName.Text))
             {
@@ -66,7 +65,7 @@ namespace mschreiber_c971MobileApp.Views
 
 
 
-
+            //TODO possibly remobe the UpdateCourse function 
           //  await DatabaseService.UpdateCourse(_selectTermId, CourseName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()), CourseInstructorName.Text, PhoneNumber.Text, Email.Text, NotesEditor.Text);
 
 
@@ -124,7 +123,7 @@ namespace mschreiber_c971MobileApp.Views
 
        async void ShareUri_Clicked(object sender, EventArgs e)
         {
-            string uri = "www.Wgu.edu";
+            string uri = "www.wgu.edu";
             await Share.RequestAsync(new ShareTextRequest
             {
                 Text = uri,
