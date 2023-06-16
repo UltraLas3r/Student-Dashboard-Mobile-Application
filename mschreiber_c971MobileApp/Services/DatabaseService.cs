@@ -27,37 +27,10 @@ namespace mschreiber_c971MobileApp.Services
 
             await _db.CreateTableAsync<TermInfo>();
             await _db.CreateTableAsync<CourseInfo>();
+            await _db.CreateTableAsync<Assessment>();  
         }
 
-        public static async Task AddObjectiveAssessment(int Id, string testName, DateTime startDate, DateTime anticipatedEndDate)
-        {
-            await Init();
-
-            var OATest = new Assessment()
-            {
-                Id = Id,
-                TestName = testName,
-                StartDate = startDate,
-                AnticipatedEndDate = anticipatedEndDate
-            };
-
-            await _db.InsertAsync(OATest);
-        }
-
-        public static async Task AddPracticeAssessment(int Id, string testName, DateTime startDate, DateTime anticipatedEndDate)
-        {
-            await Init();
-
-            var OATest = new Assessment()
-            {
-                Id = Id,
-                TestName = testName,
-                StartDate = startDate,
-                AnticipatedEndDate = anticipatedEndDate
-            };
-
-            await _db.InsertAsync(OATest);
-        }
+        
 
         #region Term methods
         public static async Task AddTerm(string name, DateTime startDate, DateTime anticipatedEndDate)
@@ -117,7 +90,61 @@ namespace mschreiber_c971MobileApp.Services
         }
 
 
+
+
         #endregion
+
+        #region Assessment Methods
+
+
+        public static async Task<IEnumerable<Assessment>> GetAssessments(int courseId)
+        {
+            await Init();
+
+            var newAssessment = await _db.Table<Assessment>().Where(i=>i.CourseId == courseId).ToListAsync();
+
+            return newAssessment;
+        }
+
+        public static async Task AddObjectiveAssessment(int Id, string testName, DateTime startDate, DateTime anticipatedEndDate)
+        {
+            await Init();
+
+            var OATest = new Assessment()
+            {
+                CourseId = Id,
+                TestName = testName,
+                StartDate = startDate,
+                AnticipatedEndDate = anticipatedEndDate
+            };
+
+            await _db.InsertAsync(OATest);
+        }
+
+        public static async Task AddPracticeAssessment(int Id, string testName, DateTime startDate, DateTime anticipatedEndDate)
+        {
+            await Init();
+
+            var OATest = new Assessment()
+            {
+                CourseId = Id,
+                TestName = testName,
+                StartDate = startDate,
+                AnticipatedEndDate = anticipatedEndDate
+            };
+
+            await _db.InsertAsync(OATest);
+        }
+
+
+
+
+
+
+        #endregion 
+
+
+
 
         #region courses methods
 

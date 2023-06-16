@@ -23,7 +23,7 @@ namespace mschreiber_c971MobileApp.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
+            //this populates the Term Collection view with Term data
             TermCollectionView.ItemsSource = await DatabaseService.GetTerms();
         }
 
