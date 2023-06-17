@@ -77,11 +77,11 @@
                             <Entry Text="{Binding Instructor}" x:Name="InstructorName" Placeholder="Enter Term Name" Grid.Row="2" Grid.Column="1"></Entry>
 
                             <Label Grid.Row="0" Grid.Column="2" FontSize="Small" HorizontalOptions="Center">Start Date</Label>
-                            <DatePicker Grid.Row="0" Grid.Column="2" x:Name="StartDatePicker" FontSize="Small" HorizontalOptions="Center"></DatePicker>
+                            <Label Text="{Binding StartDate, StringFormat='{0:M/dd/yyy}'}" Grid.Row="0" Grid.Column="2" x:Name="StartDateLabel" FontSize="Small" HorizontalOptions="Center"></Label>
 
-                            <Label Grid.Row="1" Grid.Column="2" FontSize="Small" HorizontalOptions="Center">End Date</Label>
+                            <Label Grid.Row="1" Grid.Column="2" FontSize="Small" HorizontalOptions="Center"></Label>
 
-                            <DatePicker Grid.Row="1" Grid.Column="2" x:Name="EndDatePicker" FontSize="Small" HorizontalOptions="Center"></DatePicker>
+                            <Label Text="{Binding AnticipatedEndDate, StringFormat='{0:M/dd/yyy}'}" Grid.Row="2" Grid.Column="2" x:Name="EndDatePicker" FontSize="Small" HorizontalOptions="Center"></Label>
                             
                         </Grid>
 

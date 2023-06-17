@@ -34,8 +34,8 @@
                         Title="Select a Test Type"
                         TitleColor="Teal">
                     <Picker.Items>
-                        <x:String>Practice Assessment</x:String>
-                        <x:String>Objective Assessment</x:String>
+                        <x:String>PA</x:String>
+                        <x:String>OA</x:String>
                     </Picker.Items>
                 </Picker>
 
@@ -56,7 +56,7 @@
 
 
 
-                <Button x:Name="AddAssessment" Grid.Row="10" Grid.Column="1" Text="Add OA" Clicked="AddAssessment_Clicked" ></Button>
+                <Button x:Name="AddAssessment" Grid.Row="10" Grid.Column="1" Text="Save Test To Course" Clicked="AddAssessment_Clicked" ></Button>
                 
 
             </Grid>
