@@ -93,39 +93,23 @@ namespace mschreiber_c971MobileApp.Services
 
         #region Assessment Methods
 
-       
-
-        public static async Task AddObjectiveAssessment(int Id, string testName, DateTime startDate, DateTime anticipatedEndDate)
+        public static async Task AddAssessment(int Id, string testName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
         {
             await Init();
 
-            var OATest = new Assessment()
+            var Assessment = new Assessment()
             {
-                CourseId = Id,
+                CourseId = Id, //foreign key 
                 TestName = testName,
                 StartDate = startDate,
-                AnticipatedEndDate = anticipatedEndDate
+                AssessmentType = assessmentType,
+                AnticipatedEndDate = anticipatedEndDate,
+                StartDateNotify = startDateNotify,
+                EndDateNotify = endDateNotify
             };
 
-            await _db.InsertAsync(OATest);
+            await _db.InsertAsync(Assessment);
         }
-
-        public static async Task AddPracticeAssessment(int Id, string testName, DateTime startDate, DateTime anticipatedEndDate)
-        {
-            await Init();
-
-            var OATest = new Assessment()
-            {
-                CourseId = Id,
-                TestName = testName,
-                StartDate = startDate,
-                AnticipatedEndDate = anticipatedEndDate
-            };
-
-            await _db.InsertAsync(OATest);
-        }
-
-
 
         public static async Task<IEnumerable<Assessment>> GetAssessments(int courseId)
         {
@@ -138,8 +122,6 @@ namespace mschreiber_c971MobileApp.Services
 
 
         #endregion 
-
-
 
 
         #region courses methods

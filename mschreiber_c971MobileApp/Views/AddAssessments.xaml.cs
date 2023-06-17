@@ -32,46 +32,13 @@ namespace mschreiber_c971MobileApp.Views
             base.OnAppearing();
         }
 
-        async void AddOA_Clicked(object sender, EventArgs e)
-        {
-            await DisplayAlert("Status", "Enabled", "OK");
-
-            if (ConfirmUserInput())
-            {
-                await DisplayAlert("Missing Name", "Please enter a name.", "Ok");
-
-
-
-
-            }
-           
-            await DatabaseService.AddObjectiveAssessment(_selectCourseId, CourseName.Text, StartDatePicker.Date, EndDatePicker.Date);
-        }
-
-        async void AddPA_Clicked(object sender, EventArgs e)
-        {
-            await DisplayAlert("Status", "Enabled", "OK");
-
-            if (ConfirmUserInput())
-            {
-                await DisplayAlert("Missing Name", "Please enter a name.", "Ok");
-
-            }
-
-            await DatabaseService.AddPracticeAssessment(_selectCourseId, CourseName.Text, StartDatePicker.Date, EndDatePicker.Date);
-
-
-
-
-        }
-
         private bool ConfirmUserInput() 
         {
             bool valid = true;
 
-            if (string.IsNullOrWhiteSpace(CourseName.Text) || string.IsNullOrWhiteSpace(CourseName.Text) 
-                || string.IsNullOrWhiteSpace(TestType.Text) || StartDatePicker.Date == null 
-                 || EndDatePicker.Date == null || EndDatePicker.Date < StartDatePicker.Date) 
+            if (string.IsNullOrWhiteSpace(_selectCourseId.ToString()) || string.IsNullOrWhiteSpace(TestTypePicker.SelectedItem.ToString()) 
+                || StartDatePicker.Date == null 
+                || EndDatePicker.Date == null || EndDatePicker.Date < StartDatePicker.Date) 
             {
                 return false;
             }
@@ -80,7 +47,22 @@ namespace mschreiber_c971MobileApp.Views
             return valid; 
         }
 
+        async void AddAssessment_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Status", "Enabled", "OK");
+
+            if (ConfirmUserInput())
+            {
+                await DisplayAlert("Missing Name", "Please enter a name.", "Ok");
+
+            }
+
+            //get values from form controls to pass into the method 
+            await DatabaseService.AddAssessment(_selectCourseId, TestName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
 
 
+
+
+        }
     }
 }

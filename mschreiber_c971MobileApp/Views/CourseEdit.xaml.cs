@@ -40,7 +40,6 @@ namespace mschreiber_c971MobileApp.Views
        async void SaveCourse_Clicked(object sender, EventArgs e)
         {
            
-
             if (string.IsNullOrWhiteSpace(CourseName.Text))
             {
                 await DisplayAlert("Missing Name", "Must enter a name.", "Ok");

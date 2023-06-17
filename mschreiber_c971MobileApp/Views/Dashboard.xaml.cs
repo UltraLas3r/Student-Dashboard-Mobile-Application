@@ -17,6 +17,7 @@ namespace mschreiber_c971MobileApp.Views
     public partial class Dashboard : ContentPage
     {
         private int termId;
+        private string randomName;
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -40,7 +41,6 @@ namespace mschreiber_c971MobileApp.Views
         public Dashboard()
         {
             InitializeComponent();
-          
         }
 
         async void AddTerm_Clicked(object sender, EventArgs e)
@@ -100,6 +100,11 @@ namespace mschreiber_c971MobileApp.Views
         async void OpenCourseDetails_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new CourseDetails());
+        }
+
+        async void CreateAssessment_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AddAssessments(randomName, termId));
         }
     }
 }

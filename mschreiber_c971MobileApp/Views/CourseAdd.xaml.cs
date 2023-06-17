@@ -25,6 +25,8 @@ namespace mschreiber_c971MobileApp.Views
             int tossedInt;
             Decimal tossedDecimal;
 
+            int addCourseCounter = 0;
+
 
             if (string.IsNullOrWhiteSpace(CourseName.Text))
             {
@@ -41,7 +43,14 @@ namespace mschreiber_c971MobileApp.Views
                 await DisplayAlert("Missing end date", "Please pick an end date", "Ok");
             }
 
+            //TODO add a foreach loop here 
+            if (addCourseCounter == 6)
+            {
+                await DisplayAlert("Term full", "unable to add any more courses to term (Max 6)", "Cancel");
+            }
+           
             await DatabaseService.AddCourse(_selectTermId, CourseName.Text, StartDatePicker.Date, EndDatePicker.Date, InstructorName.Text, PhoneNumber.Text, EmailAddress.Text, Notification.IsToggled, NotesEditor.Text);
+
 
             await Navigation.PopAsync();
         }

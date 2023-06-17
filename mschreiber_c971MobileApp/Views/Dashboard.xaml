@@ -30,6 +30,9 @@
             <Button x:Name="OpenCourseDetails" Text="View Course Details" Clicked="OpenCourseDetails_Clicked" BackgroundColor="LightGreen"
                 HorizontalOptions="CenterAndExpand" />
 
+            <Button x:Name="CreateAssessment" Text="View Assessment Details" Clicked="CreateAssessment_Clicked" BackgroundColor="OrangeRed"
+                HorizontalOptions="CenterAndExpand" />
+
         </StackLayout>
     </ContentPage.Content>
 
