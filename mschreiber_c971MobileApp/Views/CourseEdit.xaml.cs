@@ -50,8 +50,6 @@ namespace mschreiber_c971MobileApp.Views
                 await DisplayAlert("Missing Name", "Must enter a name.", "Ok");
             }
 
-
-
             if (string.IsNullOrWhiteSpace(StartDatePicker.ToString()))
             {
                 await DisplayAlert("Missing end date", "Please pick an end date", "Ok");
@@ -63,13 +61,12 @@ namespace mschreiber_c971MobileApp.Views
             }
 
 
-
             //TODO possibly remobe the UpdateCourse function 
-          //  await DatabaseService.UpdateCourse(_selectTermId, CourseName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()), CourseInstructorName.Text, PhoneNumber.Text, Email.Text, NotesEditor.Text);
+            await DatabaseService.UpdateCourse(Int32.Parse(CourseId.Text), CourseName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()), CourseInstructorName.Text, PhoneNumber.Text, Email.Text, NotesEditor.Text);
 
 
-            await DatabaseService.UpdateTerm(Int32.Parse(CourseId.Text), CourseName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()));
-
+            //await DatabaseService.UpdateTerm(Int32.Parse(CourseId.Text), CourseName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()));
+            
             await Navigation.PopAsync();
 
         }

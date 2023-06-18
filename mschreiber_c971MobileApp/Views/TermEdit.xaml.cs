@@ -22,7 +22,6 @@ namespace mschreiber_c971MobileApp.Views
             InitializeComponent();
 
             _selectTermId = termId.Id;
-
             TermId.Text = termId.Id.ToString();
             TermName.Text = termId.Name;
             StartDatePicker.Date = termId.StartDate;
@@ -35,6 +34,7 @@ namespace mschreiber_c971MobileApp.Views
 
             //where the data is coming from
             CourseCollectionView.ItemsSource = await DatabaseService.GetCourses(_selectTermId);
+
         }
         public TermEdit(int termId)
         {

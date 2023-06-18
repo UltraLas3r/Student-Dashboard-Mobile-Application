@@ -176,16 +176,17 @@ namespace mschreiber_c971MobileApp.Services
             return courses;
         }
 
-        public static async Task UpdateCourse(int termId, string courseName, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, string notes)
+        public static async Task UpdateCourse(int courseId, string courseName, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, string notes)
         {
             await Init();
 
             var courseQuery = await _db.Table<CourseInfo>()
-                .Where(i => i.Id == termId)
+                .Where(i => i.Id == courseId)
                 .FirstOrDefaultAsync();
 
             if (courseQuery != null)
             {
+                courseQuery.Id = courseId;
                 courseQuery.CourseName = courseName;
                 courseQuery.Instructor = instructor;
                 courseQuery.Phone = phone;

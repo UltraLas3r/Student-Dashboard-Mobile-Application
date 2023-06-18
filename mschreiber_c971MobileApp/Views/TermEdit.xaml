@@ -51,9 +51,9 @@
          
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
+                    <StackLayout VerticalOptions="CenterAndExpand">
                         <!-- Placeholder label elements for displaying course information -->
-                        <Grid Padding="5" RowSpacing="5" ColumnSpacing="1" BackgroundColor="Bisque">
+                        <Grid Margin="5" RowSpacing="5" ColumnSpacing="1" BackgroundColor="Bisque">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -63,12 +63,12 @@
                             </Grid.RowDefinitions>
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Row="0" Grid.Column="0" FontSize="Small">Course ID</Label>
-                            <Entry Text="{Binding Id}" x:Name="TermId" Placeholder="Enter Term Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+                            <Label Grid.Row="0" Grid.Column="0" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" >Course ID</Label>
+                            <Entry Text="{Binding Id}" x:Name="TermId" Placeholder="Enter Term Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" IsReadOnly="True"></Entry>
 
                             <Label Grid.Row="1" Grid.Column="0" FontSize="Small" >Term Name</Label>
                             <Entry Text="{Binding CourseName}" x:Name="TermName" Placeholder="Instructor Name" Grid.Row="1" Grid.Column="1" ></Entry>
@@ -76,12 +76,12 @@
                             <Label Grid.Row="2" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center">Instructor Name</Label>
                             <Entry Text="{Binding Instructor}" x:Name="InstructorName" Placeholder="Enter Term Name" Grid.Row="2" Grid.Column="1"></Entry>
 
-                            <Label Grid.Row="0" Grid.Column="2" FontSize="Small" HorizontalOptions="Center">Start Date</Label>
-                            <Label Text="{Binding StartDate, StringFormat='{0:M/dd/yyy}'}" Grid.Row="0" Grid.Column="2" x:Name="StartDateLabel" FontSize="Small" HorizontalOptions="Center"></Label>
+                            <Label Grid.Row="0" Grid.Column="2" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Center" VerticalTextAlignment="Start">Start Date</Label>
+                            <Label Text="{Binding StartDate, StringFormat='{0:M/dd/yyy}'}" Grid.Row="0" Grid.Column="2" x:Name="StartDateLabel" FontSize="Small" VerticalTextAlignment="End" HorizontalOptions="Center"></Label>
 
-                            <Label Grid.Row="1" Grid.Column="2" FontSize="Small" HorizontalOptions="Center"></Label>
+                            <Label Grid.Row="1" Grid.Column="2" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Center">End Date</Label>
 
-                            <Label Text="{Binding AnticipatedEndDate, StringFormat='{0:M/dd/yyy}'}" Grid.Row="2" Grid.Column="2" x:Name="EndDatePicker" FontSize="Small" HorizontalOptions="Center"></Label>
+                            <Label Text="{Binding AnticipatedEndDate, StringFormat='{0:M/dd/yyy}'}" Grid.Row="1" Grid.Column="2" x:Name="EndDatePicker" FontSize="Small" VerticalTextAlignment="End" HorizontalOptions="Center"></Label>
                             
                         </Grid>
 
