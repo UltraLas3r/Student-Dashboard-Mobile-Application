@@ -16,6 +16,11 @@ namespace mschreiber_c971MobileApp.Models
         public string Instructor { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
+        public string AssessmentOA { get; set; }
+
+        public string AssessmentPA { get; set; }
+
+        
         public bool StartNotification { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime AnticipatedEndDate { get; set; }

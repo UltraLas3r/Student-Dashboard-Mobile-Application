@@ -79,10 +79,12 @@
                             <Label Grid.Row="0" Grid.Column="2" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Center" VerticalTextAlignment="Start">Start Date</Label>
                             <Label Text="{Binding StartDate, StringFormat='{0:M/dd/yyy}'}" Grid.Row="0" Grid.Column="2" x:Name="StartDateLabel" FontSize="Small" VerticalTextAlignment="End" HorizontalOptions="Center"></Label>
 
-                            <Label Grid.Row="1" Grid.Column="2" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Center">End Date</Label>
+                            <Label Text="{Binding AssessmentPA}" Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">TEMP PA</Label>
 
+                            <Label Grid.Row="1" Grid.Column="2" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Center">End Date</Label>
                             <Label Text="{Binding AnticipatedEndDate, StringFormat='{0:M/dd/yyy}'}" Grid.Row="1" Grid.Column="2" x:Name="EndDatePicker" FontSize="Small" VerticalTextAlignment="End" HorizontalOptions="Center"></Label>
-                            
+
+                            <Label Text="{Binding AssessmentOA}" Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">TEMP OA</Label>
                         </Grid>
 
                         <!-- Add more labels for other course properties as needed -->

@@ -12,14 +12,14 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="CountLabel" FontSize="Large"></Label>
-            <Label x:Name="LabelList" Text="List of Courses" FontSize="Large" FontAttributes="Bold"></Label>
-            <Label x:Name="InstructorName" FontSize="Large"></Label>
+            <Label x:Name="CountLabel" FontSize="Large">Maybe put Test info here?</Label>
+            <Label x:Name="LabelList" Text="Add Course Info" FontSize="Large" FontAttributes="Bold"></Label>
+           
             <Label x:Name="PhoneNumber" FontSize="Large"></Label>
             <Label x:Name="EmailAddress" FontSize="Large"></Label>
-            <Label x:Name="Start" FontSize="Large"></Label>
-            <Label x:Name="AnticipatedEndDate" FontSize="Large"></Label>
-
+            
+            
+            
             <Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="WhiteSmoke">
                 
                 <Grid.RowDefinitions>
@@ -37,23 +37,29 @@
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Course Name</Label>
-                <Entry x:Name="CourseName" Placeholder="Enter Course Name" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" Text="{Binding Name}"></Entry>
+                <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End">Course Name</Label>
+                <Entry x:Name="CourseName" Text="{Binding Name}"   Placeholder="Enter Course Name" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="End" HorizontalOptions="End"></Entry>
 
-                <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Instructor</Label>
-                <Entry x:Name="Instructor" Placeholder="Enter Instructor Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" ></Entry>
+                <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End">Instructor</Label>
+                <Entry x:Name="InstructorName" Placeholder="Enter Instructor Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="End" ></Entry>
 
-                <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start Date</Label>
-                <DatePicker Grid.Row="2" Grid.Column="1" x:Name="StartDatePicker"></DatePicker>
+                <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End">Email</Label>
+                <Entry x:Name="InstructorEmail" Placeholder="Email" Grid.Row="2" Grid.Column="1" VerticalTextAlignment="End" ></Entry>
 
-                <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End Date</Label>
-                <DatePicker Grid.Row="3" Grid.Column="1" x:Name="EndDatePicker"></DatePicker>
-                
-                <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Any Notes?</Label>
-                <Entry Grid.Row="4" Grid.Column="1" x:Name="NotesEditor" Placeholder="Enter Notes Here"></Entry>
+                <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End">Phone</Label>
+                <Entry x:Name="InstructorPhone" Placeholder="PhoneNumber" Grid.Row="4" Grid.Column="1" VerticalTextAlignment="End" ></Entry>
 
-                <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Course Status. Enable to Enroll</Label>
-                <Switch Grid.Row="5" Grid.Column="1" x:Name="Notification" HorizontalOptions="End"></Switch>
+                <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End">Start Date</Label>
+                <DatePicker Grid.Row="4" Grid.Column="1" x:Name="StartDatePicker"></DatePicker>
+
+                <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End">End Date</Label>
+                <DatePicker Grid.Row="5" Grid.Column="1" x:Name="AnticipatedEndDate" ></DatePicker>
+
+                <Label Grid.Row="6" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End">Any Notes?</Label>
+                <Entry Grid.Row="6" Grid.Column="1" x:Name="NotesEditor" Placeholder="Enter Notes Here" VerticalTextAlignment="End"></Entry>
+
+                <Label Grid.Row="7" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End">Course Status. Enable to Enroll</Label>
+                <Switch Grid.Row="7" Grid.Column="1" x:Name="Notification" HorizontalOptions="End"></Switch>
 
             </Grid>
         </StackLayout>

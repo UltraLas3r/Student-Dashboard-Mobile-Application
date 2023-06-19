@@ -38,18 +38,18 @@ namespace mschreiber_c971MobileApp.Views
                 await DisplayAlert("Missing start date", "Please pick a start date", "Ok");
             }
 
-            if (string.IsNullOrWhiteSpace(EndDatePicker.ToString()))
+            if (string.IsNullOrWhiteSpace(AnticipatedEndDate.ToString()))
             {
                 await DisplayAlert("Missing end date", "Please pick an end date", "Ok");
             }
 
             //TODO add a foreach loop here 
-            if (addCourseCounter == 6)
-            {
-                await DisplayAlert("Term full", "unable to add any more courses to term (Max 6)", "Cancel");
-            }
+            //if (addCourseCounter == 6)
+            //{
+            //    await DisplayAlert("Term full", "unable to add any more courses to term (Max 6)", "Cancel");
+            //}
            
-            await DatabaseService.AddCourse(_selectTermId, CourseName.Text, StartDatePicker.Date, EndDatePicker.Date, InstructorName.Text, PhoneNumber.Text, EmailAddress.Text, Notification.IsToggled, NotesEditor.Text);
+            await DatabaseService.AddCourse(_selectTermId, CourseName.Text, StartDatePicker.Date, AnticipatedEndDate.Date, InstructorName.Text, PhoneNumber.Text, EmailAddress.Text, Notification.IsToggled, NotesEditor.Text);
 
 
             await Navigation.PopAsync();

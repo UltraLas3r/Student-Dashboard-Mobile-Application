@@ -47,9 +47,12 @@
             <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start Date</Label>
             <DatePicker Grid.Row="5" Grid.Column="1" x:Name="StartDatePicker"></DatePicker>
 
+           
+
             <Label Grid.Row="6" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End Date</Label>
             <DatePicker Grid.Row="6" Grid.Column="1" x:Name="EndDatePicker"></DatePicker>
-
+       
+            
             <Label Grid.Row="7" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Notes</Label>
             <Editor Grid.Row="7" Grid.Column="1" x:Name="NotesEditor" Placeholder="Enter Notes"></Editor>
 
