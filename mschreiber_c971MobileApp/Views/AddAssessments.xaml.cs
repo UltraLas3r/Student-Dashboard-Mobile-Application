@@ -27,8 +27,6 @@ namespace mschreiber_c971MobileApp.Views
             _selectCourseId = courseId;
 
             Title = "Add Assessment to: " + _course;
-           
-
         }
 
         

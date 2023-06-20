@@ -41,14 +41,13 @@
         <Button x:Name="AddClass" Text="Add Class to Term" Clicked="AddClass_Clicked"></Button>
 
         <Label Text="___________________________________________________" HorizontalOptions="CenterAndExpand"></Label>
+        
         <Label x:Name="LabelList" Text="Courses In Term"  FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="Moccasin"></Label>
         <CollectionView x:Name="CourseCollectionView"
                             EmptyView="No Course info To Display."
                             SelectionMode="Single"
                             SelectionChanged="CourseCollectionView_SelectionChanged"
             >
-
-
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout VerticalOptions="CenterAndExpand">
@@ -80,10 +79,7 @@
                             <Label Text="{Binding StartDate, StringFormat='{0:M/dd/yyy}'}" Grid.Row="0" Grid.Column="2" x:Name="StartDateLabel" FontSize="Small" VerticalTextAlignment="End" HorizontalOptions="Center"></Label>
                             <Label Grid.Row="1" Grid.Column="2" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Center" VerticalTextAlignment="Start">End Date</Label>
                             <Label Text="{Binding AnticipatedEndDate, StringFormat='{0:M/dd/yyy}'}" Grid.Row="1" Grid.Column="2" x:Name="EndDatePicker" FontSize="Small" VerticalTextAlignment="End" HorizontalOptions="Center"></Label>
-                            <Label Text="{Binding _oa}" x:Name= "AssessmentTypePA" Grid.Row="6" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End"></Label>
-                            <Label Text="{Binding _pa}" x:Name= "AssessmentTypeOA" Grid.Row="7" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End"></Label>
-
-
+                           
                         </Grid>
                     </StackLayout>
                 </DataTemplate>

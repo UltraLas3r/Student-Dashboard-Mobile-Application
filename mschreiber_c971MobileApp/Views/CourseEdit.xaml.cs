@@ -18,8 +18,18 @@ namespace mschreiber_c971MobileApp.Views
         private readonly int _selectTermId;
         private readonly int courseId;
         private string _courseName;
-        
-        public CourseEdit(CourseInfo course, Assessment assessment)
+        //TODO: this viewmodel might be the missing link
+        //public AssessmentViewModel ViewModel { get; set; }
+
+        //public CourseEdit()
+        //{
+        //    InitializeComponent();
+        //    ViewModel = new AssessmentViewModel();
+        //    BindingContext = ViewModel;
+        //}
+
+
+        public CourseEdit(CourseInfo course)
         {
             InitializeComponent();
 
@@ -36,20 +46,17 @@ namespace mschreiber_c971MobileApp.Views
             StartDatePicker.Date = course.StartDate;
             EndDatePicker.Date = course.AnticipatedEndDate;
             NotesEditor.Text = course.Notes;
-            AssessmentName.Text = assessment.AssessmentName;
-            AssessmentType.Text = assessment.AssessmentType;
-            TestId.Text = course.Id.ToString();
+            
         }
 
         //todo: delete the onAppering?
-        //protected override async void OnAppearing(Assessment assessment)
-        //{
-        //    base.OnAppearing();
-        //    //this populates the Term Collection view with Term data
-        //    AssessmentName.Text = assessment.AssessmentName;
-        //    AssessmentType.Text = assessment.AssessmentType;
-            
-        //}
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            //CHECK IF THIS IS WORKING???
+
+            AssessmentsCollection.ItemsSource = await DatabaseService.GetAssessments(courseId);
+        }
 
 
         async void SaveCourse_Clicked(object sender, EventArgs e)
@@ -118,7 +125,13 @@ namespace mschreiber_c971MobileApp.Views
 
         private void CourseCollectView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //TODO: might not need this? not sure...
 
+            //if (e.CurrentSelection != null)
+            //{
+            //    TermInfo term = (TermInfo)e.CurrentSelection.FirstOrDefault();
+            //    await Navigation.PushAsync(new TermEdit(term));
+            //}
         }
 
         async void ShareButton_Clicked(object sender, EventArgs e)
@@ -146,8 +159,13 @@ namespace mschreiber_c971MobileApp.Views
         {
             Assessment assessment = new Assessment();
 
-
+            //TODO: check if I am passing in the right parameters here
             await Navigation.PushAsync(new AddAssessments(_courseName, courseId, assessment));
+        }
+
+        private void AssessmentsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

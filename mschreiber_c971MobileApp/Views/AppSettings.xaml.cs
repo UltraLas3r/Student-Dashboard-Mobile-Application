@@ -38,7 +38,7 @@ namespace mschreiber_c971MobileApp.Views
             }
         }
 
-        //todo: check if this is working right
+        
         async void ClearSampleData_Clicked(object sender, EventArgs e) => await DatabaseService.ClearSampleData();
     }
 }

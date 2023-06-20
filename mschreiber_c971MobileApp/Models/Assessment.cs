@@ -18,8 +18,5 @@ namespace mschreiber_c971MobileApp.Models
         public bool StartDateNotify { get; set; }
         public bool EndDateNotify { get; set; }
 
-
-
-
     }
 }

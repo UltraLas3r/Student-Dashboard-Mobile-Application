@@ -126,7 +126,6 @@ namespace mschreiber_c971MobileApp.Views
             {
                 await Navigation.PushAsync(new CourseEdit(course, assessment));
             }
-
         }
 
       
