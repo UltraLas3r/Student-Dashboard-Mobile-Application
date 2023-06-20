@@ -124,10 +124,8 @@ namespace mschreiber_c971MobileApp.Views
             var course = (CourseInfo)e.CurrentSelection.FirstOrDefault();
             if (e.CurrentSelection != null)
             {
-                await Navigation.PushAsync(new CourseEdit(course, assessment));
+                await Navigation.PushAsync(new CourseEdit(course));
             }
         }
-
-      
     }
 }
