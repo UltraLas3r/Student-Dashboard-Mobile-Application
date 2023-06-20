@@ -19,19 +19,13 @@
             <Label Text="Welcome To Your Student Dashboard"            
                 HorizontalOptions="CenterAndExpand" />
 
-            <Label Text="Get an overview of terms or go straight to adding new Terms" HorizontalOptions="CenterAndExpand" Padding="0"></Label>
+            <Label Text="Get an overview of terms, or go straight to adding a new" HorizontalOptions="CenterAndExpand" Padding="0"></Label>
 
-            <Button x:Name="TermDetail" Text="Term List" Clicked="ViewTerms_Clicked"
-                 HorizontalOptions="CenterAndExpand" />
-            
-            <Button x:Name="TermAdd" Text="Add New Term" Clicked="AddTerm_Clicked"
-                HorizontalOptions="CenterAndExpand" />
+            <Button x:Name="TermDetail" Text="View Terms" Clicked="ViewTerms_Clicked" HorizontalOptions="CenterAndExpand" BackgroundColor="LawnGreen" />
 
-            <Button x:Name="OpenCourseDetails" Text="View Course Details" Clicked="OpenCourseDetails_Clicked" BackgroundColor="LightGreen"
-                HorizontalOptions="CenterAndExpand" />
+            <Button x:Name="TermAdd" Text="Add New Term" Clicked="AddTerm_Clicked" HorizontalOptions="CenterAndExpand" BackgroundColor="LawnGreen"/>
 
-            <Button x:Name="CreateAssessment" Text="View Assessment Details" Clicked="CreateAssessment_Clicked" BackgroundColor="OrangeRed"
-                HorizontalOptions="CenterAndExpand" />
+            <Button x:Name="CreateAssessment" Text="View Assessment Details" Clicked="CreateAssessment_Clicked" BackgroundColor="OrangeRed" HorizontalOptions="CenterAndExpand" />
 
         </StackLayout>
     </ContentPage.Content>

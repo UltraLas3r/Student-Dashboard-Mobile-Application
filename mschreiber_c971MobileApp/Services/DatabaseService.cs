@@ -93,6 +93,8 @@ namespace mschreiber_c971MobileApp.Services
 
         #region Assessment Methods
 
+       
+
         public static async Task AddAssessment(int Id, string testName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
         {
             await Init();
@@ -100,9 +102,9 @@ namespace mschreiber_c971MobileApp.Services
             var Assessment = new Assessment()
             {
                 CourseId = Id, //foreign key 
-                TestName = testName,
-                StartDate = startDate,
+                AssessmentName = testName,
                 AssessmentType = assessmentType,
+                StartDate = startDate,
                 AnticipatedEndDate = anticipatedEndDate,
                 StartDateNotify = startDateNotify,
                 EndDateNotify = endDateNotify

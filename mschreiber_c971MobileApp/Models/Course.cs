@@ -17,7 +17,6 @@ namespace mschreiber_c971MobileApp.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         public string AssessmentOA { get; set; }
-
         public string AssessmentPA { get; set; }
 
         

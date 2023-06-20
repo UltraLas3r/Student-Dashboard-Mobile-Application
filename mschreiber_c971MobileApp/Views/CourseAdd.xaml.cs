@@ -14,6 +14,7 @@ namespace mschreiber_c971MobileApp.Views
     public partial class CourseAdd : ContentPage
     {
         int _selectTermId;
+
         public CourseAdd(int termId)
         {
             InitializeComponent();
@@ -49,7 +50,7 @@ namespace mschreiber_c971MobileApp.Views
             //    await DisplayAlert("Term full", "unable to add any more courses to term (Max 6)", "Cancel");
             //}
            
-            await DatabaseService.AddCourse(_selectTermId, CourseName.Text, StartDatePicker.Date, AnticipatedEndDate.Date, InstructorName.Text, PhoneNumber.Text, EmailAddress.Text, Notification.IsToggled, NotesEditor.Text);
+            await DatabaseService.AddCourse(_selectTermId, CourseName.Text, StartDatePicker.Date, AnticipatedEndDate.Date, InstructorName.Text, InstructorPhone.Text, InstructorEmail.Text, Notification.IsToggled, NotesEditor.Text);
 
 
             await Navigation.PopAsync();

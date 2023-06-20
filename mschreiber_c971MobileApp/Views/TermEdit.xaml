@@ -25,16 +25,16 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Term ID</Label>
-            <Entry Text="{Binding Id}" x:Name="TermId" Placeholder="Enter Term Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+            <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End">Term ID</Label>
+            <Entry Text="{Binding Id}" x:Name="TermId" Placeholder="Enter Term Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="End" IsReadOnly="True"></Entry>
 
-            <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Term Name</Label>
-            <Entry Text="{Binding Name}" x:Name="TermName" Placeholder="Enter Term Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" ></Entry>
+            <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End" >Term Name</Label>
+            <Entry Text="{Binding Name}" x:Name="TermName" Placeholder="Enter Term Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="End" ></Entry>
 
-            <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start Date</Label>
+            <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End" >Start Date</Label>
             <DatePicker Grid.Row="2" Grid.Column="1" x:Name="StartDatePicker"></DatePicker>
 
-            <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End Date</Label>
+            <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End" >End Date</Label>
             <DatePicker Grid.Row="3" Grid.Column="1" x:Name="EndDatePicker"></DatePicker>
         </Grid>
         
@@ -48,7 +48,7 @@
                             SelectionChanged="CourseCollectionView_SelectionChanged"
             >
 
-         
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout VerticalOptions="CenterAndExpand">
@@ -67,29 +67,24 @@
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Row="0" Grid.Column="0" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" >Course ID</Label>
-                            <Entry Text="{Binding Id}" x:Name="TermId" Placeholder="Enter Term Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" IsReadOnly="True"></Entry>
+                            <Label Grid.Row="0" Grid.Column="0" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" VerticalTextAlignment="End" >Course ID</Label>
+                            <Entry Text="{Binding Id}" x:Name="TermId" Placeholder="Enter Term Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="End" IsReadOnly="True"></Entry>
 
-                            <Label Grid.Row="1" Grid.Column="0" FontSize="Small" >Term Name</Label>
-                            <Entry Text="{Binding CourseName}" x:Name="TermName" Placeholder="Instructor Name" Grid.Row="1" Grid.Column="1" ></Entry>
+                            <Label Grid.Row="1" Grid.Column="0" FontSize="Small" VerticalTextAlignment="End">Term Name</Label>
+                            <Entry Text="{Binding CourseName}" x:Name="TermName" Placeholder="Instructor Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="End" ></Entry>
 
-                            <Label Grid.Row="2" Grid.Column="0" FontSize="Small" VerticalTextAlignment="Center">Instructor Name</Label>
-                            <Entry Text="{Binding Instructor}" x:Name="InstructorName" Placeholder="Enter Term Name" Grid.Row="2" Grid.Column="1"></Entry>
+                            <Label Grid.Row="2" Grid.Column="0" FontSize="Small" VerticalTextAlignment="End">Instructor Name</Label>
+                            <Entry Text="{Binding Instructor}" x:Name="InstructorName" Placeholder="Enter Term Name" Grid.Row="2" Grid.Column="1" VerticalTextAlignment="End"></Entry>
 
                             <Label Grid.Row="0" Grid.Column="2" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Center" VerticalTextAlignment="Start">Start Date</Label>
                             <Label Text="{Binding StartDate, StringFormat='{0:M/dd/yyy}'}" Grid.Row="0" Grid.Column="2" x:Name="StartDateLabel" FontSize="Small" VerticalTextAlignment="End" HorizontalOptions="Center"></Label>
-
-                            <Label Text="{Binding AssessmentPA}" Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">TEMP PA</Label>
-
-                            <Label Grid.Row="1" Grid.Column="2" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Center">End Date</Label>
+                            <Label Grid.Row="1" Grid.Column="2" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Center" VerticalTextAlignment="Start">End Date</Label>
                             <Label Text="{Binding AnticipatedEndDate, StringFormat='{0:M/dd/yyy}'}" Grid.Row="1" Grid.Column="2" x:Name="EndDatePicker" FontSize="Small" VerticalTextAlignment="End" HorizontalOptions="Center"></Label>
+                            <Label Text="{Binding _oa}" x:Name= "AssessmentTypePA" Grid.Row="6" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End"></Label>
+                            <Label Text="{Binding _pa}" x:Name= "AssessmentTypeOA" Grid.Row="7" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End"></Label>
 
-                            <Label Text="{Binding AssessmentOA}" Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">TEMP OA</Label>
+
                         </Grid>
-
-                        <!-- Add more labels for other course properties as needed -->
-
-                        <!-- Optional: Add any other UI elements for each course item -->
                     </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

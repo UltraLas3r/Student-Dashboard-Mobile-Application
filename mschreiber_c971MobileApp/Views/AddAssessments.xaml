@@ -22,20 +22,18 @@
         
 
                 <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">ID</Label>
-                <Entry Text="{Binding CourseId}" x:Name="CourseId" Placeholder="Enter Course Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+                <Entry Text="{Binding CourseId}" x:Name="CourseId" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
 
                 <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Test Name</Label>
-                <Entry x:Name="TestName" Placeholder="Enter test Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
-
-
+                <Entry Text="{Binding AssessmentName}" x:Name="AssessmentName" Placeholder="Enter test Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
 
                 <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Test Type</Label>
-                <Picker Grid.Row="2" Grid.Column="1" FontSize="Medium" x:Name="TestTypePicker"
+                <Picker  Grid.Row="2" Grid.Column="1" FontSize="Medium" x:Name="TestTypePicker"
                         Title="Select a Test Type"
                         TitleColor="Teal">
                     <Picker.Items>
-                        <x:String>PA</x:String>
-                        <x:String>OA</x:String>
+                        <x:String >PA</x:String>
+                        <x:String >OA</x:String>
                     </Picker.Items>
                 </Picker>
 
@@ -56,7 +54,7 @@
 
 
 
-                <Button x:Name="AddAssessment" Grid.Row="10" Grid.Column="1" Text="Save Test To Course" Clicked="AddAssessment_Clicked" ></Button>
+                <Button x:Name="SaveAssessmentToCourse" Grid.Row="10" Grid.Column="1" Text="Save Test To Course" Clicked="SaveAssessmentToCourse_Clicked" ></Button>
                 
 
             </Grid>

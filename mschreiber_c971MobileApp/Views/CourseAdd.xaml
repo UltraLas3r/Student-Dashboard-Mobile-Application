@@ -47,7 +47,7 @@
                 <Entry x:Name="InstructorEmail" Placeholder="Email" Grid.Row="2" Grid.Column="1" VerticalTextAlignment="End" ></Entry>
 
                 <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End">Phone</Label>
-                <Entry x:Name="InstructorPhone" Placeholder="PhoneNumber" Grid.Row="4" Grid.Column="1" VerticalTextAlignment="End" ></Entry>
+                <Entry x:Name="InstructorPhone" Placeholder="PhoneNumber" Grid.Row="3" Grid.Column="1" VerticalTextAlignment="End" ></Entry>
 
                 <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End">Start Date</Label>
                 <DatePicker Grid.Row="4" Grid.Column="1" x:Name="StartDatePicker"></DatePicker>

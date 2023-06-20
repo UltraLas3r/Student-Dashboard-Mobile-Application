@@ -16,53 +16,63 @@ namespace mschreiber_c971MobileApp.Views
     {
         //public CourseInfo _course;
         string _course;
-        int _selectCourseId;
-        public AddAssessments(string courseName, int courseId)
+        int _courseId;
+        string assessmentName;
+        string assessmentType;
+        Assessment assessment = new Assessment();
+        public AddAssessments(string courseName, int _selectCourseId, Assessment assessment)
         {
             InitializeComponent();
             _course = courseName;
-            _selectCourseId = courseId;
+            _courseId = _selectCourseId;
 
-            Title = _course;
+            Title = "Add Assessment to: " + _course;
+            CourseId.Text = _courseId.ToString();
+            TestTypePicker.SelectedItem = assessment.AssessmentType;
+            AssessmentName.Text = assessment.AssessmentName;
         }
 
         protected override void OnAppearing()
         {
+            
 
             base.OnAppearing();
+           
         }
 
-        private bool ConfirmUserInput() 
-        {
-            bool valid = true;
+        //TODO: possibly get rid of confirmuserinput()
 
-            if (string.IsNullOrWhiteSpace(_selectCourseId.ToString()) || string.IsNullOrWhiteSpace(TestTypePicker.SelectedItem.ToString()) 
-                || StartDatePicker.Date == null 
-                || EndDatePicker.Date == null || EndDatePicker.Date < StartDatePicker.Date) 
-            {
-                return false;
-            }
+        //private bool ConfirmUserInput() 
+        //{
+        //    bool valid = true;
+
+        //    if (string.IsNullOrWhiteSpace(AssessmentName.ToString()) || string.IsNullOrWhiteSpace(_courseId.ToString()) || string.IsNullOrWhiteSpace(TestTypePicker.SelectedItem.ToString()) 
+        //        || StartDatePicker.Date == null 
+        //        || EndDatePicker.Date == null || EndDatePicker.Date < StartDatePicker.Date) 
+        //    {
+        //        return false;
+        //    }
             
             
-            return valid; 
-        }
+        //    return valid; 
+        //}
 
-        async void AddAssessment_Clicked(object sender, EventArgs e)
+        
+
+        async void SaveAssessmentToCourse_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Status", "Enabled", "OK");
+            CourseInfo course = new CourseInfo();
 
-            if (ConfirmUserInput())
+            if (string.IsNullOrWhiteSpace(AssessmentName.ToString()))
             {
                 await DisplayAlert("Missing Name", "Please enter a name.", "Ok");
 
             }
 
             //get values from form controls to pass into the method 
-            await DatabaseService.AddAssessment(_selectCourseId, TestName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
+            await DatabaseService.AddAssessment(Int32.Parse(_courseId.ToString()), AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
 
-
-
-
+            await Navigation.PopAsync();
         }
     }
 }

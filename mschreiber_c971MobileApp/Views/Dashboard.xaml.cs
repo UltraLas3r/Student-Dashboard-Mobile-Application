@@ -104,7 +104,9 @@ namespace mschreiber_c971MobileApp.Views
 
         async void CreateAssessment_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddAssessments(randomName, termId));
+            Assessment assessment = new Assessment();
+
+            await Navigation.PushAsync(new AddAssessments(randomName, termId, assessment));
         }
     }
 }

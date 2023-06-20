@@ -18,8 +18,8 @@ namespace mschreiber_c971MobileApp.Views
         private readonly int _selectTermId;
         private readonly int _selectCourseId;
         private string _courseName;
-
-        public CourseEdit(CourseInfo course)
+        
+        public CourseEdit(CourseInfo course, Assessment assessment)
         {
             InitializeComponent();
 
@@ -35,9 +35,24 @@ namespace mschreiber_c971MobileApp.Views
             Email.Text = course.Email;
             StartDatePicker.Date = course.StartDate;
             EndDatePicker.Date = course.AnticipatedEndDate;
-
+            NotesEditor.Text = course.Notes;
+            AssessmentName.Text = assessment.AssessmentName;
+            AssessmentType.Text = assessment.AssessmentType;
+            TestId.Text = course.Id.ToString();
         }
-       async void SaveCourse_Clicked(object sender, EventArgs e)
+
+        //todo: delete the onAppering?
+        //protected override async void OnAppearing(Assessment assessment)
+        //{
+        //    base.OnAppearing();
+        //    //this populates the Term Collection view with Term data
+        //    AssessmentName.Text = assessment.AssessmentName;
+        //    AssessmentType.Text = assessment.AssessmentType;
+            
+        //}
+
+
+        async void SaveCourse_Clicked(object sender, EventArgs e)
         {
            
             if (string.IsNullOrWhiteSpace(CourseName.Text))
@@ -129,7 +144,10 @@ namespace mschreiber_c971MobileApp.Views
 
         async void AddATestButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddAssessments(_courseName, _selectCourseId));
+            Assessment assessment = new Assessment();
+
+
+            await Navigation.PushAsync(new AddAssessments(_courseName, _selectCourseId, assessment));
         }
     }
 }

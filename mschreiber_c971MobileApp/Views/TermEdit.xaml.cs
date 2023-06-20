@@ -16,7 +16,11 @@ namespace mschreiber_c971MobileApp.Views
     {
         private readonly int _selectTermId;
         private int termId;
+        private string _oa;
+        private string _pa;
+        Assessment assessment = new Assessment();
 
+        private int _courseId;
         public TermEdit(TermInfo termId)
         {
             InitializeComponent();
@@ -26,14 +30,23 @@ namespace mschreiber_c971MobileApp.Views
             TermName.Text = termId.Name;
             StartDatePicker.Date = termId.StartDate;
             EndDatePicker.Date = termId.AnticipatedEndDate;
+            ////todo work on this
+            //_oa = assessment.AssessmentType;
+            //_pa = assessment.AssessmentType;
+
         }
+
+     
 
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-            //where the data is coming from
+            
+     
+                //where the data is coming from
+            
             CourseCollectionView.ItemsSource = await DatabaseService.GetCourses(_selectTermId);
+            
 
         }
         public TermEdit(int termId)
@@ -111,7 +124,7 @@ namespace mschreiber_c971MobileApp.Views
             var course = (CourseInfo)e.CurrentSelection.FirstOrDefault();
             if (e.CurrentSelection != null)
             {
-                await Navigation.PushAsync(new CourseEdit(course));
+                await Navigation.PushAsync(new CourseEdit(course, assessment));
             }
 
         }
