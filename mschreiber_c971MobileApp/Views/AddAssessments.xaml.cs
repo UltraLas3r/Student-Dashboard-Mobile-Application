@@ -16,29 +16,22 @@ namespace mschreiber_c971MobileApp.Views
     {
         //public CourseInfo _course;
         string _course;
-        int _courseId;
+        int _selectCourseId;
         string assessmentName;
         string assessmentType;
         Assessment assessment = new Assessment();
-        public AddAssessments(string courseName, int _selectCourseId, Assessment assessment)
+        public AddAssessments(string courseName, int courseId, Assessment assessment)
         {
             InitializeComponent();
             _course = courseName;
-            _courseId = _selectCourseId;
+            _selectCourseId = courseId;
 
             Title = "Add Assessment to: " + _course;
-            CourseId.Text = _courseId.ToString();
-            TestTypePicker.SelectedItem = assessment.AssessmentType;
-            AssessmentName.Text = assessment.AssessmentName;
-        }
-
-        protected override void OnAppearing()
-        {
-            
-
-            base.OnAppearing();
            
+
         }
+
+        
 
         //TODO: possibly get rid of confirmuserinput()
 
@@ -70,7 +63,7 @@ namespace mschreiber_c971MobileApp.Views
             }
 
             //get values from form controls to pass into the method 
-            await DatabaseService.AddAssessment(Int32.Parse(_courseId.ToString()), AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
+            await DatabaseService.AddAssessment(_selectCourseId, AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
 
             await Navigation.PopAsync();
         }

@@ -22,10 +22,10 @@
         
 
                 <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">ID</Label>
-                <Entry Text="{Binding CourseId}" x:Name="CourseId" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
+                <Entry x:Name="CourseId"    Text="{Binding CourseId}"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
 
                 <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Test Name</Label>
-                <Entry Text="{Binding AssessmentName}" x:Name="AssessmentName" Placeholder="Enter test Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
+                <Entry x:Name="AssessmentName" Text="{Binding AssessmentName}"  Placeholder="Enter test Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
 
                 <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Test Type</Label>
                 <Picker  Grid.Row="2" Grid.Column="1" FontSize="Medium" x:Name="TestTypePicker"

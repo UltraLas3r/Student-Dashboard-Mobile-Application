@@ -16,7 +16,7 @@ namespace mschreiber_c971MobileApp.Views
     public partial class CourseEdit : ContentPage
     {
         private readonly int _selectTermId;
-        private readonly int _selectCourseId;
+        private readonly int courseId;
         private string _courseName;
         
         public CourseEdit(CourseInfo course, Assessment assessment)
@@ -25,7 +25,7 @@ namespace mschreiber_c971MobileApp.Views
 
             DateTime CourseStart = course.StartDate;
 
-            _selectCourseId = course.Id;
+            courseId = course.Id;
             _courseName = course.CourseName;
 
             CourseId.Text = course.Id.ToString();
@@ -147,7 +147,7 @@ namespace mschreiber_c971MobileApp.Views
             Assessment assessment = new Assessment();
 
 
-            await Navigation.PushAsync(new AddAssessments(_courseName, _selectCourseId, assessment));
+            await Navigation.PushAsync(new AddAssessments(_courseName, courseId, assessment));
         }
     }
 }

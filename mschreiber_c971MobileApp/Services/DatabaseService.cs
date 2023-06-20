@@ -27,6 +27,8 @@ namespace mschreiber_c971MobileApp.Services
 
             await _db.CreateTableAsync<TermInfo>();
             await _db.CreateTableAsync<CourseInfo>();
+
+            //possibly remobe the assessment table. I s
             await _db.CreateTableAsync<Assessment>();  
         }
 
@@ -93,7 +95,6 @@ namespace mschreiber_c971MobileApp.Services
 
         #region Assessment Methods
 
-       
 
         public static async Task AddAssessment(int Id, string testName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
         {
