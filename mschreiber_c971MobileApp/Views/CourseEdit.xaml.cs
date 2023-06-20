@@ -49,7 +49,7 @@ namespace mschreiber_c971MobileApp.Views
             
         }
 
-        //todo: delete the onAppering?
+      
         protected override async void OnAppearing()
         {
             base.OnAppearing();
