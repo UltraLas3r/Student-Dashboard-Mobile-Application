@@ -96,14 +96,14 @@ namespace mschreiber_c971MobileApp.Services
         #region Assessment Methods
 
 
-        public static async Task AddAssessment(int Id, string testName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
+        public static async Task AddAssessments(int Id, string assessmentName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
         {
             await Init();
 
             var Assessment = new Assessment()
             {
                 CourseId = Id, //foreign key 
-                AssessmentName = testName,
+                AssessmentName = assessmentName,
                 AssessmentType = assessmentType,
                 StartDate = startDate,
                 AnticipatedEndDate = anticipatedEndDate,
@@ -122,6 +122,13 @@ namespace mschreiber_c971MobileApp.Services
 
             return newAssessment;
         }
+
+        //public static async Task RemoveAssessment(string assessmentName)
+        //{
+        //    await Init();
+
+        //    await _db.DeleteAsync<Assessment>(assessmentName);
+        //}
 
 
         #endregion 
@@ -308,6 +315,7 @@ namespace mschreiber_c971MobileApp.Services
 
             await _db.DropTableAsync<TermInfo>();
             await _db.DropTableAsync<CourseInfo>();
+            await _db.DropTableAsync<Assessment>();
 
             _db = null;
             _dbConnection = null;

@@ -18,16 +18,6 @@ namespace mschreiber_c971MobileApp.Views
         private readonly int _selectTermId;
         private readonly int courseId;
         private string _courseName;
-        //TODO: this viewmodel might be the missing link
-        //public AssessmentViewModel ViewModel { get; set; }
-
-        //public CourseEdit()
-        //{
-        //    InitializeComponent();
-        //    ViewModel = new AssessmentViewModel();
-        //    BindingContext = ViewModel;
-        //}
-
 
         public CourseEdit(CourseInfo course)
         {
@@ -46,14 +36,21 @@ namespace mschreiber_c971MobileApp.Views
             StartDatePicker.Date = course.StartDate;
             EndDatePicker.Date = course.AnticipatedEndDate;
             NotesEditor.Text = course.Notes;
-            
+
         }
 
-      
+        public CourseEdit(Assessment assessment)
+        {
+            InitializeComponent();
+           
+        }
+
+
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            //CHECK IF THIS IS WORKING???
+            
 
             AssessmentsCollection.ItemsSource = await DatabaseService.GetAssessments(courseId);
         }
@@ -118,11 +115,6 @@ namespace mschreiber_c971MobileApp.Views
             await Navigation.PopAsync();
         }
 
-        private void AddCourse_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
         private void CourseCollectView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //TODO: might not need this? not sure...
@@ -167,5 +159,25 @@ namespace mschreiber_c971MobileApp.Views
         {
 
         }
+
+        //async void RemoveAssessment_Clicked(object sender, EventArgs e)
+        //{
+        //    var answer = await DisplayAlert("Delete this assessment?", "Delete this assessment?", "Yes", "No");
+
+        //    if (answer == true)
+        //    {
+        //        var name = AssessmentName.Text;
+
+        //        await DatabaseService.RemoveAssessment(name);
+
+        //        await DisplayAlert("Test Deleted", "Test Deleted", "Ok");
+        //    }
+        //    else
+        //    {
+        //        await DisplayAlert("Delete Canceled", "CourseDelete Canceled", "Ok");
+        //    }
+
+        //    await Navigation.PopAsync();
+        //}
     }
 }

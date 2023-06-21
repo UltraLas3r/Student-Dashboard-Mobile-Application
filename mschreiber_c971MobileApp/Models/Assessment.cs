@@ -10,7 +10,6 @@ namespace mschreiber_c971MobileApp.Models
         public int CourseId { get; set; }
 
         public int TestId { get; set; }
-
         public string AssessmentName { get; set; }
         public string AssessmentType { get; set; }
         public DateTime StartDate { get; set; }

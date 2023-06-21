@@ -61,7 +61,7 @@ namespace mschreiber_c971MobileApp.Views
             }
 
             //get values from form controls to pass into the method 
-            await DatabaseService.AddAssessment(_selectCourseId, AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
+            await DatabaseService.AddAssessments(_selectCourseId, AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
 
             await Navigation.PopAsync();
         }

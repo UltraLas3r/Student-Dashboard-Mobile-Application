@@ -22,7 +22,7 @@
         
 
                 <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">ID</Label>
-                <Entry x:Name="CourseId"    Text="{Binding CourseId}"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
+                <Entry x:Name="CourseId" Text="{Binding CourseId}"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
 
                 <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Test Name</Label>
                 <Entry x:Name="AssessmentName" Text="{Binding AssessmentName}" Placeholder="Enter test Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
@@ -56,14 +56,6 @@
                 
 
             </Grid>
-
-
-
-
-
-
-
-
 
         </StackLayout>
     </ContentPage.Content>
