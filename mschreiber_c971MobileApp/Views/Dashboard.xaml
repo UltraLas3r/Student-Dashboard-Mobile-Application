@@ -8,7 +8,7 @@
     </NavigationPage.TitleView>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="StudentProfile" Text="My Profile" Clicked="StudentProfile_Clicked"/>
+        
         <ToolbarItem x:Name="Notes" Text="Notes" Clicked="Notes_Clicked" />
         <ToolbarItem x:Name="Settings" Text="Settings" Clicked="Settings_Clicked" Order="Secondary" />
         

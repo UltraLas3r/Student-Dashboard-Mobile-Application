@@ -56,13 +56,26 @@
             <Label Grid.Row="7" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Notes</Label>
             <Editor Text="{Binding Notes}" Grid.Row="7" Grid.Column="1" x:Name="NotesEditor" Placeholder="Enter Notes"></Editor>
 
-            <Label Grid.Row="8" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Share</Label>
-            <Button Grid.Row="8" Grid.Column="1" FontSize="Small" VerticalOptions="Center" Text="Share" x:Name="ShareButton" Clicked="ShareButton_Clicked"></Button>
 
-            <Label Grid.Row="9" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Share URI</Label>
-            <Button Grid.Row="9" Grid.Column="1" FontSize="Small" VerticalOptions="Center" HorizontalOptions="End" Text="Share" x:Name="ShareUri" Clicked="ShareUri_Clicked"></Button>
+            <Label Grid.Row="8" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Course Status</Label>
+            <Picker  Grid.Row="8" Grid.Column="1" FontSize="Medium" x:Name="StatusTypePicker"
+                        Title="Course Status"
+                        TitleColor="Teal">
+                <Picker.Items>
+                    <x:String >In Progress</x:String>
+                    <x:String >Completed</x:String>
+                    <x:String >Dropped</x:String>
+                    <x:String >Plan to Take</x:String>
+                </Picker.Items>
+            </Picker>
 
-            <Button Grid.Row="10" x:Name="AddATestButton"  Text="Add Test" Clicked="AddATestButton_Clicked" HorizontalOptions="Start"></Button>
+            <Label Grid.Row="9" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Share</Label>
+            <Button Grid.Row="9" Grid.Column="1" FontSize="Small" VerticalOptions="Center" Text="Share" x:Name="ShareButton" Clicked="ShareButton_Clicked"></Button>
+
+            <Label Grid.Row="10" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Share URI</Label>
+            <Button Grid.Row="10" Grid.Column="1" FontSize="Small" VerticalOptions="Center" HorizontalOptions="End" Text="Share" x:Name="ShareUri" Clicked="ShareUri_Clicked"></Button>
+
+            <Button Grid.Row="11" x:Name="AddATestButton"  Text="Add Test" Clicked="AddATestButton_Clicked" HorizontalOptions="Start"></Button>
         </Grid>
         
         
@@ -76,7 +89,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout VerticalOptions="CenterAndExpand">
-                        <Grid Padding="5" RowSpacing="-10" ColumnSpacing="15" BackgroundColor="FloralWhite">
+                        <Grid Padding="5" RowSpacing="-5" ColumnSpacing="15" BackgroundColor="FloralWhite">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
@@ -89,22 +102,15 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <!--I might just remove the ID??-->
-                            <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">ID</Label>
-                            <Entry Text="{Binding CourseId}" x:Name="TestId" Placeholder="Enter Course Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="End" IsReadOnly="True"></Entry>
+                            
+                        <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Name</Label>
+                        <Entry Text="{Binding AssessmentName}" x:Name="AssessmentName"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="End" IsReadOnly="True"></Entry>
 
-                            <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Name</Label>
-                        <Entry Text="{Binding AssessmentName}" x:Name="AssessmentName" Placeholder="Assessment Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="End" IsReadOnly="True"></Entry>
-
-                        <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Type</Label>
-                        <Entry Text="{Binding AssessmentType}" x:Name="AssessmentType" Placeholder="Assessment Type" Grid.Row="2" Grid.Column="1" VerticalTextAlignment="End" IsReadOnly="True"></Entry>
-                      
-                         <Button x:Name="RemoveAssessment" Grid.Row="1" Grid.Column="3" Text="Remove" ></Button>
-                            <!--the following labels are from the ChatGPT answer, and correspond to the values set in the code behind-->
-
-                        <!--<Label Text="{Binding AssessmentNameText}" FontSize="Medium" />
-                        <Label Text="{Binding AssessmentType}" FontSize="Medium" />-->
-
+                        <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Type</Label>
+                        <Entry Text="{Binding AssessmentType}" x:Name="AssessmentType" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="End" IsReadOnly="True"></Entry>
+                            
+                        
+                         
                         
                     </Grid>
         </StackLayout>

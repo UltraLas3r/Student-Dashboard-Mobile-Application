@@ -82,10 +82,7 @@ namespace mschreiber_c971MobileApp.Views
             await Navigation.PushAsync(new Notes());
         }
 
-        async void StudentProfile_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new StudentProfile());
-        }
+       
 
         async void TermAdd_Clicked(object sender, EventArgs e)
         {

@@ -27,6 +27,9 @@ namespace mschreiber_c971MobileApp.Views
             _selectCourseId = courseId;
 
             Title = "Add Assessment to: " + _course;
+
+            CourseId.Text = _selectCourseId.ToString();
+           
         }
 
         
@@ -53,12 +56,24 @@ namespace mschreiber_c971MobileApp.Views
         async void SaveAssessmentToCourse_Clicked(object sender, EventArgs e)
         {
             CourseInfo course = new CourseInfo();
+           
 
             if (string.IsNullOrWhiteSpace(AssessmentName.ToString()))
             {
                 await DisplayAlert("Missing Name", "Please enter a name.", "Ok");
 
             }
+
+            //if(assessmentType.Contains("PA"))
+            //{
+            //    await DisplayAlert("PA already assigned", "Unable to assign another PA to course: Max 1 per Course", "Ok");
+            //}
+
+            //if(assessmentType.Contains("OA"))
+            //{
+            //    await DisplayAlert("OA already assigned", "Unable to assign another OA to course: Max 1 per Course", "Ok");
+            //}
+
 
             //get values from form controls to pass into the method 
             await DatabaseService.AddAssessments(_selectCourseId, AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);

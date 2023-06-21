@@ -123,12 +123,12 @@ namespace mschreiber_c971MobileApp.Services
             return newAssessment;
         }
 
-        //public static async Task RemoveAssessment(string assessmentName)
-        //{
-        //    await Init();
+        public static async Task RemoveAssessment(string assessmentName)
+        {
+            await Init();
 
-        //    await _db.DeleteAsync<Assessment>(assessmentName);
-        //}
+            await _db.DeleteAsync<Assessment>(assessmentName);
+        }
 
 
         #endregion 
@@ -145,7 +145,7 @@ namespace mschreiber_c971MobileApp.Services
             return courses;
         }
 
-        public static async Task AddCourse(int termId, string courseName,  DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, bool notificationStart, string notes)
+        public static async Task AddCourse(int termId, string courseName, string courseStatus, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, bool notificationStart, string notes)
         {
             await Init();
 
@@ -153,6 +153,7 @@ namespace mschreiber_c971MobileApp.Services
             {
                 TermId = termId,
                 CourseName = courseName,
+                CourseStatus = courseStatus,
                 Instructor = instructor,
                 Phone = phone,
                 Email = email,
@@ -186,7 +187,7 @@ namespace mschreiber_c971MobileApp.Services
             return courses;
         }
 
-        public static async Task UpdateCourse(int courseId, string courseName, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, string notes)
+        public static async Task UpdateCourse(int courseId, string courseName, string courseStatus, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, string notes)
         {
             await Init();
 
@@ -198,6 +199,7 @@ namespace mschreiber_c971MobileApp.Services
             {
                 courseQuery.Id = courseId;
                 courseQuery.CourseName = courseName;
+                courseQuery.CourseStatus = courseStatus;
                 courseQuery.Instructor = instructor;
                 courseQuery.Phone = phone;
                 courseQuery.Email = email;

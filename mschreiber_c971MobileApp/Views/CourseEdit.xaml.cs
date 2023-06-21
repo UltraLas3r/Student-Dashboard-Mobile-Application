@@ -18,6 +18,9 @@ namespace mschreiber_c971MobileApp.Views
         private readonly int _selectTermId;
         private readonly int courseId;
         private string _courseName;
+        private string _assessmentName;
+
+        public List<string> pickerStates = new List<string> { "In Progress", "Completed", "Dropped", "Plan To Take" };
 
         public CourseEdit(CourseInfo course)
         {
@@ -28,21 +31,25 @@ namespace mschreiber_c971MobileApp.Views
             courseId = course.Id;
             _courseName = course.CourseName;
 
+
+
+            
             CourseId.Text = course.Id.ToString();
             CourseName.Text = course.CourseName;
             CourseInstructorName.Text = course.Instructor;
+            StatusTypePicker.SelectedItem = course.CourseStatus;
             PhoneNumber.Text = course.Phone;
             Email.Text = course.Email;
             StartDatePicker.Date = course.StartDate;
             EndDatePicker.Date = course.AnticipatedEndDate;
             NotesEditor.Text = course.Notes;
-
+            
         }
 
         public CourseEdit(Assessment assessment)
         {
             InitializeComponent();
-           
+            _assessmentName = assessment.AssessmentName;
         }
 
 
@@ -81,7 +88,7 @@ namespace mschreiber_c971MobileApp.Views
 
 
             //TODO possibly remobe the UpdateCourse function 
-            await DatabaseService.UpdateCourse(Int32.Parse(CourseId.Text), CourseName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()), CourseInstructorName.Text, PhoneNumber.Text, Email.Text, NotesEditor.Text);
+            await DatabaseService.UpdateCourse(Int32.Parse(CourseId.Text), CourseName.Text, StatusTypePicker.SelectedItem.ToString(), DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()), CourseInstructorName.Text, PhoneNumber.Text, Email.Text, NotesEditor.Text);
 
 
             //await DatabaseService.UpdateTerm(Int32.Parse(CourseId.Text), CourseName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()));
@@ -160,24 +167,24 @@ namespace mschreiber_c971MobileApp.Views
 
         }
 
-        //async void RemoveAssessment_Clicked(object sender, EventArgs e)
-        //{
-        //    var answer = await DisplayAlert("Delete this assessment?", "Delete this assessment?", "Yes", "No");
+        async void RemoveAssessment_Clicked(object sender, EventArgs e)
+        {
+            var answer = await DisplayAlert("Delete this assessment?", "Delete this assessment?", "Yes", "No");
 
-        //    if (answer == true)
-        //    {
-        //        var name = AssessmentName.Text;
+            if (answer == true)
+            {
+                var name = _assessmentName;
 
-        //        await DatabaseService.RemoveAssessment(name);
+                await DatabaseService.RemoveAssessment(name);
 
-        //        await DisplayAlert("Test Deleted", "Test Deleted", "Ok");
-        //    }
-        //    else
-        //    {
-        //        await DisplayAlert("Delete Canceled", "CourseDelete Canceled", "Ok");
-        //    }
+                await DisplayAlert("Test Deleted", "Test Deleted", "Ok");
+            }
+            else
+            {
+                await DisplayAlert("Delete Canceled", "CourseDelete Canceled", "Ok");
+            }
 
-        //    await Navigation.PopAsync();
-        //}
+            await Navigation.PopAsync();
+        }
     }
 }
