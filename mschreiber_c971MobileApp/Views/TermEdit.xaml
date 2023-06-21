@@ -32,13 +32,15 @@
             <Entry Text="{Binding Name}" x:Name="TermName" Placeholder="Enter Term Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="End" ></Entry>
 
             <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End" >Start Date</Label>
-            <DatePicker Grid.Row="2" Grid.Column="1" x:Name="StartDatePicker"></DatePicker>
+            <DatePicker Grid.Row="2" Grid.Column="1" x:Name="StartDatePicker" ></DatePicker>
 
             <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="End" >End Date</Label>
             <DatePicker Grid.Row="3" Grid.Column="1" x:Name="EndDatePicker"></DatePicker>
+
+            
         </Grid>
         
-        <Button x:Name="AddClass" Text="Add Class to Term" Clicked="AddClass_Clicked"></Button>
+        <Button x:Name="AddClass" Text="Add Class to Term" Clicked="AddClass_Clicked" HorizontalOptions="Center"></Button>
 
         <Label Text="___________________________________________________" HorizontalOptions="CenterAndExpand"></Label>
         
@@ -50,7 +52,7 @@
             >
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout VerticalOptions="CenterAndExpand">
+                    <StackLayout VerticalOptions="CenterAndExpand" Margin="10,10,10,0">
                         <!-- Placeholder label elements for displaying course information -->
                         <Grid Margin="5" RowSpacing="5" ColumnSpacing="1" BackgroundColor="Bisque">
                             <Grid.RowDefinitions>
@@ -79,7 +81,8 @@
                             <Label Text="{Binding StartDate, StringFormat='{0:M/dd/yyy}'}" Grid.Row="0" Grid.Column="2" x:Name="StartDateLabel" FontSize="Small" VerticalTextAlignment="End" HorizontalOptions="Center"></Label>
                             <Label Grid.Row="1" Grid.Column="2" FontSize="Small" FontAttributes="Bold" HorizontalOptions="Center" VerticalTextAlignment="Start">End Date</Label>
                             <Label Text="{Binding AnticipatedEndDate, StringFormat='{0:M/dd/yyy}'}" Grid.Row="1" Grid.Column="2" x:Name="EndDatePicker" FontSize="Small" VerticalTextAlignment="End" HorizontalOptions="Center"></Label>
-                           
+                            
+                            <Label Text="{Binding CourseStatus}" Grid.Row="2" Grid.Column="2" FontSize="Medium" VerticalTextAlignment="End" HorizontalTextAlignment="End" ></Label>
                         </Grid>
                     </StackLayout>
                 </DataTemplate>

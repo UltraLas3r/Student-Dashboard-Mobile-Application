@@ -24,6 +24,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
@@ -47,7 +48,7 @@
             <Entry Text="{Binding Email}" x:Name="Email" Placeholder="email" Grid.Row="4" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
 
             <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start Date</Label>
-            <DatePicker Grid.Row="5" Grid.Column="1" x:Name="StartDatePicker"></DatePicker>
+            <DatePicker Grid.Row="5" Grid.Column="1" x:Name="StartDatePicker" Format="D"></DatePicker>
 
             <Label Grid.Row="6" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End Date</Label>
             <DatePicker Grid.Row="6" Grid.Column="1" x:Name="EndDatePicker"></DatePicker>
@@ -75,7 +76,7 @@
             <Label Grid.Row="10" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Share URI</Label>
             <Button Grid.Row="10" Grid.Column="1" FontSize="Small" VerticalOptions="Center" HorizontalOptions="End" Text="Share" x:Name="ShareUri" Clicked="ShareUri_Clicked"></Button>
 
-            <Button Grid.Row="11" x:Name="AddATestButton"  Text="Add Test" Clicked="AddATestButton_Clicked" HorizontalOptions="Start"></Button>
+            <Button Grid.Row="11" Grid.Column="1" x:Name="AddATestButton"  Text="Add Test" Clicked="AddATestButton_Clicked" HorizontalOptions="Start"></Button>
         </Grid>
         
         
@@ -88,8 +89,8 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout VerticalOptions="CenterAndExpand">
-                        <Grid Padding="5" RowSpacing="-5" ColumnSpacing="15" BackgroundColor="FloralWhite">
+                    <StackLayout VerticalOptions="CenterAndExpand" Margin="20,20,20,0">
+                        <Grid Padding="5" RowSpacing="-5" ColumnSpacing="15" BackgroundColor="GhostWhite">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
