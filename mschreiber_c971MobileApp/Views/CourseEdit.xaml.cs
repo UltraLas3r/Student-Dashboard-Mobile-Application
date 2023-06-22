@@ -19,7 +19,8 @@ namespace mschreiber_c971MobileApp.Views
         private readonly int courseId;
         private string _courseName;
         private string _assessmentName;
-
+        Assessment assessment = new Assessment();
+       
         public List<string> pickerStates = new List<string> { "In Progress", "Completed", "Dropped", "Plan To Take" };
 
         public CourseEdit(CourseInfo course)
@@ -151,40 +152,45 @@ namespace mschreiber_c971MobileApp.Views
             {
                 Text = uri,
                 Title = "Share Web Link"
+
+               
             });
         }
 
         async void AddATestButton_Clicked(object sender, EventArgs e)
         {
-            Assessment assessment = new Assessment();
+            
 
-            //TODO: check if I am passing in the right parameters here
+            
             await Navigation.PushAsync(new AddAssessments(_courseName, courseId, assessment));
         }
 
-        private void AssessmentsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
+      
+
+        //async void RemoveAssessment_Clicked(object sender, EventArgs e)
+        //{
+        //    var answer = await DisplayAlert("Delete this assessment?", "Delete this assessment?", "Yes", "No");
+        //    Assessment assessment = new Assessment();
+            
+        //    if (answer == true)
+        //    {
+        //        var name = _assessmentName;
+                
+        //        await DatabaseService.RemoveAssessment(name);
+
+        //        await DisplayAlert("Test Deleted", "Test Deleted", "Ok");
+        //    }
+        //    else
+        //    {
+        //        await DisplayAlert("Delete Canceled", "CourseDelete Canceled", "Ok");
+        //    }
+
+        //    await Navigation.PopAsync();
+        //}
+
+        async void EditAssessment_Clicked(object sender, EventArgs e)
         {
-
-        }
-
-        async void RemoveAssessment_Clicked(object sender, EventArgs e)
-        {
-            var answer = await DisplayAlert("Delete this assessment?", "Delete this assessment?", "Yes", "No");
-
-            if (answer == true)
-            {
-                var name = _assessmentName;
-
-                await DatabaseService.RemoveAssessment(name);
-
-                await DisplayAlert("Test Deleted", "Test Deleted", "Ok");
-            }
-            else
-            {
-                await DisplayAlert("Delete Canceled", "CourseDelete Canceled", "Ok");
-            }
-
-            await Navigation.PopAsync();
+            await Navigation.PushAsync(new AssessmentDetails(_courseName, courseId, assessment));
         }
     }
 }

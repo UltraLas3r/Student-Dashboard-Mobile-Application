@@ -13,6 +13,7 @@ namespace mschreiber_c971MobileApp.Services
     {
         private static SQLiteAsyncConnection _db;
         private static SQLiteConnection _dbConnection;
+        
         static async Task Init()
         {
             if (_db != null)
@@ -28,7 +29,7 @@ namespace mschreiber_c971MobileApp.Services
             await _db.CreateTableAsync<TermInfo>();
             await _db.CreateTableAsync<CourseInfo>();
 
-            //possibly remobe the assessment table. I s
+            
             await _db.CreateTableAsync<Assessment>();  
         }
 
@@ -117,6 +118,7 @@ namespace mschreiber_c971MobileApp.Services
         public static async Task<IEnumerable<Assessment>> GetAssessments(int courseId)
         {
             await Init();
+
 
             var newAssessment = await _db.Table<Assessment>().Where(i => i.CourseId == courseId).ToListAsync();
 

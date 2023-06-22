@@ -18,13 +18,17 @@ namespace mschreiber_c971MobileApp.Views
         string _course;
         int _selectCourseId;
         string assessmentName;
-        string assessmentType;
+        string _selectAssessmentType;
+        string _selectAssessmentName;
+
         Assessment assessment = new Assessment();
         public AddAssessments(string courseName, int courseId, Assessment assessment)
         {
             InitializeComponent();
             _course = courseName;
             _selectCourseId = courseId;
+            _selectAssessmentName = assessment.AssessmentName;
+            _selectAssessmentType = assessment.AssessmentType;
 
             Title = "Add Assessment to: " + _course;
 
@@ -63,7 +67,14 @@ namespace mschreiber_c971MobileApp.Views
             string courseId = CourseId.Text;
             string assessmentName = AssessmentName.Text;
             string testType = TestTypePicker.SelectedItem as string;
-            
+            //TODO: look at this dictionary stuff and figure out if it is necessary
+            //IDictionary<int, string> d = new Dictionary<int, string>();
+
+            //if (d.Count > 2)
+            //{
+            //    await DisplayAlert("Too many assessments", "Only 2 assessments per course", "OK");
+            //    return;
+            //}
 
             if (string.IsNullOrEmpty(courseId) || string.IsNullOrEmpty(assessmentName))
             {
@@ -99,6 +110,8 @@ namespace mschreiber_c971MobileApp.Views
             //get values from form controls to pass into the method 
             await DatabaseService.AddAssessments(_selectCourseId, AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
 
+            //d.Add(_selectCourseId, TestTypePicker.SelectedItem.ToString());
+            //d.Count();
             await Navigation.PopAsync();
         }
     }

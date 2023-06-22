@@ -79,47 +79,47 @@
             <Button Grid.Row="11" Grid.Column="1" x:Name="AddATestButton"  Text="Add Test" Clicked="AddATestButton_Clicked" HorizontalOptions="Start"></Button>
         </Grid>
 
-
+       
         <Label x:Name="AssessmentList" Text="Course Assessments"  FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
         <CollectionView x:Name="AssessmentsCollection"
                             EmptyView="No AssessmentsInCourse"
-                            SelectionMode="Single"
-                            SelectionChanged="AssessmentsCollection_SelectionChanged"
+                            SelectionMode="Single"                       
             >
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout VerticalOptions="CenterAndExpand" Margin="20,20,20,0">
                         <Grid Padding="5" RowSpacing="-5" ColumnSpacing="15" BackgroundColor="#e4e5ea">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            
-                        <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Test Name:</Label>
-                        <Entry Text="{Binding AssessmentName}" x:Name="AssessmentName"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" IsReadOnly="True"></Entry>
-                            
-                            
-                        <Label Grid.Row="0" Grid.Column="2" FontSize="Medium" VerticalTextAlignment="Center">Type</Label>
-                        <Entry Text="{Binding AssessmentType}" x:Name="AssessmentType" Grid.Row="0" Grid.Column="3" VerticalTextAlignment="End" IsReadOnly="True"></Entry>
-                            
-                        
-                         
-                        
-                    </Grid>
-        </StackLayout>
-     </DataTemplate>
-    </CollectionView.ItemTemplate>
-   </CollectionView>
- </StackLayout>
+
+                            <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Test Name:</Label>
+                            <Entry Text="{Binding AssessmentName}" x:Name="AssessmentName"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" IsReadOnly="True"></Entry>
+
+
+                            <Label Grid.Row="0" Grid.Column="2" FontSize="Medium" VerticalOptions="Center">Type</Label>
+                            <Entry Text="{Binding AssessmentType}" x:Name="AssessmentType" Grid.Row="0" Grid.Column="3" VerticalTextAlignment="End" IsReadOnly="True"></Entry>
+                            <Button  x:Name="EditAssessment" Grid.Row="0" Grid.Column="4" Text="Edit" Clicked="EditAssessment_Clicked" HorizontalOptions="Start"></Button>
+
+
+
+                        </Grid>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+         
+    </StackLayout>
 
 </ContentPage>

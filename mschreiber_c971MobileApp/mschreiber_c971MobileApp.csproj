@@ -21,6 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\AssessmentDetails.xaml.cs">
+      <DependentUpon>AssessmentDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\TermList.xaml.cs">
       <DependentUpon>TermList.xaml</DependentUpon>
     </Compile>
@@ -45,7 +48,7 @@
     <EmbeddedResource Update="Views\AppSettings.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\CourseDetails.xaml">
+    <EmbeddedResource Update="Views\AssessmentDetails.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Dashboard.xaml">
