@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class ="mschreiber_c971MobileApp.Views.TermEdit"
-             Title = "Term Edit">
+             Title = "Term">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="SAVE" x:Name="SaveTerm" Clicked="SaveTerm_Clicked"></ToolbarItem>
@@ -10,8 +10,9 @@
         <ToolbarItem Text="REMOVE" x:Name="RemoveTerm" Clicked="RemoveTerm_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <StackLayout>
-        <Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="AliceBlue">
+    <StackLayout BackgroundColor="#e4e5ea">
+        <Label x:Name="LabelList" Text="General Term Information"  FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
+        <Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="#e4e5ea">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -39,12 +40,10 @@
 
             
         </Grid>
-        
+
         <Button x:Name="AddClass" Text="Add Class to Term" Clicked="AddClass_Clicked" HorizontalOptions="Center"></Button>
 
-        <Label Text="___________________________________________________" HorizontalOptions="CenterAndExpand"></Label>
-        
-        <Label x:Name="LabelList" Text="Courses In Term"  FontAttributes="Bold" HorizontalTextAlignment="Center" BackgroundColor="Moccasin"></Label>
+        <Label x:Name="TopLabel" Text="Courses In Term"  FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
         <CollectionView x:Name="CourseCollectionView"
                             EmptyView="No Course info To Display."
                             SelectionMode="Single"
@@ -54,7 +53,7 @@
                 <DataTemplate>
                     <StackLayout VerticalOptions="CenterAndExpand" Margin="10,10,10,0">
                         <!-- Placeholder label elements for displaying course information -->
-                        <Grid Margin="5" RowSpacing="5" ColumnSpacing="1" BackgroundColor="Bisque">
+                        <Grid Margin="5" RowSpacing="5" ColumnSpacing="1" BackgroundColor="#779199">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>

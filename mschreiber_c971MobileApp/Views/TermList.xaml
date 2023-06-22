@@ -12,8 +12,8 @@
         <ToolbarItem x:Name="StudentProfile" Text="My Profile" Clicked="StudentProfile_Clicked" Order="Secondary"/>
         <ToolbarItem x:Name="Notes" Text="Notes" Clicked="Notes_Clicked" Order="Secondary"/>
     </ContentPage.ToolbarItems>
-    
-    <ContentPage.Content>
+
+    <ContentPage.Content Margin="10,10,10,0">
         <CollectionView x:Name="TermCollectionView"
                 ItemsSource="{Binding Terms}"
                 EmptyView="No Terms to display"
@@ -23,12 +23,12 @@
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
             </CollectionView.ItemsLayout>
-
+         
             <!-- define the appearance of each item in the list -->
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
-                        <Grid Padding="5" RowSpacing="1" ColumnSpacing="22" BackgroundColor="WhiteSmoke">
+                    <StackLayout BackgroundColor="#e4e5ea" >
+                        <Grid Padding="5" RowSpacing="1" ColumnSpacing="22" BackgroundColor="#779199">
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />

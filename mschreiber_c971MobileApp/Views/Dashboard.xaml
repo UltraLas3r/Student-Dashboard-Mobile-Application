@@ -15,17 +15,18 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BackgroundColor="#e4e5ea">
             <Label Text="Welcome To Your Student Dashboard"            
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" 
+                   BackgroundColor="#e4e5ea"/>
 
             <Label Text="Get an overview of terms, or go straight to adding a new" HorizontalOptions="CenterAndExpand" Padding="0"></Label>
 
-            <Button x:Name="TermDetail" Text="View Terms" Clicked="ViewTerms_Clicked" HorizontalOptions="CenterAndExpand" BackgroundColor="LawnGreen" />
+            <Button x:Name="TermDetail" Text="View Terms" Clicked="ViewTerms_Clicked" HorizontalOptions="CenterAndExpand" TextColor="#ffffff" BackgroundColor="#313030" />
 
-            <Button x:Name="TermAdd" Text="Add New Term" Clicked="AddTerm_Clicked" HorizontalOptions="CenterAndExpand" BackgroundColor="LawnGreen"/>
+            <Button x:Name="TermAdd" Text="Add New Term" Clicked="AddTerm_Clicked" HorizontalOptions="CenterAndExpand" TextColor="#ffffff"  BackgroundColor="#313030"/>
 
-            <Button x:Name="CreateAssessment" Text="View Assessment Details" Clicked="CreateAssessment_Clicked" BackgroundColor="OrangeRed" HorizontalOptions="CenterAndExpand" />
+            
 
         </StackLayout>
     </ContentPage.Content>

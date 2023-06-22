@@ -56,23 +56,44 @@ namespace mschreiber_c971MobileApp.Views
         async void SaveAssessmentToCourse_Clicked(object sender, EventArgs e)
         {
             CourseInfo course = new CourseInfo();
-           
+            DateTime startDate = StartDatePicker.Date;
+            DateTime endDate = EndDatePicker.Date;
 
-            if (string.IsNullOrWhiteSpace(AssessmentName.ToString()))
+
+            string courseId = CourseId.Text;
+            string assessmentName = AssessmentName.Text;
+            string testType = TestTypePicker.SelectedItem as string;
+            
+
+            if (string.IsNullOrEmpty(courseId) || string.IsNullOrEmpty(assessmentName))
             {
-                await DisplayAlert("Missing Name", "Please enter a name.", "Ok");
+                await DisplayAlert("Missing Information", "Please fill in all fields", "OK");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(testType))
+            {
+                await DisplayAlert("Invalid Test Type", "Please select a Test Type", "OK");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(StartDatePicker.ToString()))
+            {
+                await DisplayAlert("Invalid Start Date", "Invalid Start Date", "Ok");
+
+            }
+            if (string.IsNullOrWhiteSpace(EndDatePicker.ToString()))
+            {
+                await DisplayAlert("Invalid End Date", "Invalid End Date", "Ok");
 
             }
 
-            //if(assessmentType.Contains("PA"))
-            //{
-            //    await DisplayAlert("PA already assigned", "Unable to assign another PA to course: Max 1 per Course", "Ok");
-            //}
+            if (endDate < startDate)
+            {
+                await DisplayAlert("Invalid End Date", "End Date cannot be before Start Date", "OK");
+            }
 
-            //if(assessmentType.Contains("OA"))
-            //{
-            //    await DisplayAlert("OA already assigned", "Unable to assign another OA to course: Max 1 per Course", "Ok");
-            //}
+            
 
 
             //get values from form controls to pass into the method 

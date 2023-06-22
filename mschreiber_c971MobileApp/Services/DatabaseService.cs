@@ -145,7 +145,7 @@ namespace mschreiber_c971MobileApp.Services
             return courses;
         }
 
-        public static async Task AddCourse(int termId, string courseName, string courseStatus, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, bool notificationStart, string notes)
+        public static async Task AddCourse(int termId, string courseName, string courseStatus, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, string notes)
         {
             await Init();
 
@@ -159,7 +159,6 @@ namespace mschreiber_c971MobileApp.Services
                 Email = email,
                 StartDate = startDate,
                 AnticipatedEndDate = anticipatedEndDate,
-                StartNotification = notificationStart,
                 Notes = notes
             };
 

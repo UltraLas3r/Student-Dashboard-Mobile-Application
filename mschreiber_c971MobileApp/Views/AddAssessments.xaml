@@ -5,7 +5,7 @@
              Title = "Add Assessment to Course">
     <ContentPage.Content>
         <StackLayout>
-            <Grid Padding="5" RowSpacing="1" ColumnSpacing="5" BackgroundColor="FloralWhite">
+            <Grid Padding="5" RowSpacing="1" ColumnSpacing="5" BackgroundColor="#e4e5ea">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -32,8 +32,8 @@
                         Title="Select a Test Type"
                         TitleColor="Teal">
                     <Picker.Items>
-                        <x:String >PA</x:String>
-                        <x:String >OA</x:String>
+                        <x:String >Performance</x:String>
+                        <x:String >Objective</x:String>
                     </Picker.Items>
                 </Picker>
 
@@ -45,14 +45,13 @@
                 <Label Grid.Row="3" Grid.Column="1" FontSize="Medium"></Label>
                 <DatePicker  Grid.Row="4" Grid.Column="1" x:Name="EndDatePicker"></DatePicker>
 
-
-                <Label Grid.Row="8" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Set Start Date Notification</Label>
-                <Switch Grid.Row="8" Grid.Column="1" x:Name="StartDateNotify" HorizontalOptions="End"></Switch>
+                <Label Grid.Row="6" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Set Start Date Notification</Label>
+                <Switch Grid.Row="6" Grid.Column="1" x:Name="StartDateNotify" HorizontalOptions="End"></Switch>
                 
-                <Label Grid.Row="9" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Set End Date Notification</Label>
-                <Switch Grid.Row="9" Grid.Column="1" x:Name="EndDateNotify" HorizontalOptions="End"></Switch>
+                <Label Grid.Row="7" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Set End Date Notification</Label>
+                <Switch Grid.Row="7" Grid.Column="1" x:Name="EndDateNotify" HorizontalOptions="End"></Switch>
 
-                <Button x:Name="SaveAssessmentToCourse" Grid.Row="10" Grid.Column="1" Text="Save Test To Course" Clicked="SaveAssessmentToCourse_Clicked" ></Button>
+                <Button x:Name="SaveAssessmentToCourse" Grid.Row="8" Grid.Column="1" Text="Save Test To Course" Clicked="SaveAssessmentToCourse_Clicked" HorizontalOptions="CenterAndExpand" ></Button>
                 
 
             </Grid>
