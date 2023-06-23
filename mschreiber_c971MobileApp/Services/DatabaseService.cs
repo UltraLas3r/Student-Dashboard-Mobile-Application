@@ -3,9 +3,11 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+
 
 namespace mschreiber_c971MobileApp.Services
 {
@@ -33,7 +35,39 @@ namespace mschreiber_c971MobileApp.Services
             await _db.CreateTableAsync<Assessment>();  
         }
 
-        
+        #region Count Methods
+        public static async Task<IEnumerable<CourseInfo>> GetCourseCount()
+        {
+            await Init();
+            var allCourseRecords = _dbConnection.Query<CourseInfo>("SELECT * FROM CourseInfo");
+            int courseCount = allCourseRecords.Count();
+
+            return courseCount;
+        }
+
+        public static async Task<IEnumerable<TermInfo>> GetTermCount()
+        {
+            await Init();
+            var allTermRecords = _dbConnection.Query<TermInfo>("SELECT * FROM TermInfo");
+            int termCount = allTermRecords.Count();
+            return termCount;
+        }
+
+
+        //TODO: figure this out ...
+        public static async Task<int> GetOACount(int _courseId)
+        {
+            var objectiveAssessments = await _db.QueryAsync<Assessment>($"SELECT Type FROM Assessment WHERE courseId = '{_courseId}' AND Type = 'Objective'");
+            int objectiveCount = objectiveAssessments.Count();
+            return objectiveCount;
+        }
+
+        public static async Task<int> GetPACount(int _courseId)
+        {
+            var performanceAssessments = await _db.QueryAsync<Assessment>($"SELECT Type FROM Assessment WHERE courseId = '{_courseId}' AND Type = 'Performance'");
+            int performanceCount = performanceAssessments.Count();
+            return performanceCount;
+        }
 
         #region Term methods
         public static async Task AddTerm(string name, DateTime startDate, DateTime anticipatedEndDate)
@@ -96,6 +130,29 @@ namespace mschreiber_c971MobileApp.Services
 
         #region Assessment Methods
 
+        public static async Task<IEnumerable<Assessment>> GetAssessments(int courseId)
+        {
+            await Init();
+
+
+            var newAssessment = await _db.Table<Assessment>().Where(i => i.CourseId == courseId).ToListAsync();
+
+            return newAssessment;
+        }
+
+        public static async Task<IEnumerable<Assessment>> GetAssessments() //get ALL assessments for notifications
+        {
+            await Init();
+
+            var assessments = await _db.Table<Assessment>().ToListAsync();
+
+
+            return assessments;
+        }
+
+
+
+
 
         public static async Task AddAssessments(int Id, string assessmentName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
         {
@@ -113,28 +170,20 @@ namespace mschreiber_c971MobileApp.Services
             };
 
             await _db.InsertAsync(Assessment);
+
+            var assessmentNameThing = Assessment.AssessmentName;
         }
 
-        public static async Task<IEnumerable<Assessment>> GetAssessments(int courseId)
+       
+        public static async Task RemoveAssessment(string assessmentNameThing)
         {
             await Init();
 
-
-            var newAssessment = await _db.Table<Assessment>().Where(i => i.CourseId == courseId).ToListAsync();
-
-            return newAssessment;
-        }
-
-        public static async Task RemoveAssessment(string assessmentName)
-        {
-            await Init();
-
-            await _db.DeleteAsync<Assessment>(assessmentName);
+            await _db.DeleteAsync<Assessment>(assessmentNameThing);
         }
 
 
         #endregion 
-
 
         #region courses methods
 
@@ -143,6 +192,16 @@ namespace mschreiber_c971MobileApp.Services
             await Init();
 
             var courses = await _db.Table<CourseInfo>().Where(i => i.TermId == termId).ToListAsync();
+
+            return courses;
+        }
+
+        public static async Task<IEnumerable<CourseInfo>> GetCourses() //get ALL courses for notifications
+        {
+            await Init();
+
+            var courses = await _db.Table<CourseInfo>().ToListAsync();
+
 
             return courses;
         }
@@ -178,15 +237,7 @@ namespace mschreiber_c971MobileApp.Services
         }
 
 
-        public static async Task<IEnumerable<CourseInfo>> GetCourses() //get ALL courses for notifications
-        {
-            await Init();
-
-            var courses = await _db.Table<CourseInfo>().ToListAsync();
-
-
-            return courses;
-        }
+       
 
         public static async Task UpdateCourse(int courseId, string courseName, string courseStatus, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, string notes)
         {

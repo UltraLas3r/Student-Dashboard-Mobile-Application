@@ -26,7 +26,7 @@ namespace mschreiber_c971MobileApp.Views
             int tossedInt;
             Decimal tossedDecimal;
 
-            int addCourseCounter = 0;
+           
 
 
             if (string.IsNullOrWhiteSpace(CourseName.Text))
@@ -45,9 +45,9 @@ namespace mschreiber_c971MobileApp.Views
             }
 
             
-           
-            await DatabaseService.AddCourse(_selectTermId, CourseName.Text, StatusTypePicker.SelectedItem.ToString(), StartDatePicker.Date, AnticipatedEndDate.Date, InstructorName.Text, InstructorPhone.Text, InstructorEmail.Text, NotesEditor.Text);
 
+            await DatabaseService.AddCourse(_selectTermId, CourseName.Text, StatusTypePicker.SelectedItem.ToString(), StartDatePicker.Date, AnticipatedEndDate.Date, InstructorName.Text, InstructorPhone.Text, InstructorEmail.Text, NotesEditor.Text);
+            
 
             await Navigation.PopAsync();
         }
