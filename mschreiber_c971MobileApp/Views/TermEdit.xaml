@@ -51,6 +51,7 @@
             >
             <CollectionView.ItemTemplate>
                 <DataTemplate>
+                    <ScrollView>
                     <StackLayout VerticalOptions="CenterAndExpand" Margin="10,10,10,0">
                         <!-- Placeholder label elements for displaying course information -->
                         <Grid Margin="5" RowSpacing="5" ColumnSpacing="1" BackgroundColor="#779199">
@@ -84,6 +85,7 @@
                             <Label Text="{Binding CourseStatus}" Grid.Row="2" Grid.Column="2" FontSize="Medium" VerticalTextAlignment="End" HorizontalTextAlignment="End" ></Label>
                         </Grid>
                     </StackLayout>
+                    </ScrollView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

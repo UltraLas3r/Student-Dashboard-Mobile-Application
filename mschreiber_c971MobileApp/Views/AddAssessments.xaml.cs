@@ -77,9 +77,27 @@ namespace mschreiber_c971MobileApp.Views
             //}
 
             //TODO: check if this count is actually working
-            int count = await DatabaseService.GetPACount(_selectCourseId);
+            int PAcount = await DatabaseService.GetPACount(_selectCourseId);
+            int OAcount = await DatabaseService.GetOACount(_selectCourseId);
 
-            if (count <= 1)
+            if (PAcount == 1)
+            {
+                if (string.IsNullOrEmpty(testType))
+                {
+                    await DisplayAlert("Assessment Type max", "You already have a PA assigned to course ", "OK");
+                    return;
+                }
+            }
+            if (OAcount == 1)
+            {
+                if (string.IsNullOrEmpty(testType))
+                {
+                    await DisplayAlert("Assessment Type max", "You already have an OA assigned to course ", "OK");
+                    return;
+                }
+            }
+
+            else
             {
                 if (string.IsNullOrEmpty(courseId) || string.IsNullOrEmpty(assessmentName))
                 {
@@ -115,8 +133,7 @@ namespace mschreiber_c971MobileApp.Views
             //get values from form controls to pass into the method 
             await DatabaseService.AddAssessments(_selectCourseId, AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
 
-            //d.Add(_selectCourseId, TestTypePicker.SelectedItem.ToString());
-            //d.Count();
+           
             await Navigation.PopAsync();
         }
     }

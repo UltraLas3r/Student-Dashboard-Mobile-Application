@@ -36,7 +36,7 @@ namespace mschreiber_c971MobileApp.Services
         }
 
         #region Count Methods
-        public static async Task<IEnumerable<CourseInfo>> GetCourseCount()
+        public static async Task<int> GetCourseCount()
         {
             await Init();
             var allCourseRecords = _dbConnection.Query<CourseInfo>("SELECT * FROM CourseInfo");
@@ -45,26 +45,26 @@ namespace mschreiber_c971MobileApp.Services
             return courseCount;
         }
 
-        public static async Task<IEnumerable<TermInfo>> GetTermCount()
+        public static async Task<int> GetTermCount()
         {
             await Init();
-            var allTermRecords = _dbConnection.Query<TermInfo>("SELECT * FROM TermInfo");
-            int termCount = allTermRecords.Count();
+            var termCount = _dbConnection.ExecuteScalar<int>("SELECT COUNT(*) FROM TermInfo");
             return termCount;
         }
 
-
+        #endregion
         //TODO: figure this out ...
         public static async Task<int> GetOACount(int _courseId)
         {
-            var objectiveAssessments = await _db.QueryAsync<Assessment>($"SELECT Type FROM Assessment WHERE courseId = '{_courseId}' AND Type = 'Objective'");
+            
+            var objectiveAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE courseId = '{_courseId}' AND AssessmentType = 'Objective'");
             int objectiveCount = objectiveAssessments.Count();
             return objectiveCount;
         }
 
         public static async Task<int> GetPACount(int _courseId)
         {
-            var performanceAssessments = await _db.QueryAsync<Assessment>($"SELECT Type FROM Assessment WHERE courseId = '{_courseId}' AND Type = 'Performance'");
+            var performanceAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE courseId = '{_courseId}' AND AssessmentType = 'Performance'");
             int performanceCount = performanceAssessments.Count();
             return performanceCount;
         }
@@ -382,11 +382,6 @@ namespace mschreiber_c971MobileApp.Services
         }
 
         #endregion
-
-
-
-      
-       
 
 
     }

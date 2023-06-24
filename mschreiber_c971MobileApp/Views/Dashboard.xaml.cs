@@ -77,22 +77,7 @@ namespace mschreiber_c971MobileApp.Views
             await Navigation.PushAsync(new AppSettings());
         }
 
-        private void OnButtonClicked(object sender, EventArgs e)
-        {
-            Button button = (Button)sender;
-
-            if (button.Rotation == 0)
-            {
-                button.Rotation += 90;
-                button.BackgroundColor = Color.Red;
-            }
-            else
-            {
-                button.Rotation = 0;
-                button.BackgroundColor = default;
-            }
-        }
-
+     
       
         async void ViewTerms_Clicked(object sender, EventArgs e)
         {
@@ -118,7 +103,7 @@ namespace mschreiber_c971MobileApp.Views
 
         async void OpenCourseDetails_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CourseDetails());
+           // await Navigation.PushAsync(new CourseDetails());
         }
 
         async void CreateAssessment_Clicked(object sender, EventArgs e)

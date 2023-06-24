@@ -16,11 +16,9 @@ namespace mschreiber_c971MobileApp.Views
     {
         private readonly int _selectTermId;
         private int termId;
-        private string _oa;
-        private string _pa;
+        
         Assessment assessment = new Assessment();
 
-        private int _courseId;
         public TermEdit(TermInfo termId)
         {
             InitializeComponent();

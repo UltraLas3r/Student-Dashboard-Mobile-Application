@@ -15,14 +15,15 @@ namespace mschreiber_c971MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AssessmentDetails : ContentPage
     {
-        public AssessmentDetails(string courseName, int courseId, Assessment assessment)
+        public AssessmentDetails(Assessment assessment)
         {
             InitializeComponent();
+            //CourseID.Text = assessment.CourseId.ToString();
         }
 
         private void InitializeComponent()
         {
-            throw new NotImplementedException();
+          
         }
 
         private void EditAssessment_Clicked(object sender, EventArgs e)

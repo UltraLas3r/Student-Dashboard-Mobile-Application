@@ -89,8 +89,7 @@ namespace mschreiber_c971MobileApp.Views
             await DatabaseService.UpdateCourse(Int32.Parse(CourseId.Text), CourseName.Text, StatusTypePicker.SelectedItem.ToString(), DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()), CourseInstructorName.Text, PhoneNumber.Text, Email.Text, NotesEditor.Text);
 
 
-            //await DatabaseService.UpdateTerm(Int32.Parse(CourseId.Text), CourseName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()));
-            
+        
             await Navigation.PopAsync();
 
         }
@@ -120,16 +119,7 @@ namespace mschreiber_c971MobileApp.Views
             await Navigation.PopAsync();
         }
 
-        private void CourseCollectView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //TODO: might not need this? not sure...
-
-            //if (e.CurrentSelection != null)
-            //{
-            //    TermInfo term = (TermInfo)e.CurrentSelection.FirstOrDefault();
-            //    await Navigation.PushAsync(new TermEdit(term));
-            //}
-        }
+     
 
         async void ShareButton_Clicked(object sender, EventArgs e)
         {
@@ -185,9 +175,21 @@ namespace mschreiber_c971MobileApp.Views
         //    await Navigation.PopAsync();
         //}
 
-        async void EditAssessment_Clicked(object sender, EventArgs e)
+       
+
+        async void AssessmentsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            await Navigation.PushAsync(new AssessmentDetails(_courseName, courseId, assessment));
+
+            if (e.CurrentSelection != null)
+            {
+                Assessment assessment = (Assessment)e.CurrentSelection.FirstOrDefault();
+                await Navigation.PushAsync(new AssessmentDetails(assessment));
+            }
+
+
+
+
+            //await Navigation.PushAsync(new AssessmentDetails(_courseName, courseId, assessment));
         }
     }
 }
