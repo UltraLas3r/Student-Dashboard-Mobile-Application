@@ -76,36 +76,41 @@ namespace mschreiber_c971MobileApp.Views
             //    return;
             //}
 
-            if (string.IsNullOrEmpty(courseId) || string.IsNullOrEmpty(assessmentName))
+            //TODO: check if this count is actually working
+            int count = await DatabaseService.GetPACount(_selectCourseId);
+
+            if (count <= 1)
             {
-                await DisplayAlert("Missing Information", "Please fill in all fields", "OK");
-                return;
+                if (string.IsNullOrEmpty(courseId) || string.IsNullOrEmpty(assessmentName))
+                {
+                    await DisplayAlert("Missing Information", "Please fill in all fields", "OK");
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(testType))
+                {
+                    await DisplayAlert("Invalid Test Type", "Please select a Test Type", "OK");
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(StartDatePicker.ToString()))
+                {
+                    await DisplayAlert("Invalid Start Date", "Invalid Start Date", "Ok");
+
+                }
+                if (string.IsNullOrWhiteSpace(EndDatePicker.ToString()))
+                {
+                    await DisplayAlert("Invalid End Date", "Invalid End Date", "Ok");
+
+                }
+
+                if (endDate < startDate)
+                {
+                    await DisplayAlert("Invalid End Date", "End Date cannot be before Start Date", "OK");
+                }
+
+
             }
-
-            if (string.IsNullOrEmpty(testType))
-            {
-                await DisplayAlert("Invalid Test Type", "Please select a Test Type", "OK");
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(StartDatePicker.ToString()))
-            {
-                await DisplayAlert("Invalid Start Date", "Invalid Start Date", "Ok");
-
-            }
-            if (string.IsNullOrWhiteSpace(EndDatePicker.ToString()))
-            {
-                await DisplayAlert("Invalid End Date", "Invalid End Date", "Ok");
-
-            }
-
-            if (endDate < startDate)
-            {
-                await DisplayAlert("Invalid End Date", "End Date cannot be before Start Date", "OK");
-            }
-
-            
-
 
             //get values from form controls to pass into the method 
             await DatabaseService.AddAssessments(_selectCourseId, AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
