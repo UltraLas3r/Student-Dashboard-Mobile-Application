@@ -32,9 +32,6 @@ namespace mschreiber_c971MobileApp.Views
             courseId = course.Id;
             _courseName = course.CourseName;
 
-
-
-            
             CourseId.Text = course.Id.ToString();
             CourseName.Text = course.CourseName;
             CourseInstructorName.Text = course.Instructor;
@@ -72,10 +69,6 @@ namespace mschreiber_c971MobileApp.Views
                 await DisplayAlert("Missing Name", "Must enter a name.", "Ok");
             }
 
-            if (string.IsNullOrWhiteSpace(CourseName.Text))
-            {
-                await DisplayAlert("Missing Name", "Must enter a name.", "Ok");
-            }
 
             if (string.IsNullOrWhiteSpace(StartDatePicker.ToString()))
             {
@@ -87,8 +80,12 @@ namespace mschreiber_c971MobileApp.Views
                 await DisplayAlert("Missing end date", "Please pick an end date", "Ok");
             }
 
+            if (StatusTypePicker.SelectedItem == null)
+            {
+                await DisplayAlert("Missing course status", "Select Course Status", "Ok");
+            }
 
-            //TODO possibly remobe the UpdateCourse function 
+           
             await DatabaseService.UpdateCourse(Int32.Parse(CourseId.Text), CourseName.Text, StatusTypePicker.SelectedItem.ToString(), DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()), CourseInstructorName.Text, PhoneNumber.Text, Email.Text, NotesEditor.Text);
 
 

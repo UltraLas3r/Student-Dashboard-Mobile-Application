@@ -18,23 +18,45 @@ namespace mschreiber_c971MobileApp.Views
     {
         private int termId;
         private string randomName;
+        private int courseId = 1;
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             var CourseList = await DatabaseService.GetCourses();
             var notifyRandom = new Random();
-            var notifyId = notifyRandom.Next(1000);
+            
 
-            foreach (CourseInfo courseRecord in CourseList)
+            //foreach (CourseInfo courseRecord in CourseList)
+            //{
+            //    var notifyId = notifyRandom.Next(1000);
+
+            //    if (courseRecord.StartNotification == true)
+            //    {
+            //        if (courseRecord.StartDate == DateTime.Today)
+            //        {
+            //            CrossLocalNotifications.Current.Show("Notice", $"{courseRecord.CourseName} begins today!", notifyId);
+            //        }
+            //    }
+            //}
+
+            var AssessmentList = await DatabaseService.GetAssessments(courseId);
+            var notifyRandomTest = new Random();
+
+
+            foreach (Assessment assessment in AssessmentList)
             {
-                if (courseRecord.StartNotification == true)
+                var notifyId = notifyRandomTest.Next(25);
+
+                if (assessment.StartDateNotify == true)
                 {
-                    if (courseRecord.AnticipatedEndDate == DateTime.Today.AddDays(+90))
+                    if (assessment.StartDate == DateTime.Today)
                     {
-                        CrossLocalNotifications.Current.Show("Notice", $"{courseRecord.CourseName} begins today!", notifyId);
+                        CrossLocalNotifications.Current.Show("Notice", $"{assessment.AssessmentName} begins today!", notifyId);
                     }
                 }
             }
+
+
 
         }
 
