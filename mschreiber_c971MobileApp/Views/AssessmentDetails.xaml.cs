@@ -15,18 +15,44 @@ namespace mschreiber_c971MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AssessmentDetails : ContentPage
     {
+        private int courseId;
         public AssessmentDetails(Assessment assessment)
         {
             InitializeComponent();
             //CourseID.Text = assessment.CourseId.ToString();
+            
         }
 
-        private void InitializeComponent()
-        {
-          
-        }
+        //protected override async void OnAppearing(CourseInfo course)
+        //{
+        //    courseId = course.Id;
+        //    base.OnAppearing();
+
+        //    //CourseName.Text = course.CourseName;
+
+        //    ////where the data is coming from
+
+        //    //CourseCollection.ItemsSource = await DatabaseService.GetCourses(courseId);
+
+
+        //}
 
         private void EditAssessment_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SaveAssessment_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CancelAssessment_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RemoveAssessment_Clicked(object sender, EventArgs e)
         {
 
         }

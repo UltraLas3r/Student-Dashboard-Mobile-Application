@@ -67,22 +67,26 @@ namespace mschreiber_c971MobileApp.Views
             if (string.IsNullOrWhiteSpace(CourseName.Text))
             {
                 await DisplayAlert("Missing Name", "Must enter a name.", "Ok");
+                return;
             }
 
 
             if (string.IsNullOrWhiteSpace(StartDatePicker.ToString()))
             {
                 await DisplayAlert("Missing end date", "Please pick an end date", "Ok");
+                return;
             }
 
             if (string.IsNullOrWhiteSpace(EndDatePicker.ToString()))
             {
                 await DisplayAlert("Missing end date", "Please pick an end date", "Ok");
+                return;
             }
 
             if (StatusTypePicker.SelectedItem == null)
             {
                 await DisplayAlert("Missing course status", "Select Course Status", "Ok");
+                return;
             }
 
            

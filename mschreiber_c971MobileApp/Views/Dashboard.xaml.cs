@@ -26,18 +26,20 @@ namespace mschreiber_c971MobileApp.Views
             var notifyRandom = new Random();
             
 
-            //foreach (CourseInfo courseRecord in CourseList)
-            //{
-            //    var notifyId = notifyRandom.Next(1000);
 
-            //    if (courseRecord.StartNotification == true)
-            //    {
-            //        if (courseRecord.StartDate == DateTime.Today)
-            //        {
-            //            CrossLocalNotifications.Current.Show("Notice", $"{courseRecord.CourseName} begins today!", notifyId);
-            //        }
-            //    }
-            //}
+
+            foreach (CourseInfo courseName in CourseList)
+            {
+                var notifyId = notifyRandom.Next(1000);
+
+                if (courseName.StartNotification == true)
+                {
+                    if (courseName.StartDate == DateTime.Today)
+                    {
+                        CrossLocalNotifications.Current.Show("Notice", $"{courseName.CourseName} begins today!", notifyId);
+                    }
+                }
+            }
 
             var AssessmentList = await DatabaseService.GetAssessments(courseId);
             var notifyRandomTest = new Random();
@@ -45,7 +47,7 @@ namespace mschreiber_c971MobileApp.Views
 
             foreach (Assessment assessment in AssessmentList)
             {
-                var notifyId = notifyRandomTest.Next(25);
+                var notifyId = notifyRandomTest.Next(1000);
 
                 if (assessment.StartDateNotify == true)
                 {
