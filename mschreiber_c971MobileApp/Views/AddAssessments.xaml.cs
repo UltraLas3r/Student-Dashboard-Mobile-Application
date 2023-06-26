@@ -36,27 +36,6 @@ namespace mschreiber_c971MobileApp.Views
            
         }
 
-        
-
-        //TODO: possibly get rid of confirmuserinput()
-
-        //private bool ConfirmUserInput() 
-        //{
-        //    bool valid = true;
-
-        //    if (string.IsNullOrWhiteSpace(AssessmentName.ToString()) || string.IsNullOrWhiteSpace(_courseId.ToString()) || string.IsNullOrWhiteSpace(TestTypePicker.SelectedItem.ToString()) 
-        //        || StartDatePicker.Date == null 
-        //        || EndDatePicker.Date == null || EndDatePicker.Date < StartDatePicker.Date) 
-        //    {
-        //        return false;
-        //    }
-            
-            
-        //    return valid; 
-        //}
-
-        
-
         async void SaveAssessmentToCourse_Clicked(object sender, EventArgs e)
         {
             CourseInfo course = new CourseInfo();
@@ -67,39 +46,38 @@ namespace mschreiber_c971MobileApp.Views
             string courseId = CourseId.Text;
             string assessmentName = AssessmentName.Text;
             string testType = TestTypePicker.SelectedItem as string;
-            //TODO: look at this dictionary stuff and figure out if it is necessary
-            //IDictionary<int, string> d = new Dictionary<int, string>();
-
-            //if (d.Count > 2)
-            //{
-            //    await DisplayAlert("Too many assessments", "Only 2 assessments per course", "OK");
-            //    return;
-            //}
-
-            //TODO: check if this count is actually working
+            string performanceTest = "Performance";
+            string objectiveTest = "Objective";
+          
             int PAcount = await DatabaseService.GetPACount(_selectCourseId);
             int OAcount = await DatabaseService.GetOACount(_selectCourseId);
 
-            if (PAcount == 1)
+            if (testType == performanceTest)
             {
-                if (string.IsNullOrEmpty(testType))
-                {
-                    await DisplayAlert("Assessment Type max", "You already have a PA assigned to course ", "OK");
-                    return;
-                }
+
+                if (PAcount == 1 || OAcount == 0)
+                    {
+                        await DisplayAlert("Assessment Type max", "You already have a PA assigned to course ", "OK");
+                        return;
+                    } 
             }
-            if (OAcount == 1)
+
+            if (testType == objectiveTest)
             {
-                if (string.IsNullOrEmpty(testType))
+                if (PAcount == 0 || OAcount == 1 /*!string.IsNullOrEmpty(testType)*/)
                 {
                     await DisplayAlert("Assessment Type max", "You already have an OA assigned to course ", "OK");
                     return;
                 }
             }
 
-            else
+            if (PAcount == 1 && OAcount == 1)
             {
-                if (string.IsNullOrEmpty(courseId) || string.IsNullOrEmpty(assessmentName))
+                await DisplayAlert("Assessment Type max", "Unable to add more assessments to course", "OK");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(courseId) || string.IsNullOrEmpty(assessmentName))
                 {
                     await DisplayAlert("Missing Information", "Please fill in all fields", "OK");
                     return;
@@ -128,7 +106,6 @@ namespace mschreiber_c971MobileApp.Views
                 }
 
 
-            }
 
             //get values from form controls to pass into the method 
             await DatabaseService.AddAssessments(_selectCourseId, AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);

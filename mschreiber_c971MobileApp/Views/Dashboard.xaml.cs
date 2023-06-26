@@ -24,9 +24,8 @@ namespace mschreiber_c971MobileApp.Views
             base.OnAppearing();
             var CourseList = await DatabaseService.GetCourses();
             var notifyRandom = new Random();
-            
 
-
+       
 
             foreach (CourseInfo courseName in CourseList)
             {
@@ -57,6 +56,11 @@ namespace mschreiber_c971MobileApp.Views
                     }
                 }
             }
+
+            await DatabaseService.GetALLOACount();
+
+
+            await DatabaseService.GetALLPACount();
 
 
 

@@ -39,22 +39,19 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
+                            
                             <Label x:Name="AssessmentList" Text="Assessment(s)"  FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
                             <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Test Name:</Label>
                             <Entry  x:Name="CourseName"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" IsReadOnly="True"></Entry>
                             <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Test Name:</Label>
                             <Entry Text="{Binding CourseId}" x:Name="CourseID"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" IsReadOnly="True"></Entry>
 
-
                             <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Test Name:</Label>
                             <Entry Text="{Binding AssessmentName}" x:Name="AssessmentName"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" IsReadOnly="True"></Entry>
-
 
                             <Label Grid.Row="0" Grid.Column="2" FontSize="Medium" VerticalOptions="Center">Type</Label>
                             <Entry Text="{Binding AssessmentType}" x:Name="AssessmentType" Grid.Row="0" Grid.Column="3" VerticalTextAlignment="End" IsReadOnly="True"></Entry>
                             <!--<Button x:Name="EditAssessment" Grid.Row="0" Grid.Column="4" Text="Edit" Clicked="EditAssessment_Clicked" HorizontalOptions="Start"></Button>-->
-
-
 
                         </Grid>
                     </StackLayout>

@@ -30,9 +30,8 @@ namespace mschreiber_c971MobileApp.Services
 
             await _db.CreateTableAsync<TermInfo>();
             await _db.CreateTableAsync<CourseInfo>();
-
+            await _db.CreateTableAsync<Assessment>(); 
             
-            await _db.CreateTableAsync<Assessment>();  
         }
 
         #region Count Methods
@@ -56,10 +55,10 @@ namespace mschreiber_c971MobileApp.Services
         //TODO: figure this out ...
         public static async Task<int> GetOACount(int _courseId)
         {
-            
-            var objectiveAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE courseId = '{_courseId}' AND AssessmentType = 'Objective'");
-            int objectiveCount = objectiveAssessments.Count();
-            return objectiveCount;
+            var performanceAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE courseId = '{_courseId}' AND AssessmentType = 'Objective'");
+            int performanceCount = performanceAssessments.Count();
+            return performanceCount;
+
         }
 
         public static async Task<int> GetPACount(int _courseId)
@@ -67,6 +66,22 @@ namespace mschreiber_c971MobileApp.Services
             var performanceAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE courseId = '{_courseId}' AND AssessmentType = 'Performance'");
             int performanceCount = performanceAssessments.Count();
             return performanceCount;
+
+        }
+        //TODO: Remove these, for testing purposes
+        public static async Task<int> GetALLPACount()
+        {
+            var performanceAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE AssessmentType = 'Performance'");
+            int performanceCount = performanceAssessments.Count();
+           
+            return performanceCount;
+        }
+
+        public static async Task<int> GetALLOACount()
+        {
+            var objectiveAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE AssessmentType = 'Objective'");
+            int objectiveCount = objectiveAssessments.Count();
+            return objectiveCount;
         }
 
         #region Term methods
@@ -149,9 +164,6 @@ namespace mschreiber_c971MobileApp.Services
 
             return assessments;
         }
-
-
-
 
 
         public static async Task AddAssessments(int Id, string assessmentName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)

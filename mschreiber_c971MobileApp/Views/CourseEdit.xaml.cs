@@ -150,9 +150,7 @@ namespace mschreiber_c971MobileApp.Views
 
         async void AddATestButton_Clicked(object sender, EventArgs e)
         {
-            
 
-            
             await Navigation.PushAsync(new AddAssessments(_courseName, courseId, assessment));
         }
 
@@ -189,9 +187,6 @@ namespace mschreiber_c971MobileApp.Views
                 Assessment assessment = (Assessment)e.CurrentSelection.FirstOrDefault();
                 await Navigation.PushAsync(new AssessmentDetails(assessment));
             }
-
-
-
 
             //await Navigation.PushAsync(new AssessmentDetails(_courseName, courseId, assessment));
         }
