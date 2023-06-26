@@ -33,14 +33,6 @@ namespace mschreiber_c971MobileApp.Views
          
         }
 
-        protected override async void OnAppearing()
-        {
-
-           // AssessmentCollection.ItemsSource = await DatabaseService.GetAssessments(courseId);
-
-
-        }
-
         private void EditAssessment_Clicked(object sender, EventArgs e)
         {
 

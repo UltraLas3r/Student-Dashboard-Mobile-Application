@@ -14,20 +14,20 @@ namespace mschreiber_c971MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CourseAdd : ContentPage
     {
-        int _selectTermId; 
-        
+        int _selectTermId;
+        int _courseCount;
 
         public CourseAdd(int termId)
         {
             InitializeComponent();
             _selectTermId = termId;
-            
+          
           
         }
 
         async void SaveCourse_Clicked(object sender, EventArgs e)
         {
-
+            
             if (!IsValidEmail(InstructorEmail.Text))
             {
                 await DisplayAlert("Email Check", "Email must be in valid format \n name@xyz.com", "Ok");

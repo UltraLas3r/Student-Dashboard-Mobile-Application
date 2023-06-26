@@ -5,13 +5,18 @@ using System.Text;
 
 namespace mschreiber_c971MobileApp.Models
 {
-   public class Assessment
+    
+    public class Assessment
     {
         [PrimaryKey]
+        public int TestId { get; set; }
+
         public int CourseId { get; set; }
 
-        public int TestId { get; set; }
+        [Indexed, Collation("NOCASE")]
         public string AssessmentName { get; set; }
+
+     
         public string AssessmentType { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime AnticipatedEndDate { get; set; }

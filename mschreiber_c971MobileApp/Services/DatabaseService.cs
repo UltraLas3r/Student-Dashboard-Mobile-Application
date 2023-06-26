@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
-
+using Xamarin.Forms;
 
 namespace mschreiber_c971MobileApp.Services
 {
-    public static class DatabaseService
+    public class DatabaseService
     {
         private static SQLiteAsyncConnection _db;
         private static SQLiteConnection _dbConnection;
+        private readonly int _totalCourseCount;
         
         static async Task Init()
         {
@@ -28,6 +29,10 @@ namespace mschreiber_c971MobileApp.Services
             _db = new SQLiteAsyncConnection(databasePath);
             _dbConnection = new SQLiteConnection(databasePath);
 
+
+
+
+
             await _db.CreateTableAsync<TermInfo>();
             await _db.CreateTableAsync<CourseInfo>();
             await _db.CreateTableAsync<Assessment>(); 
@@ -35,13 +40,14 @@ namespace mschreiber_c971MobileApp.Services
         }
 
         #region Count Methods
-        public static async Task<int> GetCourseCount()
+        public static async Task<int> GetCourseCount(int _termId)
         {
             await Init();
-            var allCourseRecords = _dbConnection.Query<CourseInfo>("SELECT * FROM CourseInfo");
+            var allCourseRecords = _dbConnection.Query<CourseInfo>($"SELECT * FROM CourseInfo WHERE TermId = '{_termId}'");
             int courseCount = allCourseRecords.Count();
 
             return courseCount;
+
         }
 
         public static async Task<int> GetTermCount()
@@ -83,6 +89,8 @@ namespace mschreiber_c971MobileApp.Services
             int objectiveCount = objectiveAssessments.Count();
             return objectiveCount;
         }
+
+        
 
         #region Term methods
         public static async Task AddTerm(string name, DateTime startDate, DateTime anticipatedEndDate)
@@ -241,25 +249,36 @@ namespace mschreiber_c971MobileApp.Services
 
         public static async Task AddCourse(int termId, string courseName, string courseStatus, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, string notes)
         {
-            await Init();
+            var _termId = termId;
+            int courseCount = await GetCourseCount(_termId);
 
-            var courseInfo = new CourseInfo
+            if (courseCount >= 6)
             {
-                TermId = termId,
-                CourseName = courseName,
-                CourseStatus = courseStatus,
-                Instructor = instructor,
-                Phone = phone,
-                Email = email,
-                StartDate = startDate,
-                AnticipatedEndDate = anticipatedEndDate,
-                Notes = notes
-            };
+                await Application.Current.MainPage.DisplayAlert("Term Full", "Only 6 courses per term \nUnable to add more courses to term", "Ok");
+            }
 
-            await _db.InsertAsync(courseInfo);
+            if (courseCount <= 6)
+            {
+                await Init();
 
-            var id = courseInfo.Id; //returns the course Id
+                var courseInfo = new CourseInfo
+                {
+                    TermId = termId,
+                    CourseName = courseName,
+                    CourseStatus = courseStatus,
+                    Instructor = instructor,
+                    Phone = phone,
+                    Email = email,
+                    StartDate = startDate,
+                    AnticipatedEndDate = anticipatedEndDate,
+                    Notes = notes
+                };
 
+                await _db.InsertAsync(courseInfo);
+
+                var id = courseInfo.Id; //returns the course Id
+
+            }
         }
 
         public static async Task RemoveCourse(int id)
@@ -268,9 +287,6 @@ namespace mschreiber_c971MobileApp.Services
 
             await _db.DeleteAsync<CourseInfo>(id);
         }
-
-
-       
 
         public static async Task UpdateCourse(int courseId, string courseName, string courseStatus, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, string notes)
         {
@@ -298,7 +314,6 @@ namespace mschreiber_c971MobileApp.Services
 
         }
 
-
         #endregion
 
         #region Sample Data
@@ -309,7 +324,7 @@ namespace mschreiber_c971MobileApp.Services
 
             TermInfo term1 = new TermInfo
             {
-                Name = "Term 1",
+                Name = "Sample 1",
                 StartDate = DateTime.Now,
                 AnticipatedEndDate = DateTime.Now.AddDays(+100),
             };
@@ -319,23 +334,22 @@ namespace mschreiber_c971MobileApp.Services
             CourseInfo course1a = new CourseInfo
             {
                 CourseName = "Lion Course",
-                Instructor = "Franz Liszt",
-                Phone = "555555555",
-                Email = "Composerguy@gmail.com",
+                Instructor = "Joe Bob",
+                Phone = "555 555 5555",
+                Email = "Joe@gmail.com",
                 StartDate = DateTime.Now,
                 AnticipatedEndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
                 TermId = term1.Id
-
             };
             await _db.InsertAsync(course1a);
 
             CourseInfo course1b = new CourseInfo
             {
                 CourseName = "Tiger Course",
-                Instructor = "Brandon Sanderson",
-                Phone = "5567778888",
-                Email = "AuthorGuythatWritesBooks@gmail.com",
+                Instructor = "Jessica Anne",
+                Phone = "556 777 8888",
+                Email = "Janne@gmail.com",
                 StartDate = DateTime.Now,
                 AnticipatedEndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
@@ -343,54 +357,68 @@ namespace mschreiber_c971MobileApp.Services
             };
             await _db.InsertAsync(course1b);
 
-            //insert another Term with Courses attached
-
-            TermInfo term2 = new TermInfo
+            CourseInfo course1c = new CourseInfo
             {
-                Name = "Term 2",
-                StartDate = DateTime.Now,
-                AnticipatedEndDate = DateTime.Now.AddDays(+100),
-            };
-            await _db.InsertAsync(term2);
-
-            CourseInfo course2a = new CourseInfo
-            {
-                CourseName = "Mountain Course",
-                Instructor = "John Muir",
-                Phone = "555555555",
-                Email = "yosemiteGuy@gmail.com",
+                CourseName = "Eagle Course",
+                Instructor = "Maureen McDevitt",
+                Phone = "888 888 0099",
+                Email = "MAMCD@gmail.com",
                 StartDate = DateTime.Now,
                 AnticipatedEndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
-                TermId = term2.Id
+                TermId = term1.Id
             };
-            await _db.InsertAsync(course2a);
 
-            CourseInfo course2b = new CourseInfo
-            {
-                CourseName = "River Course",
-                Instructor = "Mary Catherine Ruth",
-                Phone = "555555555",
-                Email = "Priory@gmail.com",
-                StartDate = DateTime.Now,
-                AnticipatedEndDate = DateTime.Now.AddDays(+90),
-                StartNotification = true,
-                TermId = term2.Id
-            };
-            await _db.InsertAsync(course2b);
+            await _db.InsertAsync(course1c);
 
-            CourseInfo course2c = new CourseInfo
-            {
-                CourseName = "Meadows Course",
-                Instructor = "Tiger Woods",
-                Phone = "555555555",
-                Email = "GolfLvr@gmail.com",
-                StartDate = DateTime.Now,
-                AnticipatedEndDate = DateTime.Now.AddDays(+90),
-                StartNotification = true,
-                TermId = term2.Id
-            };
-            await _db.InsertAsync(course2c);
+            //TODO delete this extra data insert another Term with Courses attached
+
+        //    TermInfo term2 = new TermInfo
+        //    {
+        //        Name = "Term 2",
+        //        StartDate = DateTime.Now,
+        //        AnticipatedEndDate = DateTime.Now.AddDays(+100),
+        //    };
+        //    await _db.InsertAsync(term2);
+
+        //    CourseInfo course2a = new CourseInfo
+        //    {
+        //        CourseName = "Mountain Course",
+        //        Instructor = "John Muir",
+        //        Phone = "555555555",
+        //        Email = "yosemiteGuy@gmail.com",
+        //        StartDate = DateTime.Now,
+        //        AnticipatedEndDate = DateTime.Now.AddDays(+90),
+        //        StartNotification = true,
+        //        TermId = term2.Id
+        //    };
+        //    await _db.InsertAsync(course2a);
+
+        //    CourseInfo course2b = new CourseInfo
+        //    {
+        //        CourseName = "River Course",
+        //        Instructor = "Mary Catherine Ruth",
+        //        Phone = "555555555",
+        //        Email = "Priory@gmail.com",
+        //        StartDate = DateTime.Now,
+        //        AnticipatedEndDate = DateTime.Now.AddDays(+90),
+        //        StartNotification = true,
+        //        TermId = term2.Id
+        //    };
+        //    await _db.InsertAsync(course2b);
+
+        //    CourseInfo course2c = new CourseInfo
+        //    {
+        //        CourseName = "Meadows Course",
+        //        Instructor = "Tiger Woods",
+        //        Phone = "555555555",
+        //        Email = "GolfLvr@gmail.com",
+        //        StartDate = DateTime.Now,
+        //        AnticipatedEndDate = DateTime.Now.AddDays(+90),
+        //        StartNotification = true,
+        //        TermId = term2.Id
+        //    };
+        //    await _db.InsertAsync(course2c);
 
         }
 
