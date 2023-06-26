@@ -1,14 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="mschreiber_c971MobileApp.Views.AssessmentDetails">
-
-    <NavigationPage.TitleView>
-        <Label Text="Assessment Details" FontSize="Medium" />
-    </NavigationPage.TitleView>
+             x:Class="mschreiber_c971MobileApp.Views.AssessmentDetails"
+             Title = "Assessment">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="SAVE" x:Name="SaveAssessment" Clicked="SaveAssessment_Clicked"   ></ToolbarItem>
+        <ToolbarItem Text="SAVE" x:Name="SaveAssessment" Clicked="SaveAssessment_Clicked"></ToolbarItem>
         <ToolbarItem Text="CANCEL" x:Name="CancelAssessment" Clicked="CancelAssessment_Clicked" ></ToolbarItem>
         <ToolbarItem Text="REMOVE" x:Name="RemoveAssessment" Clicked="RemoveAssessment_Clicked" ></ToolbarItem>
     </ContentPage.ToolbarItems>
@@ -16,14 +13,14 @@
 <!--THIS IS THE ASSEMENT INFO-->
 
     <StackLayout>
-        <Label x:Name="AssessmentList" Text="Course"  FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
-        <CollectionView x:Name="AssessmentsCollection"
-                            EmptyView="No AssessmentsInCourse"
+        <Label x:Name="AssessmentList" Text="Assessment Details"  FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
+        <!--<CollectionView     x:Name="AssessmentsCollection"
+                            EmptyView="No Assessments In Course"
                             SelectionMode="Single"         
-            >
+            >-->
 
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
+            <!--<CollectionView.ItemTemplate>-->
+                <!--<DataTemplate>-->
                     <StackLayout VerticalOptions="CenterAndExpand" Margin="20,20,20,0">
                         <Grid Padding="5" RowSpacing="-5" ColumnSpacing="15" BackgroundColor="#e4e5ea">
                             <Grid.RowDefinitions>
@@ -39,15 +36,15 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            
-                            <Label x:Name="AssessmentList" Text="Assessment(s)"  FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
-                            <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Test Name:</Label>
-                            <Entry  x:Name="CourseName"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" IsReadOnly="True"></Entry>
-                            <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Test Name:</Label>
-                            <Entry Text="{Binding CourseId}" x:Name="CourseID"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" IsReadOnly="True"></Entry>
 
-                            <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Test Name:</Label>
-                            <Entry Text="{Binding AssessmentName}" x:Name="AssessmentName"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" IsReadOnly="True"></Entry>
+
+
+
+                            <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Id</Label>
+                            <Entry Text="{Binding CourseId}" x:Name="CourseId"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" IsReadOnly="True"></Entry>
+
+                            <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Test Name:</Label>
+                            <Entry Text="{Binding AssessmentName}" x:Name="AssessmentName"  Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" ></Entry>
 
                             <Label Grid.Row="0" Grid.Column="2" FontSize="Medium" VerticalOptions="Center">Type</Label>
                             <Entry Text="{Binding AssessmentType}" x:Name="AssessmentType" Grid.Row="0" Grid.Column="3" VerticalTextAlignment="End" IsReadOnly="True"></Entry>
@@ -55,8 +52,8 @@
 
                         </Grid>
                     </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                <!--</DataTemplate>-->
+            <!--</CollectionView.ItemTemplate>-->
+        <!--</CollectionView>-->
     </StackLayout>
 </ContentPage>

@@ -15,46 +15,66 @@ namespace mschreiber_c971MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AssessmentDetails : ContentPage
     {
-        private int courseId;
+        private readonly int courseId;
+        CourseInfo courseInfo = new CourseInfo();
         public AssessmentDetails(Assessment assessment)
         {
             InitializeComponent();
-            //CourseID.Text = assessment.CourseId.ToString();
-            
+            courseId = assessment.CourseId;
+            CourseId.Text = assessment.CourseId.ToString();
+            AssessmentName.Text = assessment.AssessmentName;
+            AssessmentType.Text = assessment.AssessmentType;
         }
 
-        //protected override async void OnAppearing(CourseInfo course)
-        //{
-        //    courseId = course.Id;
-        //    base.OnAppearing();
+        public void GetCourseInfo(CourseInfo course)
+        {
+         
+        }
 
-        //    //CourseName.Text = course.CourseName;
+        protected override async void OnAppearing()
+        {
 
-        //    ////where the data is coming from
-
-        //    //CourseCollection.ItemsSource = await DatabaseService.GetCourses(courseId);
+           // AssessmentCollection.ItemsSource = await DatabaseService.GetAssessments(courseId);
 
 
-        //}
+        }
 
         private void EditAssessment_Clicked(object sender, EventArgs e)
         {
 
         }
 
-        private void SaveAssessment_Clicked(object sender, EventArgs e)
+        async void SaveAssessment_Clicked(object sender, EventArgs e)
         {
 
+            await DatabaseService.UpdateAssessment(Int32.Parse(CourseId.Text), AssessmentName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString());
+            
         }
 
-        private void CancelAssessment_Clicked(object sender, EventArgs e)
+        async void CancelAssessment_Clicked(object sender, EventArgs e)
         {
-
+            await Navigation.PopAsync();
         }
 
-        private void RemoveAssessment_Clicked(object sender, EventArgs e)
+        async void RemoveAssessment_Clicked(object sender, EventArgs e)
         {
+            var answer = await DisplayAlert("Delete this Test?", "Delete this Assessment?", "Yes", "No");
 
+            if (answer == true)
+            {
+                var id = int.Parse(CourseId.Text);
+
+                await DatabaseService.RemoveAssessment(id);
+
+                await DisplayAlert("Assessment Deleted", "Assement Deleted", "Ok");
+            }
+
+            else
+            {
+                await DisplayAlert("Delete Canceled", "Assessment Delete Canceled", "Ok");
+            }
+
+            await Navigation.PopAsync();
         }
     }
 }
