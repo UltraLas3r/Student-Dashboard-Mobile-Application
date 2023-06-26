@@ -52,19 +52,28 @@ namespace mschreiber_c971MobileApp.Views
             int PAcount = await DatabaseService.GetPACount(_selectCourseId);
             int OAcount = await DatabaseService.GetOACount(_selectCourseId);
 
-            if (testType == performanceTest)
+            if (PAcount == 1 && OAcount == 0)
             {
+                if (PAcount == 0 && testType == objectiveTest)
+                {
+                    return;
+                }
 
-                if (PAcount == 1 || OAcount == 0)
+                if (PAcount == 0 || testType == performanceTest)
                     {
                         await DisplayAlert("Assessment Type max", "You already have a PA assigned to course ", "OK");
                         return;
                     } 
             }
 
-            if (testType == objectiveTest)
+            if (PAcount == 0 && OAcount == 1)
             {
-                if (PAcount == 0 || OAcount == 1 /*!string.IsNullOrEmpty(testType)*/)
+                if (OAcount == 0 && testType == performanceTest)
+                {
+                    return;
+                }
+
+                if (OAcount == 0 || testType == objectiveTest /*!string.IsNullOrEmpty(testType)*/)
                 {
                     await DisplayAlert("Assessment Type max", "You already have an OA assigned to course ", "OK");
                     return;
@@ -83,24 +92,24 @@ namespace mschreiber_c971MobileApp.Views
                     return;
                 }
 
-                if (string.IsNullOrEmpty(testType))
+             if (string.IsNullOrEmpty(testType))
                 {
                     await DisplayAlert("Invalid Test Type", "Please select a Test Type", "OK");
                     return;
                 }
 
-                if (string.IsNullOrWhiteSpace(StartDatePicker.ToString()))
+            if (string.IsNullOrWhiteSpace(StartDatePicker.ToString()))
                 {
                     await DisplayAlert("Invalid Start Date", "Invalid Start Date", "Ok");
 
                 }
-                if (string.IsNullOrWhiteSpace(EndDatePicker.ToString()))
+               if (string.IsNullOrWhiteSpace(EndDatePicker.ToString()))
                 {
                     await DisplayAlert("Invalid End Date", "Invalid End Date", "Ok");
 
                 }
 
-                if (endDate < startDate)
+              if (endDate < startDate)
                 {
                     await DisplayAlert("Invalid End Date", "End Date cannot be before Start Date", "OK");
                 }
