@@ -9,6 +9,7 @@ using Xamarin.Forms.Xaml;
 using mschreiber_c971MobileApp.Services;
 using mschreiber_c971MobileApp.Models;
 using Xamarin.Essentials;
+using System.Text.RegularExpressions;
 
 namespace mschreiber_c971MobileApp.Views
 {
@@ -20,6 +21,7 @@ namespace mschreiber_c971MobileApp.Views
         private string _courseName;
         private string _assessmentName;
         Assessment assessment = new Assessment();
+        private string _email;
        
         public List<string> pickerStates = new List<string> { "In Progress", "Completed", "Dropped", "Plan To Take" };
 
@@ -31,6 +33,7 @@ namespace mschreiber_c971MobileApp.Views
 
             courseId = course.Id;
             _courseName = course.CourseName;
+            _email = course.Email;
 
             CourseId.Text = course.Id.ToString();
             CourseName.Text = course.CourseName;
@@ -63,7 +66,18 @@ namespace mschreiber_c971MobileApp.Views
 
         async void SaveCourse_Clicked(object sender, EventArgs e)
         {
-           
+           if (!IsValidEmail(Email.Text))
+            {
+                await DisplayAlert("Email Check", "Email must be in valid format \n name@xyz.com", "Ok");
+                return;
+            }
+
+            if (!IsValidPhoneNumber(PhoneNumber.Text))
+            {
+                await DisplayAlert("Phone Check", "Phone number must be in valid format \n 555 555 5555", "Ok");
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(CourseName.Text))
             {
                 await DisplayAlert("Missing Name", "Must enter a name.", "Ok");
@@ -154,30 +168,19 @@ namespace mschreiber_c971MobileApp.Views
             await Navigation.PushAsync(new AddAssessments(_courseName, courseId, assessment));
         }
 
-      
 
-        //async void RemoveAssessment_Clicked(object sender, EventArgs e)
-        //{
-        //    var answer = await DisplayAlert("Delete this assessment?", "Delete this assessment?", "Yes", "No");
-        //    Assessment assessment = new Assessment();
-            
-        //    if (answer == true)
-        //    {
-        //        var name = _assessmentName;
-                
-        //        await DatabaseService.RemoveAssessment(name);
 
-        //        await DisplayAlert("Test Deleted", "Test Deleted", "Ok");
-        //    }
-        //    else
-        //    {
-        //        await DisplayAlert("Delete Canceled", "CourseDelete Canceled", "Ok");
-        //    }
+        public static bool IsValidEmail(string email)
+        {
+            string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+            return Regex.IsMatch(email, pattern);
+        }
 
-        //    await Navigation.PopAsync();
-        //}
-
-       
+        public static bool IsValidPhoneNumber(string phoneNumber)
+        {
+            string pattern = @"^\d{3}\s\d{3}\s\d{4}$";
+            return Regex.IsMatch(phoneNumber, pattern);
+        }
 
         async void AssessmentsCollection_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -13,21 +14,31 @@ namespace mschreiber_c971MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CourseAdd : ContentPage
     {
-        int _selectTermId;
+        int _selectTermId; 
+        
 
         public CourseAdd(int termId)
         {
             InitializeComponent();
             _selectTermId = termId;
+            
+          
         }
 
         async void SaveCourse_Clicked(object sender, EventArgs e)
         {
-            int tossedInt;
-            Decimal tossedDecimal;
 
-           
+            if (!IsValidEmail(InstructorEmail.Text))
+            {
+                await DisplayAlert("Email Check", "Email must be in valid format \n name@xyz.com", "Ok");
+                return;
+            }
 
+            if (!IsValidPhoneNumber(InstructorPhone.Text))
+            {
+                await DisplayAlert("Phone Check", "Phone number must be in valid format \n 555 555 5555", "Ok");
+                return;
+            }
 
             if (string.IsNullOrWhiteSpace(CourseName.Text))
             {
@@ -50,6 +61,18 @@ namespace mschreiber_c971MobileApp.Views
             
 
             await Navigation.PopAsync();
+        }
+
+        public static bool IsValidEmail(string email)
+        {
+            string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+            return Regex.IsMatch(email, pattern);
+        }
+
+        public static bool IsValidPhoneNumber(string phoneNumber)
+        {
+            string pattern = @"^\d{3}\s\d{3}\s\d{4}$"; 
+            return Regex.IsMatch(phoneNumber, pattern);
         }
 
         async void CancelCourse_Clicked(object sender, EventArgs e)

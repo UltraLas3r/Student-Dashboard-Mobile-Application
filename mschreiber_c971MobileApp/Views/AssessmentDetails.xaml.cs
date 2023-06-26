@@ -24,6 +24,8 @@ namespace mschreiber_c971MobileApp.Views
             CourseId.Text = assessment.CourseId.ToString();
             AssessmentName.Text = assessment.AssessmentName;
             AssessmentType.Text = assessment.AssessmentType;
+            StartDatePicker.Date = assessment.StartDate;
+            EndDatePicker.Date = assessment.AnticipatedEndDate;
         }
 
         public void GetCourseInfo(CourseInfo course)
@@ -47,8 +49,8 @@ namespace mschreiber_c971MobileApp.Views
         async void SaveAssessment_Clicked(object sender, EventArgs e)
         {
 
-            await DatabaseService.UpdateAssessment(Int32.Parse(CourseId.Text), AssessmentName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString());
-            
+            await DatabaseService.UpdateAssessment(Int32.Parse(CourseId.Text), AssessmentName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()));
+            await Navigation.PopAsync();
         }
 
         async void CancelAssessment_Clicked(object sender, EventArgs e)

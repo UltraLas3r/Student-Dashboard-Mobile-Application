@@ -46,11 +46,15 @@
                             <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Test Name:</Label>
                             <Entry Text="{Binding AssessmentName}" x:Name="AssessmentName"  Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" ></Entry>
 
-                            <Label Grid.Row="0" Grid.Column="2" FontSize="Medium" VerticalOptions="Center">Type</Label>
-                            <Entry Text="{Binding AssessmentType}" x:Name="AssessmentType" Grid.Row="0" Grid.Column="3" VerticalTextAlignment="End" IsReadOnly="True"></Entry>
-                            <!--<Button x:Name="EditAssessment" Grid.Row="0" Grid.Column="4" Text="Edit" Clicked="EditAssessment_Clicked" HorizontalOptions="Start"></Button>-->
+                            <Label Grid.Row="2" Grid.Column="0" FontSize="Medium" VerticalOptions="Center">Type</Label>
+                            <Entry Text="{Binding AssessmentType}" x:Name="AssessmentType" Grid.Row="2" Grid.Column="1" VerticalTextAlignment="End" IsReadOnly="True"></Entry>
+                            
+                            <Label Grid.Row="3" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Start Date</Label>
+                            <DatePicker Grid.Row="3" Grid.Column="1" x:Name="StartDatePicker" Format="D"></DatePicker>
 
-                        </Grid>
+                            <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End Date</Label>
+                <DatePicker Grid.Row="4" Grid.Column="1" x:Name="EndDatePicker" Format="D"></DatePicker>   
+            </Grid>
                     </StackLayout>
                 <!--</DataTemplate>-->
             <!--</CollectionView.ItemTemplate>-->
