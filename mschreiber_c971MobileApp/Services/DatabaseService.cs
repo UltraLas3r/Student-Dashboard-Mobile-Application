@@ -93,6 +93,7 @@ namespace mschreiber_c971MobileApp.Services
         }
 
         #endregion
+
         #region Term methods
         public static async Task AddTerm(string name, DateTime startDate, DateTime anticipatedEndDate)
         {
@@ -178,13 +179,14 @@ namespace mschreiber_c971MobileApp.Services
         }
 
 
-        public static async Task AddAssessments(int Id, string assessmentName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
+        public static async Task AddAssessments(int courseId, string assessmentName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
         {
             await Init();
 
             var Assessment = new Assessment()
             {
-                CourseId = Id,  
+                  //assessmentId    <<< Gonna need some work to adjust this if i Change anything in the constructor
+                CourseId = courseId,  
                 AssessmentName = assessmentName,
                 AssessmentType = assessmentType,
                 StartDate = startDate,
