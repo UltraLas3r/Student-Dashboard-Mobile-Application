@@ -18,7 +18,8 @@ namespace mschreiber_c971MobileApp.Views
     {
         private int termId;
         private string randomName;
-        private int courseId = 1;
+        private int courseId;
+        private string assessmentName;
         protected override async void OnAppearing()
         {
             base.OnAppearing();

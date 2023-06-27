@@ -49,8 +49,8 @@ namespace mschreiber_c971MobileApp.Views
             string performanceTest = "Performance";
             string objectiveTest = "Objective";
           
-            int PAcount = await DatabaseService.GetPACount(_selectCourseId);
-            int OAcount = await DatabaseService.GetOACount(_selectCourseId);
+            int PAcount = await DatabaseService.GetPACount(_selectCourseId, testType);
+            int OAcount = await DatabaseService.GetOACount(_selectCourseId, testType);
 
             if (PAcount == 1 && OAcount == 0)
             {

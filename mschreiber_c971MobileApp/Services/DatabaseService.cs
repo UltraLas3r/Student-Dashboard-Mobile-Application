@@ -57,23 +57,25 @@ namespace mschreiber_c971MobileApp.Services
             return termCount;
         }
 
-        #endregion
-        //TODO: figure this out ...
-        public static async Task<int> GetOACount(int _courseId)
+        
+       
+        public static async Task<int> GetOACount(int _courseId, string testType)
         {
-            var performanceAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE courseId = '{_courseId}' AND AssessmentType = 'Objective'");
+            var ObjectiveAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE courseId = '{_courseId}' AND AssessmentType ='{testType}'");
+            int ObjectiveCount = ObjectiveAssessments.Count();
+            return ObjectiveCount;
+
+        }
+
+        public static async Task<int> GetPACount(int _courseId, string testType)
+        {
+            var performanceAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE courseId = '{_courseId}' AND AssessmentType ='{testType}'");
             int performanceCount = performanceAssessments.Count();
             return performanceCount;
 
         }
 
-        public static async Task<int> GetPACount(int _courseId)
-        {
-            var performanceAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE courseId = '{_courseId}' AND AssessmentType = 'Performance'");
-            int performanceCount = performanceAssessments.Count();
-            return performanceCount;
 
-        }
         //TODO: Remove these, for testing purposes
         public static async Task<int> GetALLPACount()
         {
@@ -90,8 +92,7 @@ namespace mschreiber_c971MobileApp.Services
             return objectiveCount;
         }
 
-        
-
+        #endregion
         #region Term methods
         public static async Task AddTerm(string name, DateTime startDate, DateTime anticipatedEndDate)
         {
@@ -156,12 +157,15 @@ namespace mschreiber_c971MobileApp.Services
         public static async Task<IEnumerable<Assessment>> GetAssessments(int courseId)
         {
             await Init();
+            var newAssessment = await _db.Table<Assessment>()
+            .Where(i => i.CourseId == courseId)
+            .ToListAsync();
 
-
-            var newAssessment = await _db.Table<Assessment>().Where(i => i.CourseId == courseId).ToListAsync();
-
+            
             return newAssessment;
         }
+
+       
 
         public static async Task<IEnumerable<Assessment>> GetAssessments() //get ALL assessments for notifications
         {
@@ -180,7 +184,7 @@ namespace mschreiber_c971MobileApp.Services
 
             var Assessment = new Assessment()
             {
-                CourseId = Id, //foreign key 
+                CourseId = Id,  
                 AssessmentName = assessmentName,
                 AssessmentType = assessmentType,
                 StartDate = startDate,
@@ -216,15 +220,35 @@ namespace mschreiber_c971MobileApp.Services
         }
 
 
-        public static async Task RemoveAssessment(int id)
+        public static async Task RemoveAssessment(int courseId, string assessmentType)
         {
             await Init();
 
-            await _db.DeleteAsync<Assessment>(id);
+            //var assessmentQuery = await _db.Table<Assessment>()
+            // .Where(i => i.CourseId == courseId)
+            // .FirstOrDefaultAsync();
+
+            var assessmentQuery = await _db.Table<Assessment>()
+                .Where(i => i.CourseId == courseId && i.AssessmentType == assessmentType)
+                .FirstOrDefaultAsync();
+
+            if (assessmentQuery != null)
+            {
+                assessmentQuery.CourseId = courseId;
+                assessmentQuery.AssessmentType = assessmentType;
+                
+
+                await _db.UpdateAsync(assessmentQuery);
+            }
+
+
+
+
+            await _db.DeleteAsync<Assessment>(courseId);
         }
 
 
-        #endregion 
+        #endregion
 
         #region courses methods
 

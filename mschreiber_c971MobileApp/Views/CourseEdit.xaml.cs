@@ -45,6 +45,7 @@ namespace mschreiber_c971MobileApp.Views
             EndDatePicker.Date = course.AnticipatedEndDate;
             NotesEditor.Text = course.Notes;
             
+
         }
 
         public CourseEdit(Assessment assessment)
@@ -62,6 +63,8 @@ namespace mschreiber_c971MobileApp.Views
 
             AssessmentsCollection.ItemsSource = await DatabaseService.GetAssessments(courseId);
         }
+
+       
 
 
         async void SaveCourse_Clicked(object sender, EventArgs e)

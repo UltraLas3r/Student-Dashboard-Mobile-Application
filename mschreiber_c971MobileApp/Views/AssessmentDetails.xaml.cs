@@ -28,19 +28,12 @@ namespace mschreiber_c971MobileApp.Views
             EndDatePicker.Date = assessment.AnticipatedEndDate;
         }
 
-        public void GetCourseInfo(CourseInfo course)
-        {
-         
-        }
+        
 
-        private void EditAssessment_Clicked(object sender, EventArgs e)
-        {
-
-        }
+       
 
         async void SaveAssessment_Clicked(object sender, EventArgs e)
         {
-
             await DatabaseService.UpdateAssessment(Int32.Parse(CourseId.Text), AssessmentName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()));
             await Navigation.PopAsync();
         }
@@ -57,8 +50,9 @@ namespace mschreiber_c971MobileApp.Views
             if (answer == true)
             {
                 var id = int.Parse(CourseId.Text);
+                var assessmentType = AssessmentType.Text;
 
-                await DatabaseService.RemoveAssessment(id);
+                await DatabaseService.RemoveAssessment(id, assessmentType);
 
                 await DisplayAlert("Assessment Deleted", "Assement Deleted", "Ok");
             }
