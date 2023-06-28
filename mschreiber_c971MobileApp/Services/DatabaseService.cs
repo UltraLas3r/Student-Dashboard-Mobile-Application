@@ -331,7 +331,7 @@ namespace mschreiber_c971MobileApp.Services
 
             TermInfo term1 = new TermInfo
             {
-                Name = "Sample 1",
+                Name = "Evaluation Term",
                 StartDate = DateTime.Now,
                 AnticipatedEndDate = DateTime.Now.AddDays(+100),
             };
@@ -341,9 +341,9 @@ namespace mschreiber_c971MobileApp.Services
             CourseInfo course1a = new CourseInfo
             {
                 CourseName = "Lion Course",
-                Instructor = "Joe Bob",
-                Phone = "555 555 5555",
-                Email = "Joe@gmail.com",
+                Instructor = "Michael Schreiber",
+                Phone = "775 843 3887",
+                Email = "mschr52@wgu.edu",
                 StartDate = DateTime.Now,
                 AnticipatedEndDate = DateTime.Now.AddDays(+90),
                 StartNotification = true,
@@ -351,112 +351,33 @@ namespace mschreiber_c971MobileApp.Services
             };
             await _db.InsertAsync(course1a);
 
-            CourseInfo course1b = new CourseInfo
+            Assessment assessment1a = new Assessment
             {
-                CourseName = "Tiger Course",
-                Instructor = "Jessica Anne",
-                Phone = "556 777 8888",
-                Email = "Janne@gmail.com",
+                AssessmentId = 1,
+                CourseId = course1a.TermId,
+                AssessmentName = "Eval PA",
+                AssessmentType = "Performance",
                 StartDate = DateTime.Now,
-                AnticipatedEndDate = DateTime.Now.AddDays(+90),
-                StartNotification = true,
-                TermId = term1.Id
-            };
-            await _db.InsertAsync(course1b);
+                AnticipatedEndDate = DateTime.Now.AddDays(+10),
+                StartDateNotify = true,
+                EndDateNotify = false
 
-            CourseInfo course1c = new CourseInfo
+            };
+            await _db.InsertAsync(assessment1a);
+
+            Assessment assessment1b = new Assessment
             {
-                CourseName = "Eagle Course",
-                Instructor = "Maureen McDevitt",
-                Phone = "888 888 0099",
-                Email = "MAMCD@gmail.com",
+                AssessmentId = 2,
+                CourseId = course1a.TermId,
+                AssessmentName = "Eval OA",
+                AssessmentType = "Objective",
                 StartDate = DateTime.Now,
-                AnticipatedEndDate = DateTime.Now.AddDays(+90),
-                StartNotification = true,
-                TermId = term1.Id
+                AnticipatedEndDate = DateTime.Now.AddDays(+10),
+                StartDateNotify = true,
+                EndDateNotify = false
+
             };
-
-            await _db.InsertAsync(course1c);
-
-            CourseInfo course1d = new CourseInfo
-            {
-                CourseName = "CAT Course",
-                Instructor = "Maureen McDevitt",
-                Phone = "888 888 0099",
-                Email = "MAMCD@gmail.com",
-                StartDate = DateTime.Now,
-                AnticipatedEndDate = DateTime.Now.AddDays(+90),
-                StartNotification = true,
-                TermId = term1.Id
-            };
-
-            await _db.InsertAsync(course1d);
-
-            CourseInfo course1e = new CourseInfo
-            {
-                CourseName = "DOG Course",
-                Instructor = "Maureen McDevitt",
-                Phone = "888 888 0099",
-                Email = "MAMCD@gmail.com",
-                StartDate = DateTime.Now,
-                AnticipatedEndDate = DateTime.Now.AddDays(+90),
-                StartNotification = true,
-                TermId = term1.Id
-            };
-
-            await _db.InsertAsync(course1e);
-
-
-
-            //TODO delete this extra data insert another Term with Courses attached
-
-            //    TermInfo term2 = new TermInfo
-            //    {
-            //        Name = "Term 2",
-            //        StartDate = DateTime.Now,
-            //        AnticipatedEndDate = DateTime.Now.AddDays(+100),
-            //    };
-            //    await _db.InsertAsync(term2);
-
-            //    CourseInfo course2a = new CourseInfo
-            //    {
-            //        CourseName = "Mountain Course",
-            //        Instructor = "John Muir",
-            //        Phone = "555555555",
-            //        Email = "yosemiteGuy@gmail.com",
-            //        StartDate = DateTime.Now,
-            //        AnticipatedEndDate = DateTime.Now.AddDays(+90),
-            //        StartNotification = true,
-            //        TermId = term2.Id
-            //    };
-            //    await _db.InsertAsync(course2a);
-
-            //    CourseInfo course2b = new CourseInfo
-            //    {
-            //        CourseName = "River Course",
-            //        Instructor = "Mary Catherine Ruth",
-            //        Phone = "555555555",
-            //        Email = "Priory@gmail.com",
-            //        StartDate = DateTime.Now,
-            //        AnticipatedEndDate = DateTime.Now.AddDays(+90),
-            //        StartNotification = true,
-            //        TermId = term2.Id
-            //    };
-            //    await _db.InsertAsync(course2b);
-
-            //    CourseInfo course2c = new CourseInfo
-            //    {
-            //        CourseName = "Meadows Course",
-            //        Instructor = "Tiger Woods",
-            //        Phone = "555555555",
-            //        Email = "GolfLvr@gmail.com",
-            //        StartDate = DateTime.Now,
-            //        AnticipatedEndDate = DateTime.Now.AddDays(+90),
-            //        StartNotification = true,
-            //        TermId = term2.Id
-            //    };
-            //    await _db.InsertAsync(course2c);
-
+            await _db.InsertAsync(assessment1b);
         }
 
         public static async

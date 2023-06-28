@@ -84,7 +84,7 @@ namespace mschreiber_c971MobileApp.Views
 
             if (PAcount == 1 && OAcount == 1)
             {
-                await DisplayAlert("Assessment Type max", "Unable to add more assessments to course", "OK");
+                await DisplayAlert("Assessment max", "Unable to add more assessments to course", "OK");
                 return;
             }
 
