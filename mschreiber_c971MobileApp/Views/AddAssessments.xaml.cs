@@ -20,6 +20,7 @@ namespace mschreiber_c971MobileApp.Views
         string assessmentName;
         string _selectAssessmentType;
         string _selectAssessmentName;
+        int _assessmentId;
 
         Assessment assessment = new Assessment();
         public AddAssessments(string courseName, int courseId, Assessment assessment)
@@ -31,6 +32,7 @@ namespace mschreiber_c971MobileApp.Views
             _selectAssessmentType = assessment.AssessmentType;
 
             Title = "Add Assessment to: " + _course;
+            _assessmentId = assessment.AssessmentId;
 
             CourseId.Text = _selectCourseId.ToString();
            
@@ -117,7 +119,7 @@ namespace mschreiber_c971MobileApp.Views
 
 
             //get values from form controls to pass into the method 
-            await DatabaseService.AddAssessments(_selectCourseId, AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
+            await DatabaseService.AddAssessments(_assessmentId, _selectCourseId, AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
 
            
             await Navigation.PopAsync();

@@ -42,7 +42,7 @@ namespace mschreiber_c971MobileApp.Views
         {
             await Navigation.PopAsync();
         }
-
+        //todo change this to look at AsessmentId
         async void RemoveAssessment_Clicked(object sender, EventArgs e)
         {
             var answer = await DisplayAlert("Delete this Test?", "Delete this Assessment?", "Yes", "No");

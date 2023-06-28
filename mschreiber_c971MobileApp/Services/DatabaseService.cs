@@ -15,7 +15,7 @@ namespace mschreiber_c971MobileApp.Services
     {
         private static SQLiteAsyncConnection _db;
         private static SQLiteConnection _dbConnection;
-        private readonly int _totalCourseCount;
+        
         
         static async Task Init()
         {
@@ -29,7 +29,7 @@ namespace mschreiber_c971MobileApp.Services
             _db = new SQLiteAsyncConnection(databasePath);
             _dbConnection = new SQLiteConnection(databasePath);
 
-
+            
 
 
 
@@ -179,13 +179,13 @@ namespace mschreiber_c971MobileApp.Services
         }
 
 
-        public static async Task AddAssessments(int courseId, string assessmentName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
+        public static async Task AddAssessments(int assessmentId, int courseId, string assessmentName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
         {
             await Init();
 
             var Assessment = new Assessment()
             {
-                  //assessmentId    <<< Gonna need some work to adjust this if i Change anything in the constructor
+                AssessmentId = assessmentId,
                 CourseId = courseId,  
                 AssessmentName = assessmentName,
                 AssessmentType = assessmentType,

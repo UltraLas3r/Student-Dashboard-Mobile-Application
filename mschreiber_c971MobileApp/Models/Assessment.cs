@@ -8,11 +8,10 @@ namespace mschreiber_c971MobileApp.Models
     
     public class Assessment
     {
-       [PrimaryKey, AutoIncrement]
+        [Preserve(AllMembers = true)]
+        [PrimaryKey, AutoIncrement]
+        public int AssessmentId { get; set; } 
         public int CourseId { get; set; }
-
-        //public int AssessmentID { get; set; } << Possibly use this for test creations
-
         public string AssessmentType { get; set; }
         public int TestId { get; set; }
         public string AssessmentName { get; set; }
