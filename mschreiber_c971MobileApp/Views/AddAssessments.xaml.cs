@@ -45,14 +45,15 @@ namespace mschreiber_c971MobileApp.Views
             DateTime endDate = EndDatePicker.Date;
 
 
-            string courseId = CourseId.Text;
+            string courseId = CourseId.Text.ToString();
             string assessmentName = AssessmentName.Text;
+            int assessmentId = assessment.AssessmentId;
             string testType = TestTypePicker.SelectedItem as string;
             string performanceTest = "Performance";
             string objectiveTest = "Objective";
           
-            int PAcount = await DatabaseService.GetPACount(_selectCourseId, testType);
-            int OAcount = await DatabaseService.GetOACount(_selectCourseId, testType);
+            int PAcount = await DatabaseService.GetPACount(courseId);
+            int OAcount = await DatabaseService.GetOACount(courseId);
 
             if (PAcount == 1 && OAcount == 0)
             {
@@ -119,7 +120,7 @@ namespace mschreiber_c971MobileApp.Views
 
 
             //get values from form controls to pass into the method 
-            await DatabaseService.AddAssessments(_assessmentId, _selectCourseId, AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
+            await DatabaseService.AddAssessments(_assessmentId, AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
 
            
             await Navigation.PopAsync();

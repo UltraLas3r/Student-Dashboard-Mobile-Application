@@ -59,38 +59,24 @@ namespace mschreiber_c971MobileApp.Services
 
         
        
-        public static async Task<int> GetOACount(int _courseId, string testType)
+        public static async Task<int> GetPACount(string courseId)
         {
-            var ObjectiveAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE courseId = '{_courseId}' AND AssessmentType ='{testType}'");
+            var performanceAssessments = await _db.QueryAsync<Assessment>($"SELECT COUNT(*) FROM Assessment WHERE CourseId ='{courseId}' AND AssessmentType ='Performance'");
+            int performanceCount = performanceAssessments.Count();
+            return performanceCount;
+
+        }
+
+        public static async Task<int> GetOACount(string courseId)
+        {
+            var ObjectiveAssessments = await _db.QueryAsync<Assessment>($"SELECT COUNT(*) FROM Assessment WHERE CourseId ='{courseId}' AND AssessmentType ='Objective'");
             int ObjectiveCount = ObjectiveAssessments.Count();
             return ObjectiveCount;
 
         }
 
-        public static async Task<int> GetPACount(int _courseId, string testType)
-        {
-            var performanceAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE courseId = '{_courseId}' AND AssessmentType ='{testType}'");
-            int performanceCount = performanceAssessments.Count();
-            return performanceCount;
 
-        }
-
-
-        //TODO: Remove these, for testing purposes
-        public static async Task<int> GetALLPACount()
-        {
-            var performanceAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE AssessmentType = 'Performance'");
-            int performanceCount = performanceAssessments.Count();
-           
-            return performanceCount;
-        }
-
-        public static async Task<int> GetALLOACount()
-        {
-            var objectiveAssessments = await _db.QueryAsync<Assessment>($"SELECT AssessmentType FROM Assessment WHERE AssessmentType = 'Objective'");
-            int objectiveCount = objectiveAssessments.Count();
-            return objectiveCount;
-        }
+    
 
         #endregion
 
@@ -155,11 +141,11 @@ namespace mschreiber_c971MobileApp.Services
 
         #region Assessment Methods
 
-        public static async Task<IEnumerable<Assessment>> GetAssessments(int courseId)
+        public static async Task<IEnumerable<Assessment>> GetAssessments(int _courseId)
         {
             await Init();
             var newAssessment = await _db.Table<Assessment>()
-            .Where(i => i.CourseId == courseId)
+            .Where(i => i.CourseId == _courseId)
             .ToListAsync();
 
             
@@ -179,14 +165,14 @@ namespace mschreiber_c971MobileApp.Services
         }
 
 
-        public static async Task AddAssessments(int assessmentId, int courseId, string assessmentName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
+        public static async Task AddAssessments(int assessmentId, string assessmentName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
         {
             await Init();
 
             var Assessment = new Assessment()
             {
                 AssessmentId = assessmentId,
-                CourseId = courseId,  
+                 
                 AssessmentName = assessmentName,
                 AssessmentType = assessmentType,
                 StartDate = startDate,

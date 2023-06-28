@@ -17,37 +17,42 @@ namespace mschreiber_c971MobileApp.Views
     public partial class Dashboard : ContentPage
     {
         private int termId;
+        private string courseId;
         private string randomName;
-        private int courseId;
+        private int _assessmentId;
         private string assessmentName;
+
+        private string assessmentOA = "Objective";
+        private string assessmentPA = "Performance";
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             var CourseList = await DatabaseService.GetCourses();
+            var AssessmentList = await DatabaseService.GetAssessments();
             var notifyRandom = new Random();
 
        
 
-            foreach (CourseInfo courseName in CourseList)
+            foreach (CourseInfo course in CourseList)
             {
                 var notifyId = notifyRandom.Next(1000);
 
-                if (courseName.StartNotification == true)
+                if (course.StartNotification == true)
                 {
-                    if (courseName.StartDate == DateTime.Today)
+                    if (course.StartDate == DateTime.Today)
                     {
-                        CrossLocalNotifications.Current.Show("Notice", $"{courseName.CourseName} begins today!", notifyId);
+                        CrossLocalNotifications.Current.Show("Notice", $"{course.CourseName} begins today!", notifyId);
                     }
                 }
             }
 
-            var AssessmentList = await DatabaseService.GetAssessments(courseId);
-            var notifyRandomTest = new Random();
+           
+            
 
 
             foreach (Assessment assessment in AssessmentList)
             {
-                var notifyId = notifyRandomTest.Next(1000);
+                var notifyId = notifyRandom.Next(1000);
 
                 if (assessment.StartDateNotify == true)
                 {
@@ -58,10 +63,10 @@ namespace mschreiber_c971MobileApp.Views
                 }
             }
 
-            await DatabaseService.GetALLOACount();
+            await DatabaseService.GetOACount(courseId);
 
 
-            await DatabaseService.GetALLPACount();
+            await DatabaseService.GetPACount(courseId);
 
 
 

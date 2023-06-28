@@ -18,6 +18,7 @@ namespace mschreiber_c971MobileApp.Views
     {
         private readonly int _selectTermId;
         private readonly int _courseId;
+        private int _assessmentId;
         private string _courseName;
         private string _assessmentName;
         Assessment assessment = new Assessment();
@@ -52,6 +53,7 @@ namespace mschreiber_c971MobileApp.Views
         {
             InitializeComponent();
             _assessmentName = assessment.AssessmentName;
+            _assessmentId = assessment.AssessmentId;
         }
 
 
@@ -59,7 +61,9 @@ namespace mschreiber_c971MobileApp.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            
+
+           
+
 
             AssessmentsCollection.ItemsSource = await DatabaseService.GetAssessments(_courseId);
         }
