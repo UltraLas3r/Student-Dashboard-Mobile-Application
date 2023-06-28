@@ -21,9 +21,12 @@ namespace mschreiber_c971MobileApp.Views
         private int _assessmentId;
         private string _courseName;
         private string _assessmentName;
-        Assessment assessment = new Assessment();
+
+        bool endNotify;
+        bool startNotify;
+        
         private string _email;
-       
+        Assessment assessment = new Assessment();
         public List<string> pickerStates = new List<string> { "In Progress", "Completed", "Dropped", "Plan To Take" };
 
         public CourseEdit(CourseInfo course)
@@ -45,6 +48,10 @@ namespace mschreiber_c971MobileApp.Views
             StartDatePicker.Date = course.StartDate;
             EndDatePicker.Date = course.AnticipatedEndDate;
             NotesEditor.Text = course.Notes;
+
+            StartDateNotify.IsToggled = course.StartNotification;
+            EndDateNotify.IsToggled = course.EndNotification;
+            
             
 
         }
@@ -62,9 +69,7 @@ namespace mschreiber_c971MobileApp.Views
         {
             base.OnAppearing();
 
-           
-
-
+    
             AssessmentsCollection.ItemsSource = await DatabaseService.GetAssessments(_courseId);
         }
 
@@ -111,7 +116,7 @@ namespace mschreiber_c971MobileApp.Views
             }
 
            
-            await DatabaseService.UpdateCourse(_courseId, CourseName.Text, StatusTypePicker.SelectedItem.ToString(), DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()), CourseInstructorName.Text, PhoneNumber.Text, Email.Text, NotesEditor.Text);
+            await DatabaseService.UpdateCourse(_courseId, CourseName.Text, StartDateNotify.IsToggled, EndDateNotify.IsToggled, StatusTypePicker.SelectedItem.ToString(), DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()), CourseInstructorName.Text, PhoneNumber.Text, Email.Text, NotesEditor.Text);
 
 
         

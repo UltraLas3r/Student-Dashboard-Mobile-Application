@@ -28,9 +28,7 @@ namespace mschreiber_c971MobileApp.Views
             TermName.Text = termId.Name;
             StartDatePicker.Date = termId.StartDate;
             EndDatePicker.Date = termId.AnticipatedEndDate;
-            ////todo work on this
-            //_oa = assessment.AssessmentType;
-            //_pa = assessment.AssessmentType;
+           
 
         }
 

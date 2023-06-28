@@ -74,7 +74,7 @@
                             <Label Grid.Row="0" Grid.Column="0" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" VerticalTextAlignment="End" >Course ID</Label>
                             <Entry Text="{Binding Id}" x:Name="TermId" Placeholder="Enter Term Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="End" IsReadOnly="True"></Entry>
 
-                            <Label Grid.Row="1" Grid.Column="0" FontSize="Small" VerticalTextAlignment="End">Term Name</Label>
+                            <Label Grid.Row="1" Grid.Column="0" FontSize="Small" VerticalTextAlignment="End">Course Name</Label>
                             <Entry Text="{Binding CourseName}" x:Name="TermName" Placeholder="Instructor Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="End" ></Entry>
 
                             <Label Grid.Row="2" Grid.Column="0" FontSize="Small" VerticalTextAlignment="End">Instructor Name</Label>

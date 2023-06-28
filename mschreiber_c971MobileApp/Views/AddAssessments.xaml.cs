@@ -16,7 +16,7 @@ namespace mschreiber_c971MobileApp.Views
     {
         //public CourseInfo _course;
         string _course;
-        int _selectCourseId;
+        int _courseId;
         string assessmentName;
         string _selectAssessmentType;
         string _selectAssessmentName;
@@ -27,15 +27,17 @@ namespace mschreiber_c971MobileApp.Views
         {
             InitializeComponent();
             _course = courseName;
-            _selectCourseId = courseId;
+            _courseId = courseId;
+            //AssessmentId.Text = assessment.AssessmentId.ToString();
+            AssessmentId.Text = courseId.ToString();
+
             _selectAssessmentName = assessment.AssessmentName;
             _selectAssessmentType = assessment.AssessmentType;
 
             Title = "Add Assessment to: " + _course;
             _assessmentId = assessment.AssessmentId;
 
-            CourseId.Text = _selectCourseId.ToString();
-           
+            //CourseId.Text = _selectCourseId.ToString();
         }
 
         async void SaveAssessmentToCourse_Clicked(object sender, EventArgs e)
@@ -44,16 +46,15 @@ namespace mschreiber_c971MobileApp.Views
             DateTime startDate = StartDatePicker.Date;
             DateTime endDate = EndDatePicker.Date;
 
-
-            string courseId = CourseId.Text.ToString();
+            //string courseId = CourseId.Text.ToString();
             string assessmentName = AssessmentName.Text;
-            int assessmentId = assessment.AssessmentId;
+            
             string testType = TestTypePicker.SelectedItem as string;
             string performanceTest = "Performance";
             string objectiveTest = "Objective";
           
-            int PAcount = await DatabaseService.GetPACount(courseId);
-            int OAcount = await DatabaseService.GetOACount(courseId);
+            int PAcount = await DatabaseService.GetPACount(_courseId);
+            int OAcount = await DatabaseService.GetOACount(_courseId);
 
             if (PAcount == 1 && OAcount == 0)
             {
@@ -89,7 +90,7 @@ namespace mschreiber_c971MobileApp.Views
                 return;
             }
 
-            if (string.IsNullOrEmpty(courseId) || string.IsNullOrEmpty(assessmentName))
+            if (string.IsNullOrEmpty(AssessmentId.Text) || string.IsNullOrEmpty(assessmentName))
                 {
                     await DisplayAlert("Missing Information", "Please fill in all fields", "OK");
                     return;
@@ -120,7 +121,7 @@ namespace mschreiber_c971MobileApp.Views
 
 
             //get values from form controls to pass into the method 
-            await DatabaseService.AddAssessments(_assessmentId, AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
+            await DatabaseService.AddAssessments(_courseId, _assessmentId, AssessmentName.Text, TestTypePicker.SelectedItem.ToString(), StartDatePicker.Date, EndDatePicker.Date, StartDateNotify.IsToggled, EndDateNotify.IsToggled);
 
            
             await Navigation.PopAsync();

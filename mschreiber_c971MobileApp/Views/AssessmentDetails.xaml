@@ -37,9 +37,6 @@
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-
-
-
                             <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Id</Label>
                             <Entry Text="{Binding AssessmentId}" x:Name="AssessmentId"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" IsReadOnly="True"></Entry>
 

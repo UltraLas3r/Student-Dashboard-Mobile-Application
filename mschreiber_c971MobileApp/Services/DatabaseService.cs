@@ -15,6 +15,7 @@ namespace mschreiber_c971MobileApp.Services
     {
         private static SQLiteAsyncConnection _db;
         private static SQLiteConnection _dbConnection;
+
         
         
         static async Task Init()
@@ -29,14 +30,13 @@ namespace mschreiber_c971MobileApp.Services
             _db = new SQLiteAsyncConnection(databasePath);
             _dbConnection = new SQLiteConnection(databasePath);
 
-            
 
+            //await _db.DropTableAsync<Assessment>();
 
 
             await _db.CreateTableAsync<TermInfo>();
             await _db.CreateTableAsync<CourseInfo>();
-            await _db.CreateTableAsync<Assessment>(); 
-            
+            await _db.CreateTableAsync<Assessment>();    
         }
 
         #region Count Methods
@@ -47,7 +47,6 @@ namespace mschreiber_c971MobileApp.Services
             int courseCount = allCourseRecords.Count();
 
             return courseCount;
-
         }
 
         public static async Task<int> GetTermCount()
@@ -57,19 +56,17 @@ namespace mschreiber_c971MobileApp.Services
             return termCount;
         }
 
-        
-       
-        public static async Task<int> GetPACount(string courseId)
+        public static async Task<int> GetPACount(int courseId)
         {
-            var performanceAssessments = await _db.QueryAsync<Assessment>($"SELECT COUNT(*) FROM Assessment WHERE CourseId ='{courseId}' AND AssessmentType ='Performance'");
+            var performanceAssessments = await _db.QueryAsync<Assessment>($"SELECT * FROM Assessment WHERE courseId ='{courseId}' AND AssessmentType ='Performance'");
             int performanceCount = performanceAssessments.Count();
             return performanceCount;
 
         }
 
-        public static async Task<int> GetOACount(string courseId)
+        public static async Task<int> GetOACount(int courseId)
         {
-            var ObjectiveAssessments = await _db.QueryAsync<Assessment>($"SELECT COUNT(*) FROM Assessment WHERE CourseId ='{courseId}' AND AssessmentType ='Objective'");
+            var ObjectiveAssessments = await _db.QueryAsync<Assessment>($"SELECT * FROM Assessment WHERE courseId ='{courseId}' AND AssessmentType ='Objective'");
             int ObjectiveCount = ObjectiveAssessments.Count();
             return ObjectiveCount;
 
@@ -148,7 +145,11 @@ namespace mschreiber_c971MobileApp.Services
             .Where(i => i.CourseId == _courseId)
             .ToListAsync();
 
-            
+            //await Init();
+            //var newAssessment = await _db.Table<Assessment>()
+            //.Where(i => i.AssessmentId == _assessmentId)
+            //.ToListAsync();
+
             return newAssessment;
         }
 
@@ -165,14 +166,14 @@ namespace mschreiber_c971MobileApp.Services
         }
 
 
-        public static async Task AddAssessments(int assessmentId, string assessmentName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
+        public static async Task AddAssessments(int courseId, int assessmentId, string assessmentName, string assessmentType, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
         {
             await Init();
 
             var Assessment = new Assessment()
             {
+                CourseId = courseId,
                 AssessmentId = assessmentId,
-                 
                 AssessmentName = assessmentName,
                 AssessmentType = assessmentType,
                 StartDate = startDate,
@@ -183,7 +184,7 @@ namespace mschreiber_c971MobileApp.Services
 
             await _db.InsertAsync(Assessment);
 
-            var assessmentNameThing = Assessment.AssessmentName;
+         
         }
 
 
@@ -208,11 +209,14 @@ namespace mschreiber_c971MobileApp.Services
         }
 
 
-        public static async Task RemoveAssessment(int assessmentId)
+        public static async Task RemoveAssessment(int assessmentId, string assessmentType)
         {
             await Init();
 
             await _db.DeleteAsync<Assessment>(assessmentId);
+
+            //todo check this functionality
+            //await _db.QueryAsync<Assessment>($"DELETE FROM Assessment WHERE CourseId ='{assessmentId}' AND AssessmentType = '{assessmentType}'");
         }
 
 
@@ -239,7 +243,7 @@ namespace mschreiber_c971MobileApp.Services
             return courses;
         }
 
-        public static async Task AddCourse(int termId, string courseName, string courseStatus, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, string notes)
+        public static async Task AddCourse(int termId, string courseName, bool startNotify, bool endNotify, string courseStatus, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, string notes)
         {
             var _termId = termId;
             int courseCount = await GetCourseCount(_termId);
@@ -259,6 +263,8 @@ namespace mschreiber_c971MobileApp.Services
                     TermId = termId,
                     CourseName = courseName,
                     CourseStatus = courseStatus,
+                    StartNotification = startNotify,
+                    EndNotification = endNotify,
                     Instructor = instructor,
                     Phone = phone,
                     Email = email,
@@ -281,7 +287,7 @@ namespace mschreiber_c971MobileApp.Services
             await _db.DeleteAsync<CourseInfo>(id);
         }
 
-        public static async Task UpdateCourse(int courseId, string courseName, string courseStatus, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, string notes)
+        public static async Task UpdateCourse(int courseId, string courseName,  bool startNotify, bool endNotify, string courseStatus, DateTime startDate, DateTime anticipatedEndDate, string instructor, string phone, string email, string notes)
         {
             await Init();
 
@@ -293,6 +299,8 @@ namespace mschreiber_c971MobileApp.Services
             {
                 courseQuery.Id = courseId;
                 courseQuery.CourseName = courseName;
+                courseQuery.EndNotification = endNotify;
+                courseQuery.StartNotification = startNotify;
                 courseQuery.CourseStatus = courseStatus;
                 courseQuery.Instructor = instructor;
                 courseQuery.Phone = phone;
@@ -314,6 +322,7 @@ namespace mschreiber_c971MobileApp.Services
         public static async void LoadSampleData()
         {
             await Init();
+            Assessment assessment = new Assessment();
 
             TermInfo term1 = new TermInfo
             {
@@ -332,20 +341,24 @@ namespace mschreiber_c971MobileApp.Services
                 Email = "mschr52@wgu.edu",
                 StartDate = DateTime.Now,
                 AnticipatedEndDate = DateTime.Now.AddDays(+90),
-                StartNotification = true,
+                
+                StartNotification = false,
+                EndNotification = false,
+
+
                 TermId = term1.Id
             };
             await _db.InsertAsync(course1a);
 
             Assessment assessment1a = new Assessment
             {
-                AssessmentId = 1,
+                AssessmentId = assessment.AssessmentId,
                 CourseId = course1a.TermId,
                 AssessmentName = "Eval PA",
                 AssessmentType = "Performance",
                 StartDate = DateTime.Now,
                 AnticipatedEndDate = DateTime.Now.AddDays(+10),
-                StartDateNotify = true,
+                StartDateNotify = false,
                 EndDateNotify = false
 
             };
@@ -353,13 +366,13 @@ namespace mschreiber_c971MobileApp.Services
 
             Assessment assessment1b = new Assessment
             {
-                AssessmentId = 2,
+                AssessmentId = assessment.AssessmentId,
                 CourseId = course1a.TermId,
                 AssessmentName = "Eval OA",
                 AssessmentType = "Objective",
                 StartDate = DateTime.Now,
                 AnticipatedEndDate = DateTime.Now.AddDays(+10),
-                StartDateNotify = true,
+                StartDateNotify = false,
                 EndDateNotify = false
 
             };

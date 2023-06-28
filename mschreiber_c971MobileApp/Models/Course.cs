@@ -20,7 +20,8 @@ namespace mschreiber_c971MobileApp.Models
         public string AssessmentPA { get; set; }
 
         
-        public bool StartNotification { get; set; }
+        public bool StartNotification { get; set; } = false;
+        public bool EndNotification { get; set; } = false;
         public DateTime StartDate { get; set; }
         public DateTime AnticipatedEndDate { get; set; }
         public string Notes { get; set; }

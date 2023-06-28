@@ -31,8 +31,6 @@ namespace mschreiber_c971MobileApp.Views
             var AssessmentList = await DatabaseService.GetAssessments();
             var notifyRandom = new Random();
 
-       
-
             foreach (CourseInfo course in CourseList)
             {
                 var notifyId = notifyRandom.Next(1000);
@@ -45,9 +43,6 @@ namespace mschreiber_c971MobileApp.Views
                     }
                 }
             }
-
-           
-            
 
 
             foreach (Assessment assessment in AssessmentList)
@@ -63,12 +58,10 @@ namespace mschreiber_c971MobileApp.Views
                 }
             }
 
-            await DatabaseService.GetOACount(courseId);
+            await DatabaseService.GetOACount(_assessmentId);
 
 
-            await DatabaseService.GetPACount(courseId);
-
-
+            await DatabaseService.GetPACount(_assessmentId);
 
         }
 

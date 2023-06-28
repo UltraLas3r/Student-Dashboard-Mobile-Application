@@ -21,7 +21,7 @@ namespace mschreiber_c971MobileApp.Views
         {
             InitializeComponent();
             _selectTermId = termId;
-          
+            
           
         }
 
@@ -40,6 +40,12 @@ namespace mschreiber_c971MobileApp.Views
                 return;
             }
 
+            if (StatusTypePicker.SelectedItem == null)
+            {
+                await DisplayAlert("status check", "Please select a Course Status", "Ok");
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(CourseName.Text))
             {
                 await DisplayAlert("Missing Name", "Please enter a name.", "Ok");
@@ -55,9 +61,10 @@ namespace mschreiber_c971MobileApp.Views
                 await DisplayAlert("Missing end date", "Please pick an end date", "Ok");
             }
 
-            
+            //look for the value of the start/end date switch
 
-            await DatabaseService.AddCourse(_selectTermId, CourseName.Text, StatusTypePicker.SelectedItem.ToString(), StartDatePicker.Date, AnticipatedEndDate.Date, InstructorName.Text, InstructorPhone.Text, InstructorEmail.Text, NotesEditor.Text);
+
+            await DatabaseService.AddCourse(_selectTermId, CourseName.Text, StartDateNotify.IsToggled, EndDateNotify.IsToggled, StatusTypePicker.SelectedItem.ToString(), StartDatePicker.Date, AnticipatedEndDate.Date, InstructorName.Text, InstructorPhone.Text, InstructorEmail.Text, NotesEditor.Text);
             
 
             await Navigation.PopAsync();

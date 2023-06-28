@@ -17,24 +17,23 @@ namespace mschreiber_c971MobileApp.Views
     {
         private readonly int _courseId;
         private readonly int _assessmentId;
+        private readonly string _assessmentType;
         CourseInfo courseInfo = new CourseInfo();
         public AssessmentDetails(Assessment assessment)
         {
             InitializeComponent();
+            _assessmentId = assessment.AssessmentId;
+            _assessmentType = assessment.AssessmentType;
             _courseId = assessment.CourseId;
             AssessmentId.Text = assessment.AssessmentId.ToString();
+
             AssessmentName.Text = assessment.AssessmentName;
             AssessmentType.Text = assessment.AssessmentType;
             StartDatePicker.Date = assessment.StartDate;
             EndDatePicker.Date = assessment.AnticipatedEndDate;
 
-            _assessmentId = assessment.AssessmentId;
-
+           
         }
-
-        
-
-       
 
         async void SaveAssessment_Clicked(object sender, EventArgs e)
         {
@@ -53,7 +52,7 @@ namespace mschreiber_c971MobileApp.Views
 
             if (answer == true)
             {
-                await DatabaseService.RemoveAssessment(_assessmentId);
+                await DatabaseService.RemoveAssessment(_assessmentId, _assessmentType);
 
                 await DisplayAlert("Assessment Deleted", "Assement Deleted", "Ok");
             }
