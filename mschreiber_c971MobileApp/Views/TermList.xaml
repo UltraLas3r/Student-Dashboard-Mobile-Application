@@ -8,10 +8,6 @@
             <Label Text="Term Dashboard" FontSize="Medium" />
         </NavigationPage.TitleView>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="StudentProfile" Text="My Profile" Clicked="StudentProfile_Clicked" Order="Secondary"/>
-        <ToolbarItem x:Name="Notes" Text="Notes" Clicked="Notes_Clicked" Order="Secondary"/>
-    </ContentPage.ToolbarItems>
 
     <ContentPage.Content Margin="10,10,10,0">
         <CollectionView x:Name="TermCollectionView"

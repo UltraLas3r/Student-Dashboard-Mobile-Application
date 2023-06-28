@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mschreiber_c971MobileApp.Views.CourseEdit"
-             Title = "Course">
+             Title = "Course Details">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="SAVE" x:Name="SaveCourse" Clicked="SaveCourse_Clicked"   ></ToolbarItem>
         <ToolbarItem Text="CANCEL" x:Name="CancelCourse" Clicked="CancelCourse_Clicked" ></ToolbarItem>
@@ -11,6 +11,7 @@
 
     <StackLayout>
         <Label Text="Course Information" FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
+        <Label x:Name="ListLabels" Text="Select items you wish to edit"  FontSize="Caption" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
         <Grid Padding="5" RowSpacing="-10" ColumnSpacing="15" BackgroundColor="#e4e5ea">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -32,8 +33,8 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">ID</Label>
-            <Entry Text="{Binding Id}" x:Name="CourseId" Placeholder="Enter Course Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>
+            <!--<Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">ID</Label>
+            <Entry Text="{Binding Id}" x:Name="CourseId" Placeholder="Enter Course Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Center" IsReadOnly="True"></Entry>-->
 
             <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Name</Label>
             <Entry Text="{Binding CourseName}" x:Name="CourseName" Placeholder="Enter Course Name" Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Center"></Entry>
@@ -51,7 +52,7 @@
             <DatePicker Grid.Row="5" Grid.Column="1" x:Name="StartDatePicker" Format="D"></DatePicker>
 
             <Label Grid.Row="6" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End Date</Label>
-            <DatePicker Grid.Row="6" Grid.Column="1" x:Name="EndDatePicker"></DatePicker>
+            <DatePicker Grid.Row="6" Grid.Column="1" x:Name="EndDatePicker" Format="D"></DatePicker>
 
 
             <Label Grid.Row="7" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Notes</Label>
@@ -74,13 +75,14 @@
             <Button Grid.Row="9" Grid.Column="1" FontSize="Small" VerticalOptions="Center" Text="Share" x:Name="ShareButton" Clicked="ShareButton_Clicked"></Button>
 
             <Label Grid.Row="10" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" FontAttributes="Bold">Share URI</Label>
-            <Button Grid.Row="10" Grid.Column="1" FontSize="Small" VerticalOptions="Center" HorizontalOptions="End" Text="Share" x:Name="ShareUri" Clicked="ShareUri_Clicked"></Button>
+            <Button Grid.Row="10" Grid.Column="1" FontSize="Small" VerticalOptions="Center" Text="Share" x:Name="ShareUri" Clicked="ShareUri_Clicked"></Button>
 
-            <Button Grid.Row="11" Grid.Column="1" x:Name="AddATestButton"  Text="Add Test" Clicked="AddATestButton_Clicked" HorizontalOptions="Start"></Button>
+            <Button Grid.Row="11" Grid.Column="0" x:Name="AddATestButton"  Text="Add Test" Clicked="AddATestButton_Clicked" BackgroundColor="#A7f1A8"></Button>
         </Grid>
 
-       
+        <Label x:Name="ListLabel3" Text="Select a test to view more details"  FontSize="Caption" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
         <Label x:Name="AssessmentList" Text="Course Assessments"  FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
+        
         <CollectionView x:Name="AssessmentsCollection"
                         EmptyView="No Assessments In Course"
                         SelectionMode="Single" 

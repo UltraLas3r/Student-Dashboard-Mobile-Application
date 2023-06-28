@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mschreiber_c971MobileApp.Views.AssessmentDetails"
-             Title = "Assessment">
+             Title = "Assessment Details">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="SAVE" x:Name="SaveAssessment" Clicked="SaveAssessment_Clicked"></ToolbarItem>

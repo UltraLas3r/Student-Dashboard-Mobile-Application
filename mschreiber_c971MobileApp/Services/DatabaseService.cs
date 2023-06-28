@@ -224,32 +224,6 @@ namespace mschreiber_c971MobileApp.Services
 
         public static async Task RemoveAssessment(int assessmentId)
         {
-            //await Init();
-
-            //var assessmentQuery = await _db.Table<Assessment>()
-            // .Where(i => i.CourseId == courseId)
-            // .FirstOrDefaultAsync();
-
-            //var assessmentQuery = await _db.Table<Assessment>()
-            //    .Where(i => i.AssessmentType == assessmentId)
-            //    .FirstOrDefaultAsync();
-
-            //if (assessmentQuery != null)
-            //{
-
-            //    assessmentQuery.AssessmentType = assessmentType;
-
-
-            //    await _db.UpdateAsync(assessmentQuery);
-            //}
-
-
-
-
-            //await _db.DeleteAsync<Assessment>(assessmentType);
-
-
-
             await Init();
 
             await _db.DeleteAsync<Assessment>(assessmentId);
@@ -287,6 +261,7 @@ namespace mschreiber_c971MobileApp.Services
             if (courseCount >= 6)
             {
                 await Application.Current.MainPage.DisplayAlert("Term Full", "Only 6 courses per term \nUnable to add more courses to term", "Ok");
+                return;
             }
 
             if (courseCount <= 6)
@@ -403,54 +378,84 @@ namespace mschreiber_c971MobileApp.Services
 
             await _db.InsertAsync(course1c);
 
+            CourseInfo course1d = new CourseInfo
+            {
+                CourseName = "CAT Course",
+                Instructor = "Maureen McDevitt",
+                Phone = "888 888 0099",
+                Email = "MAMCD@gmail.com",
+                StartDate = DateTime.Now,
+                AnticipatedEndDate = DateTime.Now.AddDays(+90),
+                StartNotification = true,
+                TermId = term1.Id
+            };
+
+            await _db.InsertAsync(course1d);
+
+            CourseInfo course1e = new CourseInfo
+            {
+                CourseName = "DOG Course",
+                Instructor = "Maureen McDevitt",
+                Phone = "888 888 0099",
+                Email = "MAMCD@gmail.com",
+                StartDate = DateTime.Now,
+                AnticipatedEndDate = DateTime.Now.AddDays(+90),
+                StartNotification = true,
+                TermId = term1.Id
+            };
+
+            await _db.InsertAsync(course1e);
+
+
+
             //TODO delete this extra data insert another Term with Courses attached
 
-        //    TermInfo term2 = new TermInfo
-        //    {
-        //        Name = "Term 2",
-        //        StartDate = DateTime.Now,
-        //        AnticipatedEndDate = DateTime.Now.AddDays(+100),
-        //    };
-        //    await _db.InsertAsync(term2);
+            //    TermInfo term2 = new TermInfo
+            //    {
+            //        Name = "Term 2",
+            //        StartDate = DateTime.Now,
+            //        AnticipatedEndDate = DateTime.Now.AddDays(+100),
+            //    };
+            //    await _db.InsertAsync(term2);
 
-        //    CourseInfo course2a = new CourseInfo
-        //    {
-        //        CourseName = "Mountain Course",
-        //        Instructor = "John Muir",
-        //        Phone = "555555555",
-        //        Email = "yosemiteGuy@gmail.com",
-        //        StartDate = DateTime.Now,
-        //        AnticipatedEndDate = DateTime.Now.AddDays(+90),
-        //        StartNotification = true,
-        //        TermId = term2.Id
-        //    };
-        //    await _db.InsertAsync(course2a);
+            //    CourseInfo course2a = new CourseInfo
+            //    {
+            //        CourseName = "Mountain Course",
+            //        Instructor = "John Muir",
+            //        Phone = "555555555",
+            //        Email = "yosemiteGuy@gmail.com",
+            //        StartDate = DateTime.Now,
+            //        AnticipatedEndDate = DateTime.Now.AddDays(+90),
+            //        StartNotification = true,
+            //        TermId = term2.Id
+            //    };
+            //    await _db.InsertAsync(course2a);
 
-        //    CourseInfo course2b = new CourseInfo
-        //    {
-        //        CourseName = "River Course",
-        //        Instructor = "Mary Catherine Ruth",
-        //        Phone = "555555555",
-        //        Email = "Priory@gmail.com",
-        //        StartDate = DateTime.Now,
-        //        AnticipatedEndDate = DateTime.Now.AddDays(+90),
-        //        StartNotification = true,
-        //        TermId = term2.Id
-        //    };
-        //    await _db.InsertAsync(course2b);
+            //    CourseInfo course2b = new CourseInfo
+            //    {
+            //        CourseName = "River Course",
+            //        Instructor = "Mary Catherine Ruth",
+            //        Phone = "555555555",
+            //        Email = "Priory@gmail.com",
+            //        StartDate = DateTime.Now,
+            //        AnticipatedEndDate = DateTime.Now.AddDays(+90),
+            //        StartNotification = true,
+            //        TermId = term2.Id
+            //    };
+            //    await _db.InsertAsync(course2b);
 
-        //    CourseInfo course2c = new CourseInfo
-        //    {
-        //        CourseName = "Meadows Course",
-        //        Instructor = "Tiger Woods",
-        //        Phone = "555555555",
-        //        Email = "GolfLvr@gmail.com",
-        //        StartDate = DateTime.Now,
-        //        AnticipatedEndDate = DateTime.Now.AddDays(+90),
-        //        StartNotification = true,
-        //        TermId = term2.Id
-        //    };
-        //    await _db.InsertAsync(course2c);
+            //    CourseInfo course2c = new CourseInfo
+            //    {
+            //        CourseName = "Meadows Course",
+            //        Instructor = "Tiger Woods",
+            //        Phone = "555555555",
+            //        Email = "GolfLvr@gmail.com",
+            //        StartDate = DateTime.Now,
+            //        AnticipatedEndDate = DateTime.Now.AddDays(+90),
+            //        StartNotification = true,
+            //        TermId = term2.Id
+            //    };
+            //    await _db.InsertAsync(course2c);
 
         }
 

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class ="mschreiber_c971MobileApp.Views.TermEdit"
-             Title = "Term">
+             Title = "Term Details">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="SAVE" x:Name="SaveTerm" Clicked="SaveTerm_Clicked"></ToolbarItem>
@@ -12,6 +12,7 @@
 
     <StackLayout BackgroundColor="#e4e5ea">
         <Label x:Name="ListLabel" Text="General Term Information"  FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
+        <Label x:Name="ListLabels" Text="Select items you wish to edit"  FontSize="Caption" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
         <Grid Padding="5" RowSpacing="1" ColumnSpacing="1" BackgroundColor="#e4e5ea">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -44,6 +45,7 @@
         <Button x:Name="AddClass" Text="Add Class to Term" Clicked="AddClass_Clicked" HorizontalOptions="Center"></Button>
 
         <Label Text="Courses In Term"  FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
+        <Label x:Name="ListLabel2" Text="Select a class if you wish to edit or view more details"  FontSize="Caption" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
         <CollectionView x:Name="CourseCollectionView"
                             EmptyView="No Course info To Display."
                             SelectionMode="Single"
@@ -53,7 +55,7 @@
                 <DataTemplate>
                     
                     <StackLayout VerticalOptions="CenterAndExpand" Margin="10,10,10,0">
-                        <!-- Placeholder label elements for displaying course information -->
+                        
                         <Grid Margin="5" RowSpacing="5" ColumnSpacing="1" BackgroundColor="#779199">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
@@ -67,6 +69,7 @@
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
+                            
 
                             <Label Grid.Row="0" Grid.Column="0" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" VerticalTextAlignment="End" >Course ID</Label>
                             <Entry Text="{Binding Id}" x:Name="TermId" Placeholder="Enter Term Id" Grid.Row="0" Grid.Column="1" VerticalTextAlignment="End" IsReadOnly="True"></Entry>

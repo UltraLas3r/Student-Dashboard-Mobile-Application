@@ -17,7 +17,7 @@ namespace mschreiber_c971MobileApp.Views
     public partial class CourseEdit : ContentPage
     {
         private readonly int _selectTermId;
-        private readonly int courseId;
+        private readonly int _courseId;
         private string _courseName;
         private string _assessmentName;
         Assessment assessment = new Assessment();
@@ -31,11 +31,11 @@ namespace mschreiber_c971MobileApp.Views
 
             DateTime CourseStart = course.StartDate;
 
-            courseId = course.Id;
+            _courseId = course.Id;
             _courseName = course.CourseName;
             _email = course.Email;
-
-            CourseId.Text = course.Id.ToString();
+            //todo: delete this perhaps?
+            //CourseId.Text = course.Id.ToString();
             CourseName.Text = course.CourseName;
             CourseInstructorName.Text = course.Instructor;
             StatusTypePicker.SelectedItem = course.CourseStatus;
@@ -61,7 +61,7 @@ namespace mschreiber_c971MobileApp.Views
             base.OnAppearing();
             
 
-            AssessmentsCollection.ItemsSource = await DatabaseService.GetAssessments(courseId);
+            AssessmentsCollection.ItemsSource = await DatabaseService.GetAssessments(_courseId);
         }
 
        
@@ -107,7 +107,7 @@ namespace mschreiber_c971MobileApp.Views
             }
 
            
-            await DatabaseService.UpdateCourse(Int32.Parse(CourseId.Text), CourseName.Text, StatusTypePicker.SelectedItem.ToString(), DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()), CourseInstructorName.Text, PhoneNumber.Text, Email.Text, NotesEditor.Text);
+            await DatabaseService.UpdateCourse(_courseId, CourseName.Text, StatusTypePicker.SelectedItem.ToString(), DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()), CourseInstructorName.Text, PhoneNumber.Text, Email.Text, NotesEditor.Text);
 
 
         
@@ -121,7 +121,7 @@ namespace mschreiber_c971MobileApp.Views
 
             if (answer == true)
             {
-                var id = int.Parse(CourseId.Text);
+                var id = _courseId;
 
                 await DatabaseService.RemoveCourse(id);
 
@@ -168,7 +168,7 @@ namespace mschreiber_c971MobileApp.Views
         async void AddATestButton_Clicked(object sender, EventArgs e)
         {
 
-            await Navigation.PushAsync(new AddAssessments(_courseName, courseId, assessment));
+            await Navigation.PushAsync(new AddAssessments(_courseName, _courseId, assessment));
         }
 
 
