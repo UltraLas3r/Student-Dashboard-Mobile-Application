@@ -222,31 +222,37 @@ namespace mschreiber_c971MobileApp.Services
         }
 
 
-        public static async Task RemoveAssessment(int courseId, string assessmentType)
+        public static async Task RemoveAssessment(int assessmentId)
         {
-            await Init();
+            //await Init();
 
             //var assessmentQuery = await _db.Table<Assessment>()
             // .Where(i => i.CourseId == courseId)
             // .FirstOrDefaultAsync();
 
-            var assessmentQuery = await _db.Table<Assessment>()
-                .Where(i => i.CourseId == courseId && i.AssessmentType == assessmentType)
-                .FirstOrDefaultAsync();
+            //var assessmentQuery = await _db.Table<Assessment>()
+            //    .Where(i => i.AssessmentType == assessmentId)
+            //    .FirstOrDefaultAsync();
 
-            if (assessmentQuery != null)
-            {
-                assessmentQuery.CourseId = courseId;
-                assessmentQuery.AssessmentType = assessmentType;
-                
+            //if (assessmentQuery != null)
+            //{
 
-                await _db.UpdateAsync(assessmentQuery);
-            }
+            //    assessmentQuery.AssessmentType = assessmentType;
 
 
+            //    await _db.UpdateAsync(assessmentQuery);
+            //}
 
 
-            await _db.DeleteAsync<Assessment>(courseId);
+
+
+            //await _db.DeleteAsync<Assessment>(assessmentType);
+
+
+
+            await Init();
+
+            await _db.DeleteAsync<Assessment>(assessmentId);
         }
 
 

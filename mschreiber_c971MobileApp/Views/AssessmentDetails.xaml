@@ -41,7 +41,7 @@
 
 
                             <Label Grid.Row="0" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Id</Label>
-                            <Entry Text="{Binding CourseId}" x:Name="CourseId"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" IsReadOnly="True"></Entry>
+                            <Entry Text="{Binding AssessmentId}" x:Name="AssessmentId"  Grid.Row="0" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" IsReadOnly="True"></Entry>
 
                             <Label Grid.Row="1" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center" >Test Name:</Label>
                             <Entry Text="{Binding AssessmentName}" x:Name="AssessmentName"  Grid.Row="1" Grid.Column="1" VerticalTextAlignment="Start" HorizontalOptions="Start" ></Entry>

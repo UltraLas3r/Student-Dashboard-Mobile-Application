@@ -15,17 +15,21 @@ namespace mschreiber_c971MobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AssessmentDetails : ContentPage
     {
-        private readonly int courseId;
+        private readonly int _courseId;
+        private readonly int _assessmentId;
         CourseInfo courseInfo = new CourseInfo();
         public AssessmentDetails(Assessment assessment)
         {
             InitializeComponent();
-            courseId = assessment.CourseId;
-            CourseId.Text = assessment.CourseId.ToString();
+            _courseId = assessment.CourseId;
+            AssessmentId.Text = assessment.AssessmentId.ToString();
             AssessmentName.Text = assessment.AssessmentName;
             AssessmentType.Text = assessment.AssessmentType;
             StartDatePicker.Date = assessment.StartDate;
             EndDatePicker.Date = assessment.AnticipatedEndDate;
+
+            _assessmentId = assessment.AssessmentId;
+
         }
 
         
@@ -34,7 +38,7 @@ namespace mschreiber_c971MobileApp.Views
 
         async void SaveAssessment_Clicked(object sender, EventArgs e)
         {
-            await DatabaseService.UpdateAssessment(Int32.Parse(CourseId.Text), AssessmentName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()));
+            await DatabaseService.UpdateAssessment(_courseId, AssessmentName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()));
             await Navigation.PopAsync();
         }
 
@@ -49,10 +53,7 @@ namespace mschreiber_c971MobileApp.Views
 
             if (answer == true)
             {
-                var id = int.Parse(CourseId.Text);
-                var assessmentType = AssessmentType.Text;
-
-                await DatabaseService.RemoveAssessment(id, assessmentType);
+                await DatabaseService.RemoveAssessment(_assessmentId);
 
                 await DisplayAlert("Assessment Deleted", "Assement Deleted", "Ok");
             }
