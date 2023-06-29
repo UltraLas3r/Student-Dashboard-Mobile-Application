@@ -30,10 +30,12 @@ namespace mschreiber_c971MobileApp.Views
             var CourseList = await DatabaseService.GetCourses();
             var AssessmentList = await DatabaseService.GetAssessments();
             var notifyRandom = new Random();
+            
 
             foreach (CourseInfo course in CourseList)
             {
                 var notifyId = notifyRandom.Next(1000);
+                
 
                 if (course.StartNotification == true)
                 {
@@ -42,21 +44,41 @@ namespace mschreiber_c971MobileApp.Views
                         CrossLocalNotifications.Current.Show("Notice", $"{course.CourseName} begins today!", notifyId);
                     }
                 }
-            }
 
-
-            foreach (Assessment assessment in AssessmentList)
-            {
-                var notifyId = notifyRandom.Next(1000);
-
-                if (assessment.StartDateNotify == true)
+                if (course.StartNotification == false)
                 {
-                    if (assessment.StartDate == DateTime.Today)
-                    {
-                        CrossLocalNotifications.Current.Show("Notice", $"{assessment.AssessmentName} begins today!", notifyId);
-                    }
+                     CheckForEvalStart();
                 }
+  
             }
+
+            async void CheckForEvalStart()
+            {
+
+                foreach (Assessment assessment in AssessmentList)
+                {
+                    var notifyId = notifyRandom.Next(1000);
+
+                    if (assessment.StartDateNotify == true)
+                    {
+                        if (assessment.StartDate == DateTime.Today)
+                        {
+                            CrossLocalNotifications.Current.Show("Notice", $"{assessment.AssessmentName} begins today!", notifyId);
+                        }
+                    }
+
+                    if (assessment.StartDateNotify == false && assessment.StartDateNotify == false)
+                    {
+                        return;
+                    }
+
+                }
+
+                
+               return; 
+            }
+
+         
 
             await DatabaseService.GetOACount(_assessmentId);
 
