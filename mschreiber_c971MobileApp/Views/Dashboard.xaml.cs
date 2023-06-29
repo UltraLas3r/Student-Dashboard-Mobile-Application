@@ -17,39 +17,34 @@ namespace mschreiber_c971MobileApp.Views
     public partial class Dashboard : ContentPage
     {
         private int termId;
-        private string courseId;
+      
         private string randomName;
         private int _assessmentId;
-        private string assessmentName;
-
-        private string assessmentOA = "Objective";
-        private string assessmentPA = "Performance";
+        
         protected override async void OnAppearing()
         {
             base.OnAppearing();
             var CourseList = await DatabaseService.GetCourses();
             var AssessmentList = await DatabaseService.GetAssessments();
             var notifyRandom = new Random();
-            
+
+            CheckForEvalStart();
 
             foreach (CourseInfo course in CourseList)
             {
                 var notifyId = notifyRandom.Next(1000);
-                
+
+               
 
                 if (course.StartNotification == true)
                 {
+
                     if (course.StartDate == DateTime.Today)
                     {
                         CrossLocalNotifications.Current.Show("Notice", $"{course.CourseName} begins today!", notifyId);
                     }
                 }
 
-                if (course.StartNotification == false)
-                {
-                     CheckForEvalStart();
-                }
-  
             }
 
             async void CheckForEvalStart()

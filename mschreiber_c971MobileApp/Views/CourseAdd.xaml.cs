@@ -27,7 +27,12 @@ namespace mschreiber_c971MobileApp.Views
 
         async void SaveCourse_Clicked(object sender, EventArgs e)
         {
-            
+            if (string.IsNullOrEmpty(InstructorName.Text))
+            {
+                await DisplayAlert("Instructor Name Check", "Please provide instructor Name", "Ok");
+                return;
+            }
+
             if (!IsValidEmail(InstructorEmail.Text))
             {
                 await DisplayAlert("Email Check", "Email must be in valid format \n name@xyz.com", "Ok");
@@ -39,6 +44,7 @@ namespace mschreiber_c971MobileApp.Views
                 await DisplayAlert("Phone Check", "Phone number must be in valid format \n 555 555 5555", "Ok");
                 return;
             }
+          
 
             if (StatusTypePicker.SelectedItem == null)
             {
