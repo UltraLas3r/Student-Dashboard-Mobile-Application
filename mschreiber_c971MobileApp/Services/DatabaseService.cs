@@ -188,7 +188,7 @@ namespace mschreiber_c971MobileApp.Services
         }
 
 
-        public static async Task UpdateAssessment(int courseId, string assessmentName, DateTime startDate, DateTime anticipatedEndDate)
+        public static async Task UpdateAssessment(int courseId, string assessmentName, DateTime startDate, DateTime anticipatedEndDate, bool startDateNotify, bool endDateNotify)
         {
             await Init();
 
@@ -202,6 +202,8 @@ namespace mschreiber_c971MobileApp.Services
                 assessmentQuery.AssessmentName = assessmentName;
                 assessmentQuery.StartDate = startDate;
                 assessmentQuery.AnticipatedEndDate = anticipatedEndDate;
+                assessmentQuery.StartDateNotify = startDateNotify;
+                assessmentQuery.EndDateNotify = endDateNotify;
 
                 await _db.UpdateAsync(assessmentQuery);
             }

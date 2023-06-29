@@ -32,12 +32,14 @@ namespace mschreiber_c971MobileApp.Views
             StartDatePicker.Date = assessment.StartDate;
             EndDatePicker.Date = assessment.AnticipatedEndDate;
 
-           
+            StartDateNotify.IsToggled = assessment.StartDateNotify;
+            EndDateNotify.IsToggled =assessment.EndDateNotify;
+
         }
 
         async void SaveAssessment_Clicked(object sender, EventArgs e)
         {
-            await DatabaseService.UpdateAssessment(_courseId, AssessmentName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()));
+            await DatabaseService.UpdateAssessment(_courseId, AssessmentName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()), StartDateNotify.IsToggled, EndDateNotify.IsToggled);
             await Navigation.PopAsync();
         }
 

@@ -50,7 +50,13 @@
                             <DatePicker Grid.Row="3" Grid.Column="1" x:Name="StartDatePicker" Format="D"></DatePicker>
 
                             <Label Grid.Row="4" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">End Date</Label>
-                <DatePicker Grid.Row="4" Grid.Column="1" x:Name="EndDatePicker" Format="D"></DatePicker>   
+                            <DatePicker Grid.Row="4" Grid.Column="1" x:Name="EndDatePicker" Format="D"></DatePicker>
+
+                            <Label Grid.Row="5" Grid.Column="0" FontSize="Medium" VerticalTextAlignment="Center">Notifiy Start Date?</Label>
+                            <Switch Grid.Row="6" Grid.Column="0" x:Name="StartDateNotify" HorizontalOptions="Center"></Switch>
+
+                            <Label Grid.Row="5" Grid.Column="1" FontSize="Medium" VerticalTextAlignment="Center" HorizontalTextAlignment="Center">Notifiy End Date?</Label>
+                            <Switch Grid.Row="6" Grid.Column="1" x:Name="EndDateNotify" HorizontalOptions="Center"></Switch>
             </Grid>
                     </StackLayout>
                 <!--</DataTemplate>-->
