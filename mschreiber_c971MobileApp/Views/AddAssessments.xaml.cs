@@ -116,7 +116,8 @@ namespace mschreiber_c971MobileApp.Views
               if (endDate < startDate)
                 {
                     await DisplayAlert("Invalid End Date", "End Date cannot be before Start Date", "OK");
-                }
+                return;
+            }
 
 
 

@@ -39,6 +39,16 @@ namespace mschreiber_c971MobileApp.Views
 
         async void SaveAssessment_Clicked(object sender, EventArgs e)
         {
+            DateTime startDate = StartDatePicker.Date;
+            DateTime endDate = EndDatePicker.Date;
+
+            if (endDate < startDate)
+            {
+                await DisplayAlert("Invalid End Date", "End Date cannot be before Start Date", "OK");
+                return;
+            }
+
+
             await DatabaseService.UpdateAssessment(_courseId, AssessmentName.Text, DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()), StartDateNotify.IsToggled, EndDateNotify.IsToggled);
             await Navigation.PopAsync();
         }
@@ -47,7 +57,8 @@ namespace mschreiber_c971MobileApp.Views
         {
             await Navigation.PopAsync();
         }
-        //todo change this to look at AsessmentId
+        
+
         async void RemoveAssessment_Clicked(object sender, EventArgs e)
         {
             var answer = await DisplayAlert("Delete this Test?", "Delete this Assessment?", "Yes", "No");

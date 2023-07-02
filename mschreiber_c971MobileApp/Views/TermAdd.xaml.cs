@@ -19,23 +19,34 @@ namespace mschreiber_c971MobileApp.Views
 
         async void SaveTerm_Clicked(object sender, EventArgs e)
         {
-            DateTime? selectedDate = StartDatePicker.Date;
+            DateTime? selectedStartDate = StartDatePicker.Date;
             DateTime? selectedEndDate = AnticipatedEndDatePicker.Date;
 
             if (string.IsNullOrWhiteSpace(TermName.Text))
             {
                 await DisplayAlert("Missing Name", "Please enter a name.", "Ok");
+                return;
 
             }
 
-            if (!selectedDate.HasValue)
+            if (!selectedStartDate.HasValue)
             {
                 await DisplayAlert("Missing Name", "Please enter a start date.", "Ok");
+                return;
             }
 
             if(!selectedEndDate.HasValue)
             {
                 await DisplayAlert("Missing Name", "Please enter an end date.", "Ok");
+                return;
+            }
+
+          
+
+            if (selectedEndDate < selectedStartDate)
+            {
+                await DisplayAlert("Invalid End Date", "End Date cannot be before Start Date", "OK");
+                return;
             }
 
             await DatabaseService.AddTerm(TermName.Text, StartDatePicker.Date, AnticipatedEndDatePicker.Date);

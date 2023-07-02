@@ -88,7 +88,7 @@
         </Grid>
             
         <Label x:Name="ListLabel3" Text="Select a test to view more details"  FontSize="Caption" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
-        <Button Grid.Column="0" x:Name="AddATestButton"  Text="Add Test" Clicked="AddATestButton_Clicked" BackgroundColor="#A7f1A8"></Button>
+        <Button Grid.Column="0" x:Name="AddATestButton"  Text="Add Assessment" Clicked="AddATestButton_Clicked" BackgroundColor="#A7f1A8"></Button>
         <Label x:Name="AssessmentList" Text="Course Assessments"  FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
         
         <CollectionView x:Name="AssessmentsCollection"

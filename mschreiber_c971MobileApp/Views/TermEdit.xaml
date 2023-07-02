@@ -42,7 +42,7 @@
             
         </Grid>
 
-        <Button x:Name="AddClass" Text="Add Class to Term" Clicked="AddClass_Clicked" HorizontalOptions="Center"></Button>
+        <Button x:Name="AddClass" Text="Add Course to Term" Clicked="AddClass_Clicked" HorizontalOptions="Center"></Button>
 
         <Label Text="Courses In Term"  FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
         <Label x:Name="ListLabel2" Text="Select a class if you wish to edit or view more details"  FontSize="Caption" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>

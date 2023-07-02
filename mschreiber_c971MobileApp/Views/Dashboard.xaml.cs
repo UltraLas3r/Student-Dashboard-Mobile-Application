@@ -24,17 +24,17 @@ namespace mschreiber_c971MobileApp.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            
             var CourseList = await DatabaseService.GetCourses();
             var AssessmentList = await DatabaseService.GetAssessments();
             var notifyRandom = new Random();
 
             CheckForEvalStart();
+            CheckForEvalEnd();
 
             foreach (CourseInfo course in CourseList)
             {
                 var notifyId = notifyRandom.Next(1000);
-
-               
 
                 if (course.StartNotification == true)
                 {
@@ -42,6 +42,19 @@ namespace mschreiber_c971MobileApp.Views
                     if (course.StartDate == DateTime.Today)
                     {
                         CrossLocalNotifications.Current.Show("Notice", $"{course.CourseName} begins today!", notifyId);
+                    }
+                }
+            }
+
+            foreach (CourseInfo course in CourseList)
+            {
+                var notifyId = notifyRandom.Next(1000);
+
+                if (course.EndNotification == true)
+                {
+                    if (course.AnticipatedEndDate == DateTime.Today)
+                    {
+                        CrossLocalNotifications.Current.Show("Notice", $"{course.CourseName} ENDS today!", notifyId);
                     }
                 }
 
@@ -69,16 +82,38 @@ namespace mschreiber_c971MobileApp.Views
 
                 }
 
-                
-               return; 
+
+                return;
             }
 
-         
+            async void CheckForEvalEnd()
+            {
+                foreach (Assessment assessment in AssessmentList)
+                {
+                    var notifyId = notifyRandom.Next(1000);
+
+                    if (assessment.EndDateNotify == true)
+                    {
+                        if (assessment.AnticipatedEndDate == DateTime.Today)
+                        {
+                            CrossLocalNotifications.Current.Show("Notice", $"{assessment.AssessmentName} ENDS today!", notifyId);
+                        }
+                    }
+
+                    if (assessment.EndDateNotify == false && assessment.EndDateNotify == false)
+                    {
+                        return;
+                    }
+
+                }
+
 
             await DatabaseService.GetOACount(_assessmentId);
 
 
             await DatabaseService.GetPACount(_assessmentId);
+
+        }
 
         }
 

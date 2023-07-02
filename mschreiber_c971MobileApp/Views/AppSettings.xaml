@@ -5,9 +5,16 @@
              Title = "App Settings">
     <ContentPage.Content>
         <StackLayout>
-            <Button x:Name="ClearPreferences" Text="Clear Preferences" WidthRequest="150" HorizontalOptions="Center" VerticalOptions="Center" Clicked="ClearPreferences_Clicked"></Button>
-            <Button x:Name="LoadSampleData" Text="Load Sample Data" WidthRequest="150" HorizontalOptions="Center" Clicked="LoadSampleData_Clicked"></Button>
-            <Button x:Name="ClearSampleData" Text="Clear Sample Data" WidthRequest="150" HorizontalOptions="Center" VerticalOptions="Center" Clicked="ClearSampleData_Clicked"></Button>
+
+            <Label x:Name="AssessmentList" Text="Click buttons in numerical order (1, 2, 3) to load or refresh evaluation data"  FontSize="Medium" HorizontalTextAlignment="Center" TextColor="#ffffff" BackgroundColor="#313030"></Label>
+
+
+
+            <Button x:Name="ClearPreferences" Text="1. Clear Preferences" WidthRequest="150" HorizontalOptions="Center" VerticalOptions="Center" Clicked="ClearPreferences_Clicked"></Button>
+            
+            <Button x:Name="ClearSampleData" Text="2. Clear Evalution Data" WidthRequest="150" HorizontalOptions="Center" VerticalOptions="Center" Clicked="ClearSampleData_Clicked"></Button>
+
+            <Button x:Name="LoadSampleData" Text="3. Load Evaluation Data" WidthRequest="150" HorizontalOptions="Center" Clicked="LoadSampleData_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

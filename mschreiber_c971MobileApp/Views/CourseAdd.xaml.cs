@@ -27,6 +27,16 @@ namespace mschreiber_c971MobileApp.Views
 
         async void SaveCourse_Clicked(object sender, EventArgs e)
         {
+            DateTime startDate = StartDatePicker.Date;
+            DateTime endDate = AnticipatedEndDate.Date;
+
+            if (endDate < startDate)
+            {
+                await DisplayAlert("Invalid End Date", "End Date cannot be before Start Date", "OK");
+                return;
+            }
+
+
             if (string.IsNullOrEmpty(InstructorName.Text))
             {
                 await DisplayAlert("Instructor Name Check", "Please provide instructor Name", "Ok");

@@ -37,9 +37,7 @@ namespace mschreiber_c971MobileApp.Views
 
             _courseId = course.Id;
             _courseName = course.CourseName;
-            _email = course.Email;
-            //todo: delete this perhaps?
-            //CourseId.Text = course.Id.ToString();
+            _email = course.Email;   
             CourseName.Text = course.CourseName;
             CourseInstructorName.Text = course.Instructor;
             StatusTypePicker.SelectedItem = course.CourseStatus;
@@ -78,7 +76,17 @@ namespace mschreiber_c971MobileApp.Views
 
         async void SaveCourse_Clicked(object sender, EventArgs e)
         {
-           if (!IsValidEmail(Email.Text))
+
+            DateTime startDate = StartDatePicker.Date;
+            DateTime endDate = EndDatePicker.Date;
+
+            if (endDate < startDate)
+            {
+                await DisplayAlert("Invalid End Date", "End Date cannot be before Start Date", "OK");
+                return;
+            }
+
+            if (!IsValidEmail(Email.Text))
             {
                 await DisplayAlert("Email Check", "Email must be in valid format \n name@xyz.com", "Ok");
                 return;

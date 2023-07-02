@@ -53,9 +53,14 @@ namespace mschreiber_c971MobileApp.Views
 
         async void SaveTerm_Clicked(object sender, EventArgs e)
         {
-            //TODO: This is to verify I am saving the information correctly when I CLICK THE SAVE BUTTON!!!
-            decimal tossedDecimal;
-            int tossedInt;
+            DateTime startDate = StartDatePicker.Date;
+            DateTime endDate = EndDatePicker.Date;
+
+            if (endDate < startDate)
+            {
+                await DisplayAlert("Invalid End Date", "End Date cannot be before Start Date", "OK");
+                return;
+            }
 
             if (string.IsNullOrWhiteSpace(TermName.Text))
             {
@@ -66,14 +71,15 @@ namespace mschreiber_c971MobileApp.Views
             if (string.IsNullOrWhiteSpace(StartDatePicker.ToString()))
             {
                 await DisplayAlert("Missing start date", "Please pick a start date", "Ok");
+                return;
             }
 
             if (string.IsNullOrWhiteSpace(EndDatePicker.ToString()))
             {
                 await DisplayAlert("Missing end date", "Please pick an end date", "Ok");
+                return;
             }
 
-            
 
             await DatabaseService.UpdateTerm(Int32.Parse(_selectTermId.ToString()), TermName.Text,  DateTime.Parse(StartDatePicker.Date.ToString()), DateTime.Parse(EndDatePicker.Date.ToString()));
 

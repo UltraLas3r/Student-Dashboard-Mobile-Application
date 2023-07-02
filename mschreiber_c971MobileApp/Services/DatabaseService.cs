@@ -20,6 +20,7 @@ namespace mschreiber_c971MobileApp.Services
         
         static async Task Init()
         {
+            
             if (_db != null)
             {
                 return;
@@ -216,9 +217,6 @@ namespace mschreiber_c971MobileApp.Services
             await Init();
 
             await _db.DeleteAsync<Assessment>(assessmentId);
-
-            //todo check this functionality
-            //await _db.QueryAsync<Assessment>($"DELETE FROM Assessment WHERE CourseId ='{assessmentId}' AND AssessmentType = '{assessmentType}'");
         }
 
 
